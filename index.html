@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nexora Systems — Digitale Systeme für Unternehmen</title>
+
+<meta name="description" content="Nexora Systems entwickelt moderne Websites, Automatisierungen und digitale Lösungen für Unternehmen.">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --bg: #05070a;
+    --bg2: #0a0e13;
+    --text: #f4f7fb;
+    --muted: #8b96a5;
+    --line: rgba(255,255,255,.09);
+    --accent: #7c5cff;
+    --accent2: #00d4ff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Inter, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+/* ---------- BACKGROUND ---------- */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 20% 10%, rgba(124,92,255,.14), transparent 30%),
+        radial-gradient(circle at 80% 20%, rgba(0,212,255,.09), transparent 28%);
+    z-index: -2;
+}
+
+.grid {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: .18;
+
+    background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+
+    background-size: 60px 60px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 80%
+    );
+}
+
+/* ---------- NAV ---------- */
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 24px 7%;
+
+    background: rgba(5,7,10,.65);
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(255,255,255,.05);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -.7px;
+}
+
+.logo span {
+    color: var(--accent2);
+}
+
+nav ul {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+}
+
+nav a {
+    color: #aeb7c4;
+    text-decoration: none;
+    font-size: 14px;
+    transition: .25s;
+}
+
+nav a:hover {
+    color: white;
+}
+
+.nav-button {
+    padding: 11px 18px;
+    border-radius: 10px;
+
+    background: white;
+    color: black !important;
+
+    font-weight: 600;
+}
+
+/* ---------- HERO ---------- */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+
+    padding: 150px 7% 100px;
+
+    position: relative;
+}
+
+.hero-content {
+    max-width: 950px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 8px 14px;
+
+    border: 1px solid var(--line);
+    border-radius: 100px;
+
+    background: rgba(255,255,255,.03);
+
+    color: #b9c2ce;
+    font-size: 13px;
+
+    margin-bottom: 30px;
+}
+
+.badge-dot {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+    background: #42ff9a;
+
+    box-shadow: 0 0 15px #42ff9a;
+}
+
+h1 {
+    font-size: clamp(55px, 8vw, 110px);
+
+    line-height: .95;
+    letter-spacing: -6px;
+
+    max-width: 1000px;
+
+    margin-bottom: 35px;
+}
+
+.gradient {
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #9da8ff,
+        #00d4ff
+    );
+
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    max-width: 650px;
+
+    color: var(--muted);
+
+    font-size: 19px;
+    line-height: 1.7;
+
+    margin-bottom: 40px;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 16px 25px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: .3s;
+}
+
+.btn-primary {
+    background: white;
+    color: black;
+
+    box-shadow: 0 0 40px rgba(255,255,255,.08);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(255,255,255,.15);
+}
+
+.btn-secondary {
+    border: 1px solid var(--line);
+    color: white;
+    background: rgba(255,255,255,.03);
+}
+
+.btn-secondary:hover {
+    background: rgba(255,255,255,.07);
+}
+
+/* ---------- FLOATING ORB ---------- */
+
+.orb {
+    position: absolute;
+
+    right: 5%;
+    top: 35%;
+
+    width: 280px;
+    height: 280px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(circle at 35% 30%, white, #8d75ff 8%, #241e63 35%, transparent 70%);
+
+    filter: blur(2px);
+
+    opacity: .65;
+
+    animation: float 7s ease-in-out infinite;
+}
+
+.orb::after {
+    content: "";
+
+    position: absolute;
+    inset: -40px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(124,92,255,.2);
+
+    box-shadow:
+        0 0 80px rgba(124,92,255,.2),
+        inset 0 0 60px rgba(0,212,255,.1);
+}
+
+@keyframes float {
+    0%,100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-25px) rotate(8deg);
+    }
+}
+
+/* ---------- SECTIONS ---------- */
+
+section {
+    padding: 130px 7%;
+}
+
+.section-label {
+    color: var(--accent2);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+
+.section-title {
+    font-size: clamp(35px,5vw,65px);
+    letter-spacing: -3px;
+    max-width: 800px;
+    margin-bottom: 25px;
+}
+
+.section-text {
+    color: var(--muted);
+    max-width: 650px;
+    line-height: 1.7;
+}
+
+/* ---------- SERVICES ---------- */
+
+.services {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+
+    margin-top: 60px;
+}
+
+.card {
+    padding: 35px;
+
+    min-height: 300px;
+
+    border: 1px solid var(--line);
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.05),
+            rgba(255,255,255,.015)
+        );
+
+    transition: .4s;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+
+    border-color: rgba(124,92,255,.4);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.4),
+        0 0 50px rgba(124,92,255,.08);
+}
+
+.card-number {
+    font-size: 12px;
+    color: #687383;
+}
+
+.card h3 {
+    margin-top: 70px;
+
+    font-size: 25px;
+}
+
+.card p {
+    margin-top: 15px;
+
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    right: -40px;
+    bottom: -40px;
+
+    background: var(--accent);
+    filter: blur(70px);
+
+    opacity: .25;
+}
+
+/* ---------- PROCESS ---------- */
+
+.process {
+    margin-top: 70px;
+
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+
+.step {
+    padding: 30px;
+
+    border-left: 1px solid var(--line);
+}
+
+.step:first-child {
+    border-left: none;
+}
+
+.step span {
+    color: var(--accent2);
+    font-size: 13px;
+}
+
+.step h3 {
+    margin: 25px 0 12px;
+}
+
+.step p {
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+/* ---------- SHOWCASE ---------- */
+
+.showcase {
+    margin-top: 60px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+.project {
+    height: 400px;
+
+    border-radius: 20px;
+
+    border: 1px solid var(--line);
+
+    background:
+        linear-gradient(
+            135deg,
+            #10131b,
+            #17162b
+        );
+
+    padding: 35px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.project::before {
+    content: "";
+
+    position: absolute;
+    width: 350px;
+    height: 350px;
+
+    top: -150px;
+    right: -100px;
+
+    background: radial-gradient(
+        circle,
+        rgba(124,92,255,.5),
+        transparent 65%
+    );
+}
+
+.project h3 {
+    font-size: 30px;
+    position: relative;
+}
+
+.project p {
+    color: var(--muted);
+    margin-top: 10px;
+    position: relative;
+}
+
+/* ---------- CTA ---------- */
+
+.cta {
+    text-align: center;
+
+    padding: 160px 20px;
+}
+
+.cta h2 {
+    font-size: clamp(45px,7vw,90px);
+    letter-spacing: -5px;
+
+    max-width: 900px;
+
+    margin: auto auto 30px;
+}
+
+.cta p {
+    color: var(--muted);
+    max-width: 600px;
+    margin: auto auto 40px;
+
+    line-height: 1.7;
+}
+
+/* ---------- FOOTER ---------- */
+
+footer {
+    padding: 40px 7%;
+
+    border-top: 1px solid var(--line);
+
+    display: flex;
+    justify-content: space-between;
+
+    color: #687383;
+
+    font-size: 13px;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width:900px) {
+
+    nav ul {
+        display: none;
+    }
+
+    .orb {
+        opacity: .25;
+        right: -120px;
+    }
+
+    h1 {
+        letter-spacing: -3px;
+    }
+
+    .services {
+        grid-template-columns: 1fr;
+    }
+
+    .process {
+        grid-template-columns: 1fr;
+    }
+
+    .step {
+        border-left: none;
+        border-top: 1px solid var(--line);
+    }
+
+    .showcase {
+        grid-template-columns: 1fr;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="grid"></div>
+
+<!-- NAV -->
+
+<nav>
+
+    <div class="logo">
+        NEXORA<span>.</span>
+    </div>
+
+    <ul>
+        <li><a href="#services">Leistungen</a></li>
+        <li><a href="#process">Ablauf</a></li>
+        <li><a href="#projects">Projekte</a></li>
+        <li><a href="#contact">Kontakt</a></li>
+    </ul>
+
+    <a href="#contact" class="nav-button">
+        Projekt starten
+    </a>
+
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            <span class="badge-dot"></span>
+            Digitale Systeme für moderne Unternehmen
+        </div>
+
+        <h1>
+            Weniger Arbeit.
+            <br>
+            <span class="gradient">
+                Mehr System.
+            </span>
+        </h1>
+
+        <p>
+            Nexora Systems entwickelt moderne Websites,
+            intelligente Automatisierungen und digitale Prozesse,
+            die Unternehmen Zeit sparen und effizienter machen.
+        </p>
+
+        <div class="buttons">
+
+            <a href="#contact" class="btn btn-primary">
+                Projekt besprechen →
+            </a>
+
+            <a href="#services" class="btn btn-secondary">
+                Lösungen entdecken
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="orb"></div>
+
+</header>
+
+
+<!-- SERVICES -->
+
+<section id="services">
+
+    <div class="section-label">
+        Was wir machen
+    </div>
+
+    <h2 class="section-title">
+        Digitale Lösungen,
+        die tatsächlich etwas verändern.
+    </h2>
+
+    <p class="section-text">
+        Keine unnötig komplizierten Systeme.
+        Wir bauen digitale Lösungen, die zu Ihrem Unternehmen
+        passen und im Alltag funktionieren.
+    </p>
+
+
+    <div class="services">
+
+        <div class="card">
+
+            <div class="card-number">
+                01 / WEB
+            </div>
+
+            <h3>
+                Websites
+            </h3>
+
+            <p>
+                Moderne, schnelle und professionelle Websites,
+                die aus Besuchern Kunden machen.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-number">
+                02 / AUTOMATION
+            </div>
+
+            <h3>
+                Automatisierung
+            </h3>
+
+            <p>
+                Wiederkehrende Excel-, Büro- und
+                Produktionsprozesse automatisieren.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-number">
+                03 / SYSTEMS
+            </div>
+
+            <h3>
+                Digitale Systeme
+            </h3>
+
+            <p>
+                Individuelle Lösungen, die Daten,
+                Prozesse und Menschen miteinander verbinden.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROCESS -->
+
+<section id="process">
+
+    <div class="section-label">
+        Unser Prozess
+    </div>
+
+    <h2 class="section-title">
+        Von der Idee zum funktionierenden System.
+    </h2>
+
+
+    <div class="process">
+
+        <div class="step">
+
+            <span>01</span>
+
+            <h3>
+                Verstehen
+            </h3>
+
+            <p>
+                Wir analysieren, wo aktuell Zeit,
+                Geld oder Effizienz verloren geht.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <span>02</span>
+
+            <h3>
+                Planen
+            </h3>
+
+            <p>
+                Wir entwickeln eine einfache,
+                verständliche Lösung.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <span>03</span>
+
+            <h3>
+                Bauen
+            </h3>
+
+            <p>
+                Die Lösung wird umgesetzt,
+                getestet und optimiert.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <span>04</span>
+
+            <h3>
+                Verbessern
+            </h3>
+
+            <p>
+                Nach dem Start entwickeln wir
+                das System gemeinsam weiter.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+    <div class="section-label">
+        Beispiele
+    </div>
+
+    <h2 class="section-title">
+        Was möglich ist.
+    </h2>
+
+
+    <div class="showcase">
+
+        <div class="project">
+
+            <h3>
+                Business Website
+            </h3>
+
+            <p>
+                Moderner digitaler Auftritt
+                für lokale Unternehmen.
+            </p>
+
+        </div>
+
+
+        <div class="project">
+
+            <h3>
+                Excel Automation
+            </h3>
+
+            <p>
+                Manuelle Prozesse mit einem
+                Klick automatisieren.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="cta" id="contact">
+
+    <h2>
+        Bereit,
+        <span class="gradient">
+            etwas besser zu machen?
+        </span>
+    </h2>
+
+    <p>
+        Erzählen Sie uns von Ihrem Unternehmen und
+        Ihrem aktuellen Problem. Wir finden heraus,
+        ob und wie wir es digital lösen können.
+    </p>
+
+    <a href="mailto:DEINE-EMAIL@BEISPIEL.CH"
+       class="btn btn-primary">
+
+        Gespräch starten →
+
+    </a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div>
+        © 2026 Nexora Systems
+    </div>
+
+    <div>
+        Digitale Systeme · Automatisierung · Web
+    </div>
+
+</footer>
+
+
+</body>
+</html>
