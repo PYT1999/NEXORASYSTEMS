@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>NEXORA 30.0.0 — Realm of Ash</title>
+<title>NEXORA 30.1.0 CLEAN — Realm of Ash</title>
 <style>
-:root{--glass:rgba(7,13,18,.78);--line:rgba(255,255,255,.12);--cyan:#6ee7ff;--gold:#ffd66e;--danger:#ff6470}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#05090d;color:#fff;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;touch-action:none;user-select:none;-webkit-user-select:none}body{background:radial-gradient(circle at 50% 30%,#14242d,#05090d 70%)}canvas{display:block;width:100vw;height:100vh}button{font:inherit;color:inherit;cursor:pointer}#hud{position:fixed;z-index:20;left:16px;top:16px;width:330px;padding:15px 16px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,rgba(6,13,19,.9),rgba(15,25,31,.72));backdrop-filter:blur(18px);box-shadow:0 18px 55px rgba(0,0,0,.5);pointer-events:none}.brand{font-size:27px;font-weight:950;letter-spacing:8px;text-shadow:0 0 24px rgba(110,231,255,.35)}.subtitle{font-size:9px;letter-spacing:3px;color:#91a8b7;margin:-2px 0 12px}.row{display:flex;justify-content:space-between;font-size:11px;color:#aebfca}.bar{height:12px;background:#0d161d;border:1px solid rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin:4px 0 8px}.bar i{display:block;height:100%;width:100%;border-radius:99px;transition:width .12s}.hp{background:linear-gradient(90deg,#7d2035,#ed5360,#ff9975)}.xp{background:linear-gradient(90deg,#175fa6,#42cfff,#d6f9ff)}.stats{display:grid;grid-template-columns:1fr 1fr;gap:5px 12px;margin-top:10px;font-size:12px;color:#bdcbd4}.stats b{color:#fff}.quest{margin-top:12px;padding:10px 11px;border:1px solid rgba(255,207,90,.18);background:rgba(255,207,90,.05);border-radius:13px;font-size:11px;line-height:1.5}.quest strong{color:var(--gold);letter-spacing:1.4px}#save{position:fixed;right:16px;top:16px;z-index:25;padding:8px 11px;border:1px solid var(--line);border-radius:12px;background:rgba(3,8,12,.72);font-size:11px;color:#b9cbd5;backdrop-filter:blur(10px)}#zone{position:fixed;z-index:21;left:50%;top:18px;transform:translateX(-50%);padding:8px 15px;border-radius:99px;background:rgba(4,9,13,.58);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(12px);font-size:11px;letter-spacing:2px;color:#c6d6df;opacity:.9}#msg{position:fixed;z-index:30;left:50%;bottom:132px;transform:translateX(-50%);padding:11px 19px;border-radius:99px;background:rgba(2,6,9,.88);border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 35px rgba(0,0,0,.45);opacity:0;transition:opacity .18s;pointer-events:none;white-space:nowrap;font-size:13px}#interact{position:fixed;z-index:25;left:50%;top:15%;transform:translateX(-50%);padding:9px 15px;border-radius:99px;background:rgba(3,8,12,.8);border:1px solid rgba(255,255,255,.13);opacity:0;font-size:12px;pointer-events:none;backdrop-filter:blur(10px)}#controls{position:fixed;z-index:25;left:20px;bottom:20px;display:grid;grid-template-columns:62px 62px 62px;gap:6px}.move{width:62px;height:62px;border-radius:18px;border:1px solid rgba(255,255,255,.15);background:rgba(8,17,24,.78);box-shadow:0 9px 25px rgba(0,0,0,.4);font-size:22px;backdrop-filter:blur(8px)}.move:active{transform:scale(.93);background:rgba(54,107,137,.8)}.action{position:fixed;z-index:25;border-radius:50%;color:#fff;font-weight:950;box-shadow:0 12px 35px rgba(0,0,0,.48);backdrop-filter:blur(8px)}#attack{right:26px;bottom:26px;width:104px;height:104px;border:2px solid rgba(255,255,255,.25);background:radial-gradient(circle at 32% 25%,#e86a76,#751d31 72%);font-size:13px}#potion{right:145px;bottom:40px;width:68px;height:68px;border:2px solid rgba(255,255,255,.18);background:radial-gradient(circle at 30% 25%,#5aaee6,#16496f 75%);font-size:10px}.action:active{transform:scale(.94)}#mini{position:fixed;right:16px;bottom:16px;width:220px;height:150px;border:1px solid rgba(255,255,255,.13);border-radius:16px;background:rgba(3,7,10,.8);box-shadow:0 12px 38px rgba(0,0,0,.45)}#death{position:fixed;inset:0;z-index:40;display:none;align-items:center;justify-content:center;background:radial-gradient(circle,rgba(65,8,15,.15),rgba(0,0,0,.78));pointer-events:none}.deathCard{padding:28px 36px;border:1px solid rgba(255,255,255,.13);border-radius:24px;background:rgba(4,7,10,.86);box-shadow:0 25px 90px #000b;text-align:center}.deathCard h1{margin:0 0 8px;letter-spacing:5px}.deathCard p{margin:0;color:#9eb1bd;font-size:12px}#help{position:fixed;z-index:20;right:16px;top:60px;padding:7px 10px;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:rgba(3,8,12,.55);font-size:10px;color:#8297a5;pointer-events:none}@media(max-width:850px){#mini,#help{display:none}#hud{width:292px;left:8px;top:8px;transform:scale(.82);transform-origin:top left}.brand{font-size:23px}#controls{left:10px;bottom:10px}.move{width:56px;height:56px}#attack{right:15px;bottom:16px;width:92px;height:92px}#potion{right:118px;bottom:28px;width:62px;height:62px}#zone{top:9px;font-size:9px}#msg{bottom:108px;font-size:11px}}
+:root{--glass:rgba(7,13,18,.78);--line:rgba(255,255,255,.12);--cyan:#6ee7ff;--gold:#ffd66e;--danger:#ff6470}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#05090d;color:#fff;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;touch-action:none;user-select:none;-webkit-user-select:none}body{background:radial-gradient(circle at 50% 30%,#14242d,#05090d 70%)}canvas#game{position:fixed;inset:0;z-index:0;display:block;width:100vw;height:100vh}canvas#mini{z-index:25}button{font:inherit;color:inherit;cursor:pointer}#hud{position:fixed;z-index:20;left:16px;top:16px;width:330px;padding:15px 16px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,rgba(6,13,19,.9),rgba(15,25,31,.72));backdrop-filter:blur(18px);box-shadow:0 18px 55px rgba(0,0,0,.5);pointer-events:none}.brand{font-size:27px;font-weight:950;letter-spacing:8px;text-shadow:0 0 24px rgba(110,231,255,.35)}.subtitle{font-size:9px;letter-spacing:3px;color:#91a8b7;margin:-2px 0 12px}.row{display:flex;justify-content:space-between;font-size:11px;color:#aebfca}.bar{height:12px;background:#0d161d;border:1px solid rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin:4px 0 8px}.bar i{display:block;height:100%;width:100%;border-radius:99px;transition:width .12s}.hp{background:linear-gradient(90deg,#7d2035,#ed5360,#ff9975)}.xp{background:linear-gradient(90deg,#175fa6,#42cfff,#d6f9ff)}.stats{display:grid;grid-template-columns:1fr 1fr;gap:5px 12px;margin-top:10px;font-size:12px;color:#bdcbd4}.stats b{color:#fff}.quest{margin-top:12px;padding:10px 11px;border:1px solid rgba(255,207,90,.18);background:rgba(255,207,90,.05);border-radius:13px;font-size:11px;line-height:1.5}.quest strong{color:var(--gold);letter-spacing:1.4px}#save{position:fixed;right:16px;top:16px;z-index:25;padding:8px 11px;border:1px solid var(--line);border-radius:12px;background:rgba(3,8,12,.72);font-size:11px;color:#b9cbd5;backdrop-filter:blur(10px)}#zone{position:fixed;z-index:21;left:50%;top:18px;transform:translateX(-50%);padding:8px 15px;border-radius:99px;background:rgba(4,9,13,.58);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(12px);font-size:11px;letter-spacing:2px;color:#c6d6df;opacity:.9}#msg{position:fixed;z-index:30;left:50%;bottom:132px;transform:translateX(-50%);padding:11px 19px;border-radius:99px;background:rgba(2,6,9,.88);border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 35px rgba(0,0,0,.45);opacity:0;transition:opacity .18s;pointer-events:none;white-space:nowrap;font-size:13px}#interact{position:fixed;z-index:25;left:50%;top:15%;transform:translateX(-50%);padding:9px 15px;border-radius:99px;background:rgba(3,8,12,.8);border:1px solid rgba(255,255,255,.13);opacity:0;font-size:12px;pointer-events:none;backdrop-filter:blur(10px)}#controls{position:fixed;z-index:25;left:20px;bottom:20px;display:grid;grid-template-columns:62px 62px 62px;gap:6px}.move{width:62px;height:62px;border-radius:18px;border:1px solid rgba(255,255,255,.15);background:rgba(8,17,24,.78);box-shadow:0 9px 25px rgba(0,0,0,.4);font-size:22px;backdrop-filter:blur(8px)}.move:active{transform:scale(.93);background:rgba(54,107,137,.8)}.action{position:fixed;z-index:25;border-radius:50%;color:#fff;font-weight:950;box-shadow:0 12px 35px rgba(0,0,0,.48);backdrop-filter:blur(8px)}#attack{right:26px;bottom:26px;width:104px;height:104px;border:2px solid rgba(255,255,255,.25);background:radial-gradient(circle at 32% 25%,#e86a76,#751d31 72%);font-size:13px}#potion{right:145px;bottom:40px;width:68px;height:68px;border:2px solid rgba(255,255,255,.18);background:radial-gradient(circle at 30% 25%,#5aaee6,#16496f 75%);font-size:10px}.action:active{transform:scale(.94)}#mini{position:fixed;right:16px;bottom:16px;width:220px;height:150px;border:1px solid rgba(255,255,255,.13);border-radius:16px;background:rgba(3,7,10,.8);box-shadow:0 12px 38px rgba(0,0,0,.45)}#death{position:fixed;inset:0;z-index:40;display:none;align-items:center;justify-content:center;background:radial-gradient(circle,rgba(65,8,15,.15),rgba(0,0,0,.78));pointer-events:none}.deathCard{padding:28px 36px;border:1px solid rgba(255,255,255,.13);border-radius:24px;background:rgba(4,7,10,.86);box-shadow:0 25px 90px #000b;text-align:center}.deathCard h1{margin:0 0 8px;letter-spacing:5px}.deathCard p{margin:0;color:#9eb1bd;font-size:12px}#help{position:fixed;z-index:20;right:16px;top:60px;padding:7px 10px;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:rgba(3,8,12,.55);font-size:10px;color:#8297a5;pointer-events:none}@media(max-width:850px){#mini,#help{display:none}#hud{width:292px;left:8px;top:8px;transform:scale(.82);transform-origin:top left}.brand{font-size:23px}#controls{left:10px;bottom:10px}.move{width:56px;height:56px}#attack{right:15px;bottom:16px;width:92px;height:92px}#potion{right:118px;bottom:28px;width:62px;height:62px}#zone{top:9px;font-size:9px}#msg{bottom:108px;font-size:11px}}
 </style>
 </head>
 <body>
 <canvas id="game"></canvas>
-<div id="hud"><div class="brand">NEXORA</div><div class="subtitle">REALM OF ASH · 30.0.0</div><div class="row"><span>HP</span><span id="hpText"></span></div><div class="bar"><i id="hpBar" class="hp"></i></div><div class="row"><span>XP</span><span id="xpText"></span></div><div class="bar"><i id="xpBar" class="xp"></i></div><div class="stats"><span>Level <b id="level"></b></span><span>⚔ <b id="attackText"></b></span><span>🪙 <b id="gold"></b></span><span>🧪 <b id="potions"></b></span><span>👹 <b id="kills"></b></span><span>☠ <b id="deaths"></b></span></div><div class="quest"><strong>QUEST</strong><br><span id="questText"></span></div></div>
+<div id="hud"><div class="brand">NEXORA</div><div class="subtitle">REALM OF ASH · 30.1.0 CLEAN</div><div class="row"><span>HP</span><span id="hpText"></span></div><div class="bar"><i id="hpBar" class="hp"></i></div><div class="row"><span>XP</span><span id="xpText"></span></div><div class="bar"><i id="xpBar" class="xp"></i></div><div class="stats"><span>Level <b id="level"></b></span><span>⚔ <b id="attackText"></b></span><span>🪙 <b id="gold"></b></span><span>🧪 <b id="potions"></b></span><span>👹 <b id="kills"></b></span><span>☠ <b id="deaths"></b></span></div><div class="quest"><strong>QUEST</strong><br><span id="questText"></span></div></div>
 <div id="save">💾 Lokal</div><div id="zone">ASHEN WILDS</div><div id="help">WASD / Pfeile · SPACE Angriff · E Interaktion · Q Trank · R Reset</div><div id="msg"></div><div id="interact"></div>
 <div id="controls"><span></span><button class="move" data-k="up">▲</button><span></span><button class="move" data-k="left">◀</button><button class="move" data-k="down">▼</button><button class="move" data-k="right">▶</button></div>
 <button id="potion" class="action">🧪<br>TRANK</button><button id="attack" class="action">⚔<br>ANGRIFF</button><canvas id="mini"></canvas>
@@ -18,7 +18,7 @@
 <script>
 'use strict';
 /* ================================================================
-   NEXORA 30.0.0
+   NEXORA 30.1.0 CLEAN
    Single-file top-down action RPG engine.
    No dependencies. Designed for desktop + touch.
    ================================================================ */
@@ -27,8 +27,8 @@ const UI={hpBar:document.getElementById('hpBar'),xpBar:document.getElementById('
 let W=innerWidth,H=innerHeight,D=Math.min(2,devicePixelRatio||1),last=performance.now(),elapsed=0;
 function resize(){W=innerWidth;H=innerHeight;D=Math.min(2,devicePixelRatio||1);C.width=Math.max(1,Math.floor(W*D));C.height=Math.max(1,Math.floor(H*D));X.setTransform(D,0,0,D,0,0);X.globalAlpha=1;X.globalCompositeOperation='source-over';X.filter='none';X.shadowBlur=0;X.shadowColor='transparent';M.width=440;M.height=300}addEventListener('resize',resize);resize();
 const world={w:7200,h:4800};
-const SAVE='nexora_save_v3000';
-const legacy=['nexora_save_v3000','nexora_save_v1500','nexora_save_v501','nexora_save_v10'];
+const SAVE='nexora_save_v3010';
+const legacy=['nexora_save_v3010','nexora_save_v3000','nexora_save_v1500','nexora_save_v501','nexora_save_v10'];
 const spawnPoint={x:1050,y:1450};
 const water={x:4680,y:180,w:1260,h:1120};
 const def={level:1,xp:0,gold:40,potions:4,kills:0,deaths:0,maxHp:120,hp:120,attack:28,x:spawnPoint.x,y:spawnPoint.y,questKills:0,questComplete:false};
@@ -111,7 +111,11 @@ function enemyAI(dt){for(const e of enemies){if(e.dead){e.deathT+=dt;continue}e.
 function enemyHit(e){e.cd=1.05;p.hp=Math.max(0,p.hp-e.damage);p.inv=.5;p.hurt=.25;cam.shake=Math.max(cam.shake,9);textFX(p.x,p.y-40,'-'+e.damage,'#ff6670',16);particle(p.x,p.y,'#ff5565',13,140,2.5);if(p.hp<=0)die()}
 function separateEnemies(){for(let i=0;i<enemies.length;i++){const a=enemies[i];if(a.dead)continue;for(let j=i+1;j<enemies.length;j++){const b=enemies[j];if(b.dead)continue;const dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy),min=a.r+b.r+5;if(d>0&&d<min){const z=(min-d)*.5,nx=dx/d,ny=dy/d;const ax=a.x-nx*z,ay=a.y-ny*z,bx=b.x+nx*z,by=b.y+ny*z;if(!blocked(ax,ay,a.r))a.x=ax;if(!blocked(bx,by,b.r)){b.x=bx;b.y=by}}}}}
 function die(){if(p.dead)return;p.dead=true;p.vx=p.vy=0;clearInput();saveData.deaths++;saveData.gold=Math.max(0,saveData.gold-20);UI.death.style.display='flex';particle(p.x,p.y,'#ff5967',50,260,3);ringFX(p.x,p.y,85,'#ff5967');save();respawn()}
-function respawn(){p.dead=false;UI.death.style.display='none';const safe=safeSpawn(spawnPoint.x,spawnPoint.y,p.r);p.x=safe.x;p.y=safe.y;p.hp=p.maxHp;p.vx=p.vy=0;p.inv=2.5;p.hurt=0;p.atk=0;p.cd=.4;p.dir='down';p.step=0;p.idle=0;clearInput();camera(1);msg('✨ Wiederbelebt · Bewegung freigegeben');save()}
+let respawnToken=0,respawnTimer=0;
+function respawn(){
+ clearTimeout(respawnTimer);const token=++respawnToken;n30HardResetInput();p.dead=true;p.vx=0;p.vy=0;p.atk=0;p.hurt=0;UI.death.style.display='flex';
+ respawnTimer=setTimeout(()=>{if(token!==respawnToken)return;n30HardResetInput();const safe=safeSpawn(spawnPoint.x,spawnPoint.y,p.r);p.x=safe.x;p.y=safe.y;p.hp=p.maxHp;p.vx=0;p.vy=0;p.dead=false;p.inv=2.5;p.cd=.35;p.atk=0;p.hurt=0;p.step=0;p.idle=0;p.trail=0;p.dir='down';UI.death.style.display='none';camera(.5);n30HardResetInput();save();msg('✓ Respawn stabilisiert · Bewegung aktiv')},1150);
+}
 /* ---------- save ---------- */
 let saveFlash=0;function save(){try{Object.assign(saveData,{x:p.x,y:p.y,hp:p.hp,maxHp:p.maxHp,attack:p.attack});localStorage.setItem(SAVE,JSON.stringify(saveData));UI.save.textContent='💾 Gespeichert';saveFlash=.9}catch(e){UI.save.textContent='⚠ Speicherfehler'}}
 function resetGame(){if(confirm('NEXORA wirklich komplett zurücksetzen?')){localStorage.removeItem(SAVE);legacy.forEach(k=>localStorage.removeItem(k));location.reload()}}
@@ -161,40 +165,16 @@ function updateFX(dt){for(let i=particles.length-1;i>=0;i--){const q=particles[i
 let autoSave=0;function update(dt){enhancedUpdate(dt)}
 let runtimeFault='';
 function showRuntimeFault(err,phase){runtimeFault=String(err&&err.message||err||'unknown');try{UI.msg.textContent='⚠ '+phase+': '+runtimeFault;UI.msg.style.opacity='1';UI.save.textContent='⚠ Spielmodus gesichert'}catch(_){}}
-function loop(now){requestAnimationFrame(loop);let dt=Math.min(.045,Math.max(0,(now-last)/1000));last=now;if(!document.hidden){try{update(dt)}catch(err){showRuntimeFault(err,'UPDATE');try{n30HardResetInput()}catch(_){}}try{n30GuaranteedRender(); enhancedRender(); n30VisualGuard()}catch(err){showRuntimeFault(err,'RENDER'); n30GuaranteedRender()}try{minimap();hud()}catch(err){showRuntimeFault(err,'HUD')}}}
-/* BOOT MOVED TO END: all rendering layers must be initialized first. */
-/* ================================================================
-   NEXORA 30.0.0 — VISUAL / WORLD EXPANSION LAYER
-   These systems sit on top of the core engine and intentionally keep
-   the project dependency-free. The renderer uses smooth vector
-   primitives, gradients, alpha blending and procedural detail rather
-   than a pixel-art sprite sheet.
-   ================================================================ */
-
-const weather={time:8.2,rain:0,wind:.25,clouds:[],fog:[],lightning:0};
-const loot=[],chests=[],ambient=[],fireflies=[];
-const footprints=[];
-const worldMarks=[
-  {x:1160,y:1190,type:'well',name:'Dorfbrunnen'},
-  {x:2380,y:850,type:'camp',name:'Verlassener Lagerplatz'},
-  {x:3050,y:1580,type:'shrine',name:'Aschenschrein'},
-  {x:4040,y:2700,type:'camp',name:'Jägerlager'},
-  {x:6250,y:2780,type:'gate',name:'Schwarzes Tor'}
-];
-
-function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
-function lerp(a,b,t){return a+(b-a)*t}
-function smoothstep(a,b,v){const t=clamp((v-a)/(b-a),0,1);return t*t*(3-2*t)}
-
-/* Add non-solid landmarks and treasure after the base world is built. */
-for(const m of worldMarks)deco(m.x,m.y,m.type,1);
-for(let i=0;i<32;i++){
-  for(let tries=0;tries<80;tries++){
-    const x=260+rnd()*(world.w-520),y=260+rnd()*(world.h-520);
-    if(blocked(x,y,24)||distXY(x,y,p.x,p.y)<500)continue;
-    if(chests.some(c=>distXY(c.x,c.y,x,y)<180))continue;
-    chests.push({x,y,open:false,glow:rnd()*Math.PI*2,id:i});break;
+function loop(now){
+  ;
+  const dt=Math.min(.045,Math.max(0,(now-last)/1000));
+  last=now;
+  if(document.hidden)return;
+  try{enhancedUpdate(dt)}catch(err){showRuntimeFault(err,'UPDATE');n30HardResetInput()}
+  try{enhancedRender()}catch(err){showRuntimeFault(err,'RENDER');
+    try{X.setTransform(D,0,0,D,0,0);X.globalAlpha=1;X.globalCompositeOperation='source-over';X.filter='none';X.fillStyle='#1b3024';X.fillRect(0,0,W,H);terrain()}catch(_){}
   }
+  try{minimap();hud()}catch(err){showRuntimeFault(err,'HUD')}
 }
 for(let i=0;i<75;i++){
   ambient.push({x:rnd()*world.w,y:rnd()*world.h,type:rnd()<.55?'bird':'deer',a:rnd()*Math.PI*2,speed:18+rnd()*28,phase:rnd()*Math.PI*2});
@@ -277,77 +257,34 @@ function drawWaterFoam(){
 }
 
 function enhancedUpdate(dt){
+  if(!Number.isFinite(dt)||dt<=0)return;
   elapsed+=dt;
-  updateWeather(dt);
+  if(N30.hitStop>0){N30.hitStop=Math.max(0,N30.hitStop-dt);n30UpdateWeather(dt*.15);n30CombatEffects(dt);return}
   updatePlayer(dt);
   enemyAI(dt);
   updateFX(dt);
+  updateLivingWorld(dt);
+  updatePolish(dt);
+  n30UpdateWeather(dt);
+  n30UpdateWildlife(dt);
+  n30UpdateFire(dt);
+  n30UpdateFootprints(dt);
+  n30UpdateEvent(dt);
+  n30CombatEffects(dt);
+  n30AmbientTick(dt);
+  n30MovementWatchdog();
   npc.anim+=dt;
   camera(dt);
-  /* gentle footstep particles */
-  if(Math.hypot(p.vx,p.vy)>170&&Math.random()<dt*5){particles.push({x:p.x+(Math.random()-.5)*12,y:p.y+17,vx:(Math.random()-.5)*15,vy:6,l:.22,ml:.22,color:'#8e9b86',size:1.3})}
-  autoSave+=dt;if(autoSave>6){autoSave=0;save()}
+  if(Math.hypot(p.vx,p.vy)>150&&Math.random()<dt*4)n30CreateFootprint();
+  N30.time+=dt;N30.autosave+=dt;autoSave+=dt;
+  if(N30.autosave>18){N30.autosave=0;saveData.statistics.session=(saveData.statistics.session||0)+18;save()}
+  if(autoSave>12){autoSave=0;save()}
+  const z=n30CurrentZone();
+  if(z!==N30.lastZone){N30.lastZone=z;N30.zonePulse=2.2;msg('◈ '+z)}
+  N30.zonePulse=Math.max(0,N30.zonePulse-dt);
 }
 
-function n30GuaranteedRender(){
-  // Hard visual safety net: always establish a visible frame before the complex renderer.
-  X.save();
-  X.setTransform(D,0,0,D,0,0);
-  X.globalAlpha=1; X.globalCompositeOperation='source-over'; X.filter='none';
-  X.fillStyle='#17261d'; X.fillRect(0,0,W,H);
-  const g=X.createLinearGradient(0,0,0,H);
-  g.addColorStop(0,'#213b2b'); g.addColorStop(.58,'#1b3024'); g.addColorStop(1,'#102019');
-  X.fillStyle=g; X.fillRect(0,0,W,H);
-  // visible path / horizon
-  X.fillStyle='#5b4b38'; X.fillRect(0,H*.62,W,H*.38);
-  X.fillStyle='rgba(190,160,105,.24)'; X.fillRect(0,H*.68,W,3);
-  // player marker centered on the camera even if world rendering fails
-  X.fillStyle='rgba(0,0,0,.28)'; X.beginPath(); X.ellipse(W*.5,H*.56,30,11,0,0,Math.PI*2); X.fill();
-  X.fillStyle='#263743'; X.beginPath(); X.arc(W*.5,H*.51,18,0,Math.PI*2); X.fill();
-  X.fillStyle='#d7b28b'; X.beginPath(); X.arc(W*.5,H*.46,12,0,Math.PI*2); X.fill();
-  X.fillStyle='#b7d4e5'; X.fillRect(W*.5-14,H*.49,28,26);
-  X.fillStyle='#e6c37a'; X.fillRect(W*.5+8,H*.47,24,4);
-  X.restore();
-}
-
-function n30VisualGuard(){
-  try{
-    const d=X.getImageData(Math.max(0,Math.floor(W*.5)),Math.max(0,Math.floor(H*.5)),1,1).data;
-    if((d[0]+d[1]+d[2])<12){ n30GuaranteedRender(); return true; }
-  }catch(e){ n30GuaranteedRender(); return true; }
-  return false;
-}
-
-function enhancedRender(){
-  terrain();
-  terrainDetail();
-  drawClouds();
-  drawWaterFoam();
-  const list=[];
-  for(const o of obstacles){
-    if(o.x+o.w<cam.x-220||o.x>cam.x+W+220||o.y+o.h<cam.y-220||o.y>cam.y+H+220)continue;
-    if(o.type==='tree')list.push({y:o.y+o.h+8,fn:()=>treeDraw(o)});
-    else if(o.type==='rock')list.push({y:o.y+o.h,fn:()=>rockDraw(o)});
-    else if(o.type==='ruin')list.push({y:o.y+o.h,fn:()=>ruinDraw(o)});
-    else if(o.type==='fort')list.push({y:o.y+o.h,fn:()=>fortDraw(o)});
-    else if(o.type!=='road'&&o.type!=='villageGround'&&o.type!=='water')list.push({y:o.y+o.h,fn:()=>buildingDraw(o)});
-  }
-  for(const d of decor){if(d.x<cam.x-100||d.x>cam.x+W+100||d.y<cam.y-100||d.y>cam.y+H+100)continue;list.push({y:d.y+8,fn:()=>drawGroundDeco(d)})}
-  for(const c of chests)list.push({y:c.y+15,fn:()=>drawChest(c)});
-  for(const s of signposts)list.push({y:s.y+22,fn:()=>signDraw(s)});
-  list.push({y:Infinity,fn:drawLandmarks});
-  list.push({y:npc.y+35,fn:npcDraw});
-  for(const e of enemies)list.push({y:e.y+e.r,fn:()=>enemyDraw(e)});
-  list.push({y:p.y+p.r+5,fn:playerDraw});
-  list.sort((a,b)=>a.y-b.y);
-  for(const q of list)q.fn();
-  drawAmbientCreatures();
-  effectsDraw();
-  drawFireflies();
-  drawFog();
-  drawWeather();
-  lightingOverlay();
-}
+function enhancedRender(){n30RenderWorld();}
 
 /* Prevent the visual layer from creating an impossible spawn after legacy saves. */
 function validatePlayerPosition(){
@@ -463,67 +400,7 @@ function drawFootprints(){
   for(const f of footprints){const x=sx(f.x),y=sy(f.y);X.save();X.globalAlpha=f.l/7;X.fillStyle='#65735f';X.beginPath();X.ellipse(x,y,2.5,5,.2,0,Math.PI*2);X.fill();X.restore()}
 }
 
-/* Replace the basic update with the expanded simulation stack. */
-const baseEnhancedUpdate=enhancedUpdate;
-enhancedUpdate=function(dt){baseEnhancedUpdate(dt);updateLivingWorld(dt);recordFootprints(dt)};
-
-/* Add a stamina micro-meter to the HUD without adding another DOM dependency. */
-function drawStaminaBar(){
-  const x=W-250,y=H-48,w=190,h=5;X.fillStyle='rgba(0,0,0,.45)';X.fillRect(x,y,w,h);X.fillStyle='#75e4a2';X.fillRect(x,y,w*(stamina.value/stamina.max),h);X.fillStyle='rgba(255,255,255,.65)';X.font='9px Arial';X.textAlign='right';X.fillText('AUSDAUER',x+w,y-5)
-}
-
-const baseEnhancedRender=enhancedRender;
-enhancedRender=function(){
-  terrain();
-  terrainDetail();
-  drawTerrainMicroDetail();
-  drawClouds();
-  drawWaterFoam();
-  const list=[];
-  for(const o of obstacles){
-    if(o.x+o.w<cam.x-220||o.x>cam.x+W+220||o.y+o.h<cam.y-220||o.y>cam.y+H+220)continue;
-    if(o.type==='tree')list.push({y:o.y+o.h+8,fn:()=>treeDraw(o)});
-    else if(o.type==='rock')list.push({y:o.y+o.h,fn:()=>rockDraw(o)});
-    else if(o.type==='ruin')list.push({y:o.y+o.h,fn:()=>ruinDraw(o)});
-    else if(o.type==='fort')list.push({y:o.y+o.h,fn:()=>fortDraw(o)});
-    else if(o.type!=='road'&&o.type!=='villageGround'&&o.type!=='water')list.push({y:o.y+o.h,fn:()=>buildingDraw(o)});
-  }
-  for(const d of decor){if(d.x<cam.x-100||d.x>cam.x+W+100||d.y<cam.y-100||d.y>cam.y+H+100)continue;list.push({y:d.y+8,fn:()=>drawGroundDeco(d)})}
-  for(const c of chests)list.push({y:c.y+15,fn:()=>drawChest(c)});
-  for(const s of signposts)list.push({y:s.y+22,fn:()=>signDraw(s)});
-  list.push({y:Infinity,fn:drawLandmarks});
-  list.push({y:npc.y+35,fn:npcDraw});
-  for(const e of enemies)list.push({y:e.y+e.r,fn:()=>enemyDraw(e)});
-  list.push({y:p.y+p.r+5,fn:playerDraw});
-  list.sort((a,b)=>a.y-b.y);for(const q of list)q.fn();
-  drawFootprints();
-  drawAmbientCreatures();effectsDraw();drawAtmosphericSparks();drawFireflies();drawFog();drawRainMist();drawWeather();drawPlayerLight();lightingOverlay();drawStaminaBar();drawDamageVignette();
-};
-
-/* Correct damage feedback for the expanded telegraph system. */
-const originalDie=die;
-die=function(){damageVignette.value=1;originalDie()};
-
-/* A safe, explicit respawn state machine. It prevents stale keyboard/pointer state. */
-let respawnToken=0;
-const originalRespawn=respawn;
-respawn=function(){
-  respawnToken++;
-  clearInput();
-  p.dead=true;
-  const token=respawnToken;
-  setTimeout(()=>{
-    if(token!==respawnToken)return;
-    originalRespawn();
-    clearInput();
-    p.dead=false;
-    p.inv=2.5;
-    p.vx=0;p.vy=0;
-    const safe=safeSpawn(spawnPoint.x,spawnPoint.y,p.r);
-    p.x=safe.x;p.y=safe.y;
-    camera(.25);
-  },0);
-};
+/* Clean pipeline: systems are called explicitly by enhancedUpdate/enhancedRender. */
 
 /* Extra interaction: treasure is always deterministic and cannot trap the player. */
 
@@ -559,22 +436,8 @@ function drawEnemyTelegraphs(){for(const e of enemies){if(!e.telegraph||e.dead)c
 function drawPlayerStatus(){if(p.hurt>0){X.save();X.globalAlpha=.55;X.strokeStyle='#ff6870';X.lineWidth=3;X.beginPath();X.arc(sx(p.x),sy(p.y),42+p.hurt*20,0,Math.PI*2);X.stroke();X.restore()}if(polish.healPulse>0){X.save();X.globalAlpha=.18*polish.healPulse;X.strokeStyle='#71ef9b';X.lineWidth=2;X.beginPath();X.arc(sx(p.x),sy(p.y),32+polish.healPulse*8,0,Math.PI*2);X.stroke();X.restore()}}
 function drawPerformanceHint(){if(W<900)return;X.save();X.globalAlpha=.35;X.font='9px Arial';X.textAlign='left';X.fillStyle='#b9c8ce';X.fillText(Math.round(polish.fps)+' FPS',18,H-8);X.restore()}
 
-const oldEnhancedUpdate2=enhancedUpdate;
-enhancedUpdate=function(dt){oldEnhancedUpdate2(dt);updatePolish(dt)};
-const oldEnhancedRender2=enhancedRender;
-enhancedRender=function(){
-  terrain();terrainDetail();drawTerrainMicroDetail();drawPuddles();drawClouds();drawWaterFoam();
-  const list=[];
-  for(const o of obstacles){if(o.x+o.w<cam.x-220||o.x>cam.x+W+220||o.y+o.h<cam.y-220||o.y>cam.y+H+220)continue;if(o.type==='tree')list.push({y:o.y+o.h+8,fn:()=>treeDraw(o)});else if(o.type==='rock')list.push({y:o.y+o.h,fn:()=>rockDraw(o)});else if(o.type==='ruin')list.push({y:o.y+o.h,fn:()=>ruinDraw(o)});else if(o.type==='fort')list.push({y:o.y+o.h,fn:()=>fortDraw(o)});else if(o.type!=='road'&&o.type!=='villageGround'&&o.type!=='water')list.push({y:o.y+o.h,fn:()=>buildingDraw(o)})}
-  for(const d of decor){if(d.x<cam.x-100||d.x>cam.x+W+100||d.y<cam.y-100||d.y>cam.y+H+100)continue;list.push({y:d.y+8,fn:()=>drawGroundDeco(d)})}
-  for(const c of chests)list.push({y:c.y+15,fn:()=>drawChest(c)});
-  for(const s of signposts)list.push({y:s.y+22,fn:()=>signDraw(s)});
-  list.push({y:npc.y+35,fn:npcDraw});for(const e of enemies)list.push({y:e.y+e.r,fn:()=>enemyDraw(e)});list.push({y:p.y+p.r+5,fn:playerDraw});list.sort((a,b)=>a.y-b.y);for(const q of list)q.fn();
-  drawLandmarks();drawFootprints();drawAmbientCreatures();drawEnemyTelegraphs();drawAttackTelegraph();effectsDraw();drawPlayerStatus();drawAtmosphericSparks();drawFireflies();drawFog();drawRainMist();drawWeather();drawPlayerLight();lightingOverlay();drawStaminaBar();drawChestMarker();drawZoneBanner();drawLowHealthEffect();drawDamageVignette();drawPerformanceHint();
-};
-
 /* ================================================================
-   NEXORA 30.0.0 — REALISM CORE
+   NEXORA 30.1.0 CLEAN — REALISM CORE
    A deeper procedural presentation/simulation layer.
    No external assets. Everything is rendered from vectors, gradients,
    layered materials and deterministic world data.
@@ -972,19 +835,10 @@ function n30RenderWorld(){
  for(const m of worldMarks)if(n30Visible(m.x,m.y,140)){const fn=()=>{if(m.type==='well')drawWell(m);else if(m.type==='camp')drawCamp(m);else if(m.type==='shrine')drawShrine(m);else drawGate(m)};list.push({y:m.y+28,fn})}
  list.push({y:npc.y+35,fn:npcDraw});for(const n of N30_NPCS)list.push({y:n.y+20,fn:()=>n30DrawNPCsOne(n)});for(const w of N30.wildlife)list.push({y:w.y+w.r,fn:()=>{}});for(const e of enemies)if(n30Visible(e.x,e.y,180))list.push({y:e.y+e.r,fn:()=>enemyDraw(e)});list.push({y:p.y+p.r+5,fn:n30DrawPlayerRealistic});
  list.sort((a,b)=>a.y-b.y);for(const q of list)q.fn();
- n30DrawFootprints();n30DrawWildlife();n30DrawFire();effectsDraw();drawAtmosphericSparks();drawFireflies();drawFog();n30DrawRain();n30DrawAsh();drawPlayerLight();n30Lighting();n30Atmosphere();drawStaminaBar();drawChestMarker();drawZoneBanner();drawLowHealthEffect();drawDamageVignette();n30DrawEvent();
- if(N30.uiOpen)n30RefreshUI();
+ n30DrawFootprints();n30DrawWildlife();n30DrawFire();n30DrawFineVegetation();n30DrawFirefliesReal();n30DrawRainSplashes();
+ effectsDraw();drawAtmosphericSparks();drawFireflies();drawFog();n30DrawRain();n30DrawAsh();drawPlayerLight();n30Lighting();n30Atmosphere();
+ drawStaminaBar();drawChestMarker();drawZoneBanner();drawLowHealthEffect();drawDamageVignette();n30DrawEvent();n30DrawAmbientCue();n30DrawLens();n30DrawCombo();
 }
-const n30UpdateBase=enhancedUpdate;
-enhancedUpdate=function(dt){
- if(N30.hitStop>0){n30UpdateWeather(dt*.15);return}
- n30UpdateBase(dt);n30UpdateWeather(dt);n30UpdateWildlife(dt);n30UpdateFire(dt);n30UpdateFootprints(dt);n30UpdateEvent(dt);n30CombatEffects(dt);n30MovementWatchdog();N30.time+=dt;N30.autosave+=dt;
- if(Math.hypot(p.vx,p.vy)>150&&Math.random()<dt*4)n30CreateFootprint();
- if(N30.autosave>18){N30.autosave=0;saveData.statistics.session=(saveData.statistics.session||0)+18;save()}
- const z=n30CurrentZone();if(z!==N30.lastZone){N30.lastZone=z;N30.zonePulse=2.2;msg('◈ '+z)}N30.zonePulse=Math.max(0,N30.zonePulse-dt);
-}
-const n30RenderBase=enhancedRender;
-enhancedRender=function(){try{n30RenderWorld()}catch(err){showRuntimeFault(err,'RENDER');n30RenderBase()}};
 
 const N30_ENVIRONMENT_PROFILES=[
 {id:0,biome:'ASHEN WILDS',density:20,size:2,alpha:0.08,wind:0.10,seed:13},
@@ -1221,44 +1075,14 @@ function n30DrawLens(){
 }
 function n30DrawRainSplashes(){if(N30.rain<.15)return;X.save();X.globalAlpha=.16*N30.rain;X.strokeStyle='#d5f4f6';for(let i=0;i<35;i++){const x=(i*151+elapsed*40)%W,y=(i*73+elapsed*19)%H;X.beginPath();X.ellipse(x,y,4,1.2,0,0,Math.PI*2);X.stroke()}X.restore()}
 function n30DrawCombo(){if(N30.combo<=1||N30.comboTimer<=0)return;X.save();X.textAlign='center';X.font='900 13px Arial';X.fillStyle='#ffe18b';X.globalAlpha=Math.min(1,N30.comboTimer*2);X.fillText('COMBO ×'+N30.combo,W*.5,145);X.restore()}
-const n30RenderWorldBase=n30RenderWorld;
-n30RenderWorld=function(){n30RenderWorldBase();n30DrawFineVegetation();n30DrawFirefliesReal();n30DrawRainSplashes();n30DrawLens();n30DrawCombo();}
 
 
-/* Respawn hardening v30.1: one authoritative respawn path.
-   Previous layered wrappers could schedule respawn twice. This version clears
-   every input source, invalidates old timers, validates the spawn, and only
-   releases the player after the reset is complete. */
-let respawnTimer=0;
-respawn=function(){
-  clearTimeout(respawnTimer);
-  const token=++respawnToken;
-  n30HardResetInput();
-  p.dead=true;
-  p.vx=0;p.vy=0;p.atk=0;p.hurt=0;
-  UI.death.style.display='flex';
-  respawnTimer=setTimeout(()=>{
-    if(token!==respawnToken)return;
-    n30HardResetInput();
-    const safe=safeSpawn(spawnPoint.x,spawnPoint.y,p.r);
-    p.x=safe.x;p.y=safe.y;
-    p.hp=p.maxHp;
-    p.vx=0;p.vy=0;
-    p.dead=false;
-    p.inv=2.5;
-    p.cd=.35;
-    p.atk=0;p.hurt=0;p.step=0;p.idle=0;p.trail=0;
-    UI.death.style.display='none';
-    camera(.5);
-    n30HardResetInput();
-    save();
-    msg('✓ Respawn stabilisiert · Bewegung aktiv');
-  },1150);
-};
+
+/* Respawn is defined once near the core gameplay systems. */
 /* Ensure old saves cannot place the player inside geometry. */
 (function(){const safe=safeSpawn(p.x,p.y,p.r);if(blocked(p.x,p.y,p.r)){p.x=safe.x;p.y=safe.y;p.vx=p.vy=0;save()}})();
 n30CreateUI();
-saveData.version=30;saveData.engine='30.0.0';save();
+saveData.version=31;saveData.engine='30.1.0-CLEAN';save();
 
 /* NEXORA 30 WORLD DATABASE — authored data drives ambience, loot and lore. */
 const N30_LORE=[{id:0,region:'Ashen Wilds',title:'Field Record 000',mood:'silent',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:1,region:'Old Ruins',title:'Field Record 001',mood:'restless',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:2,region:'Blackwater',title:'Field Record 002',mood:'ancient',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:3,region:'Farmlands',title:'Field Record 003',mood:'wet',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:4,region:'Cinder Ridge',title:'Field Record 004',mood:'wind-beaten',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:5,region:'Drowned Marsh',title:'Field Record 005',mood:'burned',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:6,region:'Ashen Wilds',title:'Field Record 006',mood:'fogbound',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:7,region:'Old Ruins',title:'Field Record 007',mood:'overgrown',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:8,region:'Blackwater',title:'Field Record 008',mood:'silent',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:9,region:'Farmlands',title:'Field Record 009',mood:'restless',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:10,region:'Cinder Ridge',title:'Field Record 010',mood:'ancient',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:11,region:'Drowned Marsh',title:'Field Record 011',mood:'wet',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:12,region:'Ashen Wilds',title:'Field Record 012',mood:'wind-beaten',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:13,region:'Old Ruins',title:'Field Record 013',mood:'burned',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:14,region:'Blackwater',title:'Field Record 014',mood:'fogbound',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:15,region:'Farmlands',title:'Field Record 015',mood:'overgrown',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:16,region:'Cinder Ridge',title:'Field Record 016',mood:'silent',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:17,region:'Drowned Marsh',title:'Field Record 017',mood:'restless',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:18,region:'Ashen Wilds',title:'Field Record 018',mood:'ancient',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:19,region:'Old Ruins',title:'Field Record 019',mood:'wet',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:20,region:'Blackwater',title:'Field Record 020',mood:'wind-beaten',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:21,region:'Farmlands',title:'Field Record 021',mood:'burned',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:22,region:'Cinder Ridge',title:'Field Record 022',mood:'fogbound',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:23,region:'Drowned Marsh',title:'Field Record 023',mood:'overgrown',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:24,region:'Ashen Wilds',title:'Field Record 024',mood:'silent',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:25,region:'Old Ruins',title:'Field Record 025',mood:'restless',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:26,region:'Blackwater',title:'Field Record 026',mood:'ancient',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:27,region:'Farmlands',title:'Field Record 027',mood:'wet',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:28,region:'Cinder Ridge',title:'Field Record 028',mood:'wind-beaten',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:29,region:'Drowned Marsh',title:'Field Record 029',mood:'burned',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:30,region:'Ashen Wilds',title:'Field Record 030',mood:'fogbound',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:31,region:'Old Ruins',title:'Field Record 031',mood:'overgrown',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:32,region:'Blackwater',title:'Field Record 032',mood:'silent',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:33,region:'Farmlands',title:'Field Record 033',mood:'restless',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:34,region:'Cinder Ridge',title:'Field Record 034',mood:'ancient',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:35,region:'Drowned Marsh',title:'Field Record 035',mood:'wet',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:36,region:'Ashen Wilds',title:'Field Record 036',mood:'wind-beaten',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:37,region:'Old Ruins',title:'Field Record 037',mood:'burned',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:38,region:'Blackwater',title:'Field Record 038',mood:'fogbound',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:39,region:'Farmlands',title:'Field Record 039',mood:'overgrown',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:40,region:'Cinder Ridge',title:'Field Record 040',mood:'silent',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:41,region:'Drowned Marsh',title:'Field Record 041',mood:'restless',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:42,region:'Ashen Wilds',title:'Field Record 042',mood:'ancient',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:43,region:'Old Ruins',title:'Field Record 043',mood:'wet',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:44,region:'Blackwater',title:'Field Record 044',mood:'wind-beaten',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:45,region:'Farmlands',title:'Field Record 045',mood:'burned',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:46,region:'Cinder Ridge',title:'Field Record 046',mood:'fogbound',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:47,region:'Drowned Marsh',title:'Field Record 047',mood:'overgrown',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:48,region:'Ashen Wilds',title:'Field Record 048',mood:'silent',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:49,region:'Old Ruins',title:'Field Record 049',mood:'restless',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:50,region:'Blackwater',title:'Field Record 050',mood:'ancient',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:51,region:'Farmlands',title:'Field Record 051',mood:'wet',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:52,region:'Cinder Ridge',title:'Field Record 052',mood:'wind-beaten',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:53,region:'Drowned Marsh',title:'Field Record 053',mood:'burned',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:54,region:'Ashen Wilds',title:'Field Record 054',mood:'fogbound',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:55,region:'Old Ruins',title:'Field Record 055',mood:'overgrown',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:56,region:'Blackwater',title:'Field Record 056',mood:'silent',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:57,region:'Farmlands',title:'Field Record 057',mood:'restless',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:58,region:'Cinder Ridge',title:'Field Record 058',mood:'ancient',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:59,region:'Drowned Marsh',title:'Field Record 059',mood:'wet',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:60,region:'Ashen Wilds',title:'Field Record 060',mood:'wind-beaten',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:61,region:'Old Ruins',title:'Field Record 061',mood:'burned',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:62,region:'Blackwater',title:'Field Record 062',mood:'fogbound',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:63,region:'Farmlands',title:'Field Record 063',mood:'overgrown',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:64,region:'Cinder Ridge',title:'Field Record 064',mood:'silent',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:65,region:'Drowned Marsh',title:'Field Record 065',mood:'restless',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:66,region:'Ashen Wilds',title:'Field Record 066',mood:'ancient',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:67,region:'Old Ruins',title:'Field Record 067',mood:'wet',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:68,region:'Blackwater',title:'Field Record 068',mood:'wind-beaten',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:69,region:'Farmlands',title:'Field Record 069',mood:'burned',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:70,region:'Cinder Ridge',title:'Field Record 070',mood:'fogbound',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:71,region:'Drowned Marsh',title:'Field Record 071',mood:'overgrown',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:72,region:'Ashen Wilds',title:'Field Record 072',mood:'silent',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:73,region:'Old Ruins',title:'Field Record 073',mood:'restless',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:74,region:'Blackwater',title:'Field Record 074',mood:'ancient',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:75,region:'Farmlands',title:'Field Record 075',mood:'wet',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:76,region:'Cinder Ridge',title:'Field Record 076',mood:'wind-beaten',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:77,region:'Drowned Marsh',title:'Field Record 077',mood:'burned',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:78,region:'Ashen Wilds',title:'Field Record 078',mood:'fogbound',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:79,region:'Old Ruins',title:'Field Record 079',mood:'overgrown',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:80,region:'Blackwater',title:'Field Record 080',mood:'silent',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:81,region:'Farmlands',title:'Field Record 081',mood:'restless',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:82,region:'Cinder Ridge',title:'Field Record 082',mood:'ancient',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:83,region:'Drowned Marsh',title:'Field Record 083',mood:'wet',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:84,region:'Ashen Wilds',title:'Field Record 084',mood:'wind-beaten',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:85,region:'Old Ruins',title:'Field Record 085',mood:'burned',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:86,region:'Blackwater',title:'Field Record 086',mood:'fogbound',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:87,region:'Farmlands',title:'Field Record 087',mood:'overgrown',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:88,region:'Cinder Ridge',title:'Field Record 088',mood:'silent',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:89,region:'Drowned Marsh',title:'Field Record 089',mood:'restless',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:90,region:'Ashen Wilds',title:'Field Record 090',mood:'ancient',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:91,region:'Old Ruins',title:'Field Record 091',mood:'wet',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:92,region:'Blackwater',title:'Field Record 092',mood:'wind-beaten',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:93,region:'Farmlands',title:'Field Record 093',mood:'burned',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:94,region:'Cinder Ridge',title:'Field Record 094',mood:'fogbound',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:95,region:'Drowned Marsh',title:'Field Record 095',mood:'overgrown',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:96,region:'Ashen Wilds',title:'Field Record 096',mood:'silent',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:97,region:'Old Ruins',title:'Field Record 097',mood:'restless',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:98,region:'Blackwater',title:'Field Record 098',mood:'ancient',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:99,region:'Farmlands',title:'Field Record 099',mood:'wet',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:100,region:'Cinder Ridge',title:'Field Record 100',mood:'wind-beaten',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:101,region:'Drowned Marsh',title:'Field Record 101',mood:'burned',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:102,region:'Ashen Wilds',title:'Field Record 102',mood:'fogbound',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:103,region:'Old Ruins',title:'Field Record 103',mood:'overgrown',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:104,region:'Blackwater',title:'Field Record 104',mood:'silent',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:105,region:'Farmlands',title:'Field Record 105',mood:'restless',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:106,region:'Cinder Ridge',title:'Field Record 106',mood:'ancient',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:107,region:'Drowned Marsh',title:'Field Record 107',mood:'wet',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:108,region:'Ashen Wilds',title:'Field Record 108',mood:'wind-beaten',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:109,region:'Old Ruins',title:'Field Record 109',mood:'burned',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:110,region:'Blackwater',title:'Field Record 110',mood:'fogbound',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:111,region:'Farmlands',title:'Field Record 111',mood:'overgrown',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:112,region:'Cinder Ridge',title:'Field Record 112',mood:'silent',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:113,region:'Drowned Marsh',title:'Field Record 113',mood:'restless',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:114,region:'Ashen Wilds',title:'Field Record 114',mood:'ancient',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:115,region:'Old Ruins',title:'Field Record 115',mood:'wet',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:116,region:'Blackwater',title:'Field Record 116',mood:'wind-beaten',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:117,region:'Farmlands',title:'Field Record 117',mood:'burned',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:118,region:'Cinder Ridge',title:'Field Record 118',mood:'fogbound',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:119,region:'Drowned Marsh',title:'Field Record 119',mood:'overgrown',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:120,region:'Ashen Wilds',title:'Field Record 120',mood:'silent',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:121,region:'Old Ruins',title:'Field Record 121',mood:'restless',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:122,region:'Blackwater',title:'Field Record 122',mood:'ancient',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:123,region:'Farmlands',title:'Field Record 123',mood:'wet',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:124,region:'Cinder Ridge',title:'Field Record 124',mood:'wind-beaten',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:125,region:'Drowned Marsh',title:'Field Record 125',mood:'burned',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:126,region:'Ashen Wilds',title:'Field Record 126',mood:'fogbound',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:127,region:'Old Ruins',title:'Field Record 127',mood:'overgrown',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:128,region:'Blackwater',title:'Field Record 128',mood:'silent',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:129,region:'Farmlands',title:'Field Record 129',mood:'restless',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:130,region:'Cinder Ridge',title:'Field Record 130',mood:'ancient',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:131,region:'Drowned Marsh',title:'Field Record 131',mood:'wet',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:132,region:'Ashen Wilds',title:'Field Record 132',mood:'wind-beaten',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:133,region:'Old Ruins',title:'Field Record 133',mood:'burned',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:134,region:'Blackwater',title:'Field Record 134',mood:'fogbound',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:135,region:'Farmlands',title:'Field Record 135',mood:'overgrown',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:136,region:'Cinder Ridge',title:'Field Record 136',mood:'silent',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:137,region:'Drowned Marsh',title:'Field Record 137',mood:'restless',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:138,region:'Ashen Wilds',title:'Field Record 138',mood:'ancient',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:139,region:'Old Ruins',title:'Field Record 139',mood:'wet',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:140,region:'Blackwater',title:'Field Record 140',mood:'wind-beaten',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:141,region:'Farmlands',title:'Field Record 141',mood:'burned',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:142,region:'Cinder Ridge',title:'Field Record 142',mood:'fogbound',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:143,region:'Drowned Marsh',title:'Field Record 143',mood:'overgrown',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:144,region:'Ashen Wilds',title:'Field Record 144',mood:'silent',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:145,region:'Old Ruins',title:'Field Record 145',mood:'restless',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:146,region:'Blackwater',title:'Field Record 146',mood:'ancient',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:147,region:'Farmlands',title:'Field Record 147',mood:'wet',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:148,region:'Cinder Ridge',title:'Field Record 148',mood:'wind-beaten',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:149,region:'Drowned Marsh',title:'Field Record 149',mood:'burned',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:150,region:'Ashen Wilds',title:'Field Record 150',mood:'fogbound',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:151,region:'Old Ruins',title:'Field Record 151',mood:'overgrown',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:152,region:'Blackwater',title:'Field Record 152',mood:'silent',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:153,region:'Farmlands',title:'Field Record 153',mood:'restless',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:154,region:'Cinder Ridge',title:'Field Record 154',mood:'ancient',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:155,region:'Drowned Marsh',title:'Field Record 155',mood:'wet',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:156,region:'Ashen Wilds',title:'Field Record 156',mood:'wind-beaten',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:157,region:'Old Ruins',title:'Field Record 157',mood:'burned',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:158,region:'Blackwater',title:'Field Record 158',mood:'fogbound',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:159,region:'Farmlands',title:'Field Record 159',mood:'overgrown',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:160,region:'Cinder Ridge',title:'Field Record 160',mood:'silent',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:161,region:'Drowned Marsh',title:'Field Record 161',mood:'restless',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:162,region:'Ashen Wilds',title:'Field Record 162',mood:'ancient',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:163,region:'Old Ruins',title:'Field Record 163',mood:'wet',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:164,region:'Blackwater',title:'Field Record 164',mood:'wind-beaten',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:165,region:'Farmlands',title:'Field Record 165',mood:'burned',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:166,region:'Cinder Ridge',title:'Field Record 166',mood:'fogbound',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:167,region:'Drowned Marsh',title:'Field Record 167',mood:'overgrown',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:168,region:'Ashen Wilds',title:'Field Record 168',mood:'silent',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:169,region:'Old Ruins',title:'Field Record 169',mood:'restless',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:170,region:'Blackwater',title:'Field Record 170',mood:'ancient',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:171,region:'Farmlands',title:'Field Record 171',mood:'wet',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:172,region:'Cinder Ridge',title:'Field Record 172',mood:'wind-beaten',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:173,region:'Drowned Marsh',title:'Field Record 173',mood:'burned',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:174,region:'Ashen Wilds',title:'Field Record 174',mood:'fogbound',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:175,region:'Old Ruins',title:'Field Record 175',mood:'overgrown',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:176,region:'Blackwater',title:'Field Record 176',mood:'silent',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:177,region:'Farmlands',title:'Field Record 177',mood:'restless',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:178,region:'Cinder Ridge',title:'Field Record 178',mood:'ancient',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:179,region:'Drowned Marsh',title:'Field Record 179',mood:'wet',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:180,region:'Ashen Wilds',title:'Field Record 180',mood:'wind-beaten',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:181,region:'Old Ruins',title:'Field Record 181',mood:'burned',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:182,region:'Blackwater',title:'Field Record 182',mood:'fogbound',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:183,region:'Farmlands',title:'Field Record 183',mood:'overgrown',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:184,region:'Cinder Ridge',title:'Field Record 184',mood:'silent',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:185,region:'Drowned Marsh',title:'Field Record 185',mood:'restless',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:186,region:'Ashen Wilds',title:'Field Record 186',mood:'ancient',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:187,region:'Old Ruins',title:'Field Record 187',mood:'wet',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:188,region:'Blackwater',title:'Field Record 188',mood:'wind-beaten',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:189,region:'Farmlands',title:'Field Record 189',mood:'burned',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:190,region:'Cinder Ridge',title:'Field Record 190',mood:'fogbound',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:191,region:'Drowned Marsh',title:'Field Record 191',mood:'overgrown',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:192,region:'Ashen Wilds',title:'Field Record 192',mood:'silent',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:193,region:'Old Ruins',title:'Field Record 193',mood:'restless',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:194,region:'Blackwater',title:'Field Record 194',mood:'ancient',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:195,region:'Farmlands',title:'Field Record 195',mood:'wet',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:196,region:'Cinder Ridge',title:'Field Record 196',mood:'wind-beaten',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:197,region:'Drowned Marsh',title:'Field Record 197',mood:'burned',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:198,region:'Ashen Wilds',title:'Field Record 198',mood:'fogbound',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:199,region:'Old Ruins',title:'Field Record 199',mood:'overgrown',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:200,region:'Blackwater',title:'Field Record 200',mood:'silent',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:201,region:'Farmlands',title:'Field Record 201',mood:'restless',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:202,region:'Cinder Ridge',title:'Field Record 202',mood:'ancient',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:203,region:'Drowned Marsh',title:'Field Record 203',mood:'wet',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:204,region:'Ashen Wilds',title:'Field Record 204',mood:'wind-beaten',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:205,region:'Old Ruins',title:'Field Record 205',mood:'burned',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:206,region:'Blackwater',title:'Field Record 206',mood:'fogbound',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:207,region:'Farmlands',title:'Field Record 207',mood:'overgrown',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:208,region:'Cinder Ridge',title:'Field Record 208',mood:'silent',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:209,region:'Drowned Marsh',title:'Field Record 209',mood:'restless',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:210,region:'Ashen Wilds',title:'Field Record 210',mood:'ancient',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:211,region:'Old Ruins',title:'Field Record 211',mood:'wet',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:212,region:'Blackwater',title:'Field Record 212',mood:'wind-beaten',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:213,region:'Farmlands',title:'Field Record 213',mood:'burned',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:214,region:'Cinder Ridge',title:'Field Record 214',mood:'fogbound',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:215,region:'Drowned Marsh',title:'Field Record 215',mood:'overgrown',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:216,region:'Ashen Wilds',title:'Field Record 216',mood:'silent',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:217,region:'Old Ruins',title:'Field Record 217',mood:'restless',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:218,region:'Blackwater',title:'Field Record 218',mood:'ancient',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:219,region:'Farmlands',title:'Field Record 219',mood:'wet',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:220,region:'Cinder Ridge',title:'Field Record 220',mood:'wind-beaten',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:221,region:'Drowned Marsh',title:'Field Record 221',mood:'burned',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:222,region:'Ashen Wilds',title:'Field Record 222',mood:'fogbound',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:223,region:'Old Ruins',title:'Field Record 223',mood:'overgrown',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:224,region:'Blackwater',title:'Field Record 224',mood:'silent',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:225,region:'Farmlands',title:'Field Record 225',mood:'restless',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:226,region:'Cinder Ridge',title:'Field Record 226',mood:'ancient',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:227,region:'Drowned Marsh',title:'Field Record 227',mood:'wet',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:228,region:'Ashen Wilds',title:'Field Record 228',mood:'wind-beaten',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:229,region:'Old Ruins',title:'Field Record 229',mood:'burned',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:230,region:'Blackwater',title:'Field Record 230',mood:'fogbound',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:231,region:'Farmlands',title:'Field Record 231',mood:'overgrown',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:232,region:'Cinder Ridge',title:'Field Record 232',mood:'silent',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:233,region:'Drowned Marsh',title:'Field Record 233',mood:'restless',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:234,region:'Ashen Wilds',title:'Field Record 234',mood:'ancient',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:235,region:'Old Ruins',title:'Field Record 235',mood:'wet',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:236,region:'Blackwater',title:'Field Record 236',mood:'wind-beaten',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:237,region:'Farmlands',title:'Field Record 237',mood:'burned',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:238,region:'Cinder Ridge',title:'Field Record 238',mood:'fogbound',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:239,region:'Drowned Marsh',title:'Field Record 239',mood:'overgrown',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:240,region:'Ashen Wilds',title:'Field Record 240',mood:'silent',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:241,region:'Old Ruins',title:'Field Record 241',mood:'restless',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:242,region:'Blackwater',title:'Field Record 242',mood:'ancient',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:243,region:'Farmlands',title:'Field Record 243',mood:'wet',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:244,region:'Cinder Ridge',title:'Field Record 244',mood:'wind-beaten',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:245,region:'Drowned Marsh',title:'Field Record 245',mood:'burned',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:246,region:'Ashen Wilds',title:'Field Record 246',mood:'fogbound',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:247,region:'Old Ruins',title:'Field Record 247',mood:'overgrown',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:248,region:'Blackwater',title:'Field Record 248',mood:'silent',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:249,region:'Farmlands',title:'Field Record 249',mood:'restless',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:250,region:'Cinder Ridge',title:'Field Record 250',mood:'ancient',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:251,region:'Drowned Marsh',title:'Field Record 251',mood:'wet',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:252,region:'Ashen Wilds',title:'Field Record 252',mood:'wind-beaten',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:253,region:'Old Ruins',title:'Field Record 253',mood:'burned',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'},{id:254,region:'Blackwater',title:'Field Record 254',mood:'fogbound',text:'Blackwater remembers a night when the roads emptied and the old stones began to glow.'},{id:255,region:'Farmlands',title:'Field Record 255',mood:'overgrown',text:'Farmlands remembers a night when the roads emptied and the old stones began to glow.'},{id:256,region:'Cinder Ridge',title:'Field Record 256',mood:'silent',text:'Cinder Ridge remembers a night when the roads emptied and the old stones began to glow.'},{id:257,region:'Drowned Marsh',title:'Field Record 257',mood:'restless',text:'Drowned Marsh remembers a night when the roads emptied and the old stones began to glow.'},{id:258,region:'Ashen Wilds',title:'Field Record 258',mood:'ancient',text:'Ashen Wilds remembers a night when the roads emptied and the old stones began to glow.'},{id:259,region:'Old Ruins',title:'Field Record 259',mood:'wet',text:'Old Ruins remembers a night when the roads emptied and the old stones began to glow.'}];
@@ -1277,82 +1101,29 @@ killEnemy=function(e){n30KillBase(e);n30DropFromEnemy(e)};
 
 const N30_QUEST_DATABASE=[{id:0,title:'Auftrag 000',target:'Schattenwölfe',amount:3,rewardGold:30,rewardXP:40},{id:1,title:'Auftrag 001',target:'Knochenwächter',amount:4,rewardGold:33,rewardXP:49},{id:2,title:'Auftrag 002',target:'Aschenbestien',amount:5,rewardGold:36,rewardXP:58},{id:3,title:'Auftrag 003',target:'Nachtgeister',amount:6,rewardGold:39,rewardXP:67},{id:4,title:'Auftrag 004',target:'Schattenwölfe',amount:7,rewardGold:42,rewardXP:76},{id:5,title:'Auftrag 005',target:'Knochenwächter',amount:8,rewardGold:45,rewardXP:85},{id:6,title:'Auftrag 006',target:'Aschenbestien',amount:9,rewardGold:48,rewardXP:94},{id:7,title:'Auftrag 007',target:'Nachtgeister',amount:10,rewardGold:51,rewardXP:103},{id:8,title:'Auftrag 008',target:'Schattenwölfe',amount:3,rewardGold:54,rewardXP:112},{id:9,title:'Auftrag 009',target:'Knochenwächter',amount:4,rewardGold:57,rewardXP:121},{id:10,title:'Auftrag 010',target:'Aschenbestien',amount:5,rewardGold:60,rewardXP:130},{id:11,title:'Auftrag 011',target:'Nachtgeister',amount:6,rewardGold:63,rewardXP:139},{id:12,title:'Auftrag 012',target:'Schattenwölfe',amount:7,rewardGold:66,rewardXP:148},{id:13,title:'Auftrag 013',target:'Knochenwächter',amount:8,rewardGold:69,rewardXP:157},{id:14,title:'Auftrag 014',target:'Aschenbestien',amount:9,rewardGold:72,rewardXP:166},{id:15,title:'Auftrag 015',target:'Nachtgeister',amount:10,rewardGold:75,rewardXP:175},{id:16,title:'Auftrag 016',target:'Schattenwölfe',amount:3,rewardGold:78,rewardXP:184},{id:17,title:'Auftrag 017',target:'Knochenwächter',amount:4,rewardGold:81,rewardXP:193},{id:18,title:'Auftrag 018',target:'Aschenbestien',amount:5,rewardGold:84,rewardXP:202},{id:19,title:'Auftrag 019',target:'Nachtgeister',amount:6,rewardGold:87,rewardXP:211},{id:20,title:'Auftrag 020',target:'Schattenwölfe',amount:7,rewardGold:90,rewardXP:220},{id:21,title:'Auftrag 021',target:'Knochenwächter',amount:8,rewardGold:93,rewardXP:229},{id:22,title:'Auftrag 022',target:'Aschenbestien',amount:9,rewardGold:96,rewardXP:238},{id:23,title:'Auftrag 023',target:'Nachtgeister',amount:10,rewardGold:99,rewardXP:247},{id:24,title:'Auftrag 024',target:'Schattenwölfe',amount:3,rewardGold:102,rewardXP:256},{id:25,title:'Auftrag 025',target:'Knochenwächter',amount:4,rewardGold:105,rewardXP:265},{id:26,title:'Auftrag 026',target:'Aschenbestien',amount:5,rewardGold:108,rewardXP:274},{id:27,title:'Auftrag 027',target:'Nachtgeister',amount:6,rewardGold:111,rewardXP:283},{id:28,title:'Auftrag 028',target:'Schattenwölfe',amount:7,rewardGold:114,rewardXP:292},{id:29,title:'Auftrag 029',target:'Knochenwächter',amount:8,rewardGold:117,rewardXP:301},{id:30,title:'Auftrag 030',target:'Aschenbestien',amount:9,rewardGold:120,rewardXP:310},{id:31,title:'Auftrag 031',target:'Nachtgeister',amount:10,rewardGold:123,rewardXP:319},{id:32,title:'Auftrag 032',target:'Schattenwölfe',amount:3,rewardGold:126,rewardXP:328},{id:33,title:'Auftrag 033',target:'Knochenwächter',amount:4,rewardGold:129,rewardXP:337},{id:34,title:'Auftrag 034',target:'Aschenbestien',amount:5,rewardGold:132,rewardXP:346},{id:35,title:'Auftrag 035',target:'Nachtgeister',amount:6,rewardGold:135,rewardXP:355},{id:36,title:'Auftrag 036',target:'Schattenwölfe',amount:7,rewardGold:138,rewardXP:364},{id:37,title:'Auftrag 037',target:'Knochenwächter',amount:8,rewardGold:141,rewardXP:373},{id:38,title:'Auftrag 038',target:'Aschenbestien',amount:9,rewardGold:144,rewardXP:382},{id:39,title:'Auftrag 039',target:'Nachtgeister',amount:10,rewardGold:147,rewardXP:391},{id:40,title:'Auftrag 040',target:'Schattenwölfe',amount:3,rewardGold:150,rewardXP:400},{id:41,title:'Auftrag 041',target:'Knochenwächter',amount:4,rewardGold:153,rewardXP:409},{id:42,title:'Auftrag 042',target:'Aschenbestien',amount:5,rewardGold:156,rewardXP:418},{id:43,title:'Auftrag 043',target:'Nachtgeister',amount:6,rewardGold:159,rewardXP:427},{id:44,title:'Auftrag 044',target:'Schattenwölfe',amount:7,rewardGold:162,rewardXP:436},{id:45,title:'Auftrag 045',target:'Knochenwächter',amount:8,rewardGold:165,rewardXP:445},{id:46,title:'Auftrag 046',target:'Aschenbestien',amount:9,rewardGold:168,rewardXP:454},{id:47,title:'Auftrag 047',target:'Nachtgeister',amount:10,rewardGold:171,rewardXP:463},{id:48,title:'Auftrag 048',target:'Schattenwölfe',amount:3,rewardGold:174,rewardXP:472},{id:49,title:'Auftrag 049',target:'Knochenwächter',amount:4,rewardGold:177,rewardXP:481},{id:50,title:'Auftrag 050',target:'Aschenbestien',amount:5,rewardGold:180,rewardXP:490},{id:51,title:'Auftrag 051',target:'Nachtgeister',amount:6,rewardGold:183,rewardXP:499},{id:52,title:'Auftrag 052',target:'Schattenwölfe',amount:7,rewardGold:186,rewardXP:508},{id:53,title:'Auftrag 053',target:'Knochenwächter',amount:8,rewardGold:189,rewardXP:517},{id:54,title:'Auftrag 054',target:'Aschenbestien',amount:9,rewardGold:192,rewardXP:526},{id:55,title:'Auftrag 055',target:'Nachtgeister',amount:10,rewardGold:195,rewardXP:535},{id:56,title:'Auftrag 056',target:'Schattenwölfe',amount:3,rewardGold:198,rewardXP:544},{id:57,title:'Auftrag 057',target:'Knochenwächter',amount:4,rewardGold:201,rewardXP:553},{id:58,title:'Auftrag 058',target:'Aschenbestien',amount:5,rewardGold:204,rewardXP:562},{id:59,title:'Auftrag 059',target:'Nachtgeister',amount:6,rewardGold:207,rewardXP:571},{id:60,title:'Auftrag 060',target:'Schattenwölfe',amount:7,rewardGold:210,rewardXP:580},{id:61,title:'Auftrag 061',target:'Knochenwächter',amount:8,rewardGold:213,rewardXP:589},{id:62,title:'Auftrag 062',target:'Aschenbestien',amount:9,rewardGold:216,rewardXP:598},{id:63,title:'Auftrag 063',target:'Nachtgeister',amount:10,rewardGold:219,rewardXP:607},{id:64,title:'Auftrag 064',target:'Schattenwölfe',amount:3,rewardGold:222,rewardXP:616},{id:65,title:'Auftrag 065',target:'Knochenwächter',amount:4,rewardGold:225,rewardXP:625},{id:66,title:'Auftrag 066',target:'Aschenbestien',amount:5,rewardGold:228,rewardXP:634},{id:67,title:'Auftrag 067',target:'Nachtgeister',amount:6,rewardGold:231,rewardXP:643},{id:68,title:'Auftrag 068',target:'Schattenwölfe',amount:7,rewardGold:234,rewardXP:652},{id:69,title:'Auftrag 069',target:'Knochenwächter',amount:8,rewardGold:237,rewardXP:661},{id:70,title:'Auftrag 070',target:'Aschenbestien',amount:9,rewardGold:240,rewardXP:670},{id:71,title:'Auftrag 071',target:'Nachtgeister',amount:10,rewardGold:243,rewardXP:679},{id:72,title:'Auftrag 072',target:'Schattenwölfe',amount:3,rewardGold:246,rewardXP:688},{id:73,title:'Auftrag 073',target:'Knochenwächter',amount:4,rewardGold:249,rewardXP:697},{id:74,title:'Auftrag 074',target:'Aschenbestien',amount:5,rewardGold:252,rewardXP:706},{id:75,title:'Auftrag 075',target:'Nachtgeister',amount:6,rewardGold:255,rewardXP:715},{id:76,title:'Auftrag 076',target:'Schattenwölfe',amount:7,rewardGold:258,rewardXP:724},{id:77,title:'Auftrag 077',target:'Knochenwächter',amount:8,rewardGold:261,rewardXP:733},{id:78,title:'Auftrag 078',target:'Aschenbestien',amount:9,rewardGold:264,rewardXP:742},{id:79,title:'Auftrag 079',target:'Nachtgeister',amount:10,rewardGold:267,rewardXP:751},{id:80,title:'Auftrag 080',target:'Schattenwölfe',amount:3,rewardGold:270,rewardXP:760},{id:81,title:'Auftrag 081',target:'Knochenwächter',amount:4,rewardGold:273,rewardXP:769},{id:82,title:'Auftrag 082',target:'Aschenbestien',amount:5,rewardGold:276,rewardXP:778},{id:83,title:'Auftrag 083',target:'Nachtgeister',amount:6,rewardGold:279,rewardXP:787},{id:84,title:'Auftrag 084',target:'Schattenwölfe',amount:7,rewardGold:282,rewardXP:796},{id:85,title:'Auftrag 085',target:'Knochenwächter',amount:8,rewardGold:285,rewardXP:805},{id:86,title:'Auftrag 086',target:'Aschenbestien',amount:9,rewardGold:288,rewardXP:814},{id:87,title:'Auftrag 087',target:'Nachtgeister',amount:10,rewardGold:291,rewardXP:823},{id:88,title:'Auftrag 088',target:'Schattenwölfe',amount:3,rewardGold:294,rewardXP:832},{id:89,title:'Auftrag 089',target:'Knochenwächter',amount:4,rewardGold:297,rewardXP:841},{id:90,title:'Auftrag 090',target:'Aschenbestien',amount:5,rewardGold:300,rewardXP:850},{id:91,title:'Auftrag 091',target:'Nachtgeister',amount:6,rewardGold:303,rewardXP:859},{id:92,title:'Auftrag 092',target:'Schattenwölfe',amount:7,rewardGold:306,rewardXP:868},{id:93,title:'Auftrag 093',target:'Knochenwächter',amount:8,rewardGold:309,rewardXP:877},{id:94,title:'Auftrag 094',target:'Aschenbestien',amount:9,rewardGold:312,rewardXP:886},{id:95,title:'Auftrag 095',target:'Nachtgeister',amount:10,rewardGold:315,rewardXP:895},{id:96,title:'Auftrag 096',target:'Schattenwölfe',amount:3,rewardGold:318,rewardXP:904},{id:97,title:'Auftrag 097',target:'Knochenwächter',amount:4,rewardGold:321,rewardXP:913},{id:98,title:'Auftrag 098',target:'Aschenbestien',amount:5,rewardGold:324,rewardXP:922},{id:99,title:'Auftrag 099',target:'Nachtgeister',amount:6,rewardGold:327,rewardXP:931}];
 /* Stable save migration marker. */
-saveData.version=30;
-saveData.engine='30.0.0';
+saveData.version=31;
+saveData.engine='30.1.0-CLEAN';
 save();
 
 
-/* ---------- FINAL BOOT / BLACKSCREEN GUARD ---------- */
-window.__NEXORA30_READY__=false;
-function n30FinalBoot(){
-  try{
-    if(typeof validatePlayerPosition==='function')validatePlayerPosition();
-    if(typeof camera==='function')camera(1);
-    if(typeof hud==='function')hud();
-    n30GuaranteedRender();
-    if(typeof enhancedRender==='function')enhancedRender();
-    else if(typeof renderWorld==='function')renderWorld();
-    n30VisualGuard();
-    if(typeof msg==='function')msg('⚔ Willkommen in NEXORA 30.0.0');
-    window.__NEXORA30_READY__=true;
-  }catch(err){
-    window.__NEXORA30_READY__=false;
-    try{document.getElementById('save').textContent='⚠ RENDER-FEHLER: '+(err.message||err)}catch(_){ }
-    try{
-      const c=document.getElementById('game'),ctx=c.getContext('2d');
-      ctx.setTransform(1,0,0,1,0,0);ctx.fillStyle='#16261d';ctx.fillRect(0,0,innerWidth,innerHeight);
-      ctx.fillStyle='#284331';ctx.fillRect(0,innerHeight*.62,innerWidth,innerHeight*.38);
-      ctx.fillStyle='#e9f2ef';ctx.font='700 24px Arial';ctx.textAlign='center';ctx.fillText('NEXORA 30.0.0',innerWidth/2,innerHeight/2-12);
-      ctx.font='13px Arial';ctx.fillStyle='#aebfc7';ctx.fillText('Renderer wird wiederhergestellt …',innerWidth/2,innerHeight/2+18);
-    }catch(_){ }
-  }
-}
 
-/* N30.2 EMERGENCY CANVAS PIPELINE — final authoritative visual layer.
-   This intentionally owns the final frame so no late renderer can leave a blank canvas. */
-function n30EmergencyFrame(){
-  const ctx=X, d=D||1, ww=Math.max(1,innerWidth), hh=Math.max(1,innerHeight);
-  try{
-    ctx.setTransform(d,0,0,d,0,0);
-    ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';ctx.filter='none';ctx.shadowBlur=0;ctx.shadowColor='transparent';
-    /* stable base */
-    const sky=ctx.createLinearGradient(0,0,0,hh);sky.addColorStop(0,'#263e4a');sky.addColorStop(.48,'#71847c');sky.addColorStop(1,'#283a2c');ctx.fillStyle=sky;ctx.fillRect(0,0,ww,hh);
-    /* world floor */
-    ctx.fillStyle='#43563e';ctx.fillRect(0,hh*.46,ww,hh*.54);
-    /* subtle ground bands */
-    for(let i=0;i<18;i++){const y=hh*.46+i*hh*.03;ctx.fillStyle=i%2?'rgba(190,177,130,.035)':'rgba(20,30,24,.035)';ctx.fillRect(0,y,ww,hh*.028)}
-    /* road */
-    ctx.fillStyle='#675744';ctx.beginPath();ctx.moveTo(0,hh*.69);ctx.quadraticCurveTo(ww*.48,hh*.61,ww,hh*.67);ctx.lineTo(ww,hh*.84);ctx.quadraticCurveTo(ww*.48,hh*.76,0,hh*.86);ctx.closePath();ctx.fill();
-    /* trees / depth */
-    for(let i=0;i<15;i++){const x=(i*97+41)%ww,y=hh*.42+(i%5)*hh*.065,r=22+(i%4)*7;ctx.fillStyle='rgba(17,29,21,.72)';ctx.beginPath();ctx.ellipse(x,y+30,r*.8,9,0,0,Math.PI*2);ctx.fill();ctx.fillStyle=i%2?'#203b29':'#294733';ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();ctx.fillStyle='#345941';ctx.beginPath();ctx.arc(x-8,y-9,r*.62,0,Math.PI*2);ctx.fill()}
-    /* player — always visible */
-    const px=ww*.5,py=hh*.58;
-    ctx.fillStyle='rgba(0,0,0,.35)';ctx.beginPath();ctx.ellipse(px,py+29,30,10,0,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle='#18222b';ctx.beginPath();ctx.roundRect(px-18,py-8,36,38,9);ctx.fill();
-    ctx.fillStyle='#b87956';ctx.beginPath();ctx.arc(px,py-20,15,0,Math.PI*2);ctx.fill();
-    ctx.fillStyle='#3a241b';ctx.beginPath();ctx.arc(px,py-25,16,Math.PI,Math.PI*2);ctx.fill();
-    ctx.fillStyle='#cfdbe1';ctx.fillRect(px-12,py-7,24,4);
-    ctx.save();ctx.translate(px+19,py+2);ctx.rotate(-.55);ctx.fillStyle='#d7dce0';ctx.fillRect(0,-2,31,4);ctx.fillStyle='#806a4c';ctx.fillRect(-5,-4,9,8);ctx.restore();
-    /* distant settlement */
-    for(let i=0;i<4;i++){const bx=ww*.12+i*ww*.24,by=hh*.49-(i%2)*12;ctx.fillStyle='#6b5948';ctx.fillRect(bx,by,74,48);ctx.fillStyle='#3b2b25';ctx.beginPath();ctx.moveTo(bx-8,by);ctx.lineTo(bx+37,by-30);ctx.lineTo(bx+82,by);ctx.closePath();ctx.fill()}
-    /* title */
-    ctx.fillStyle='rgba(255,255,255,.88)';ctx.font='900 18px system-ui';ctx.textAlign='center';ctx.fillText('NEXORA 30.0.0',ww/2,34);
-    ctx.font='11px system-ui';ctx.fillStyle='rgba(255,255,255,.62)';ctx.fillText('WORLD RENDER ONLINE',ww/2,52);
-  }catch(e){/* never allow a render exception to stop the game */}
+setInterval(()=>{try{if(N30.uiOpen)n30RefreshUI()}catch(_){ }},1000);
+/* ---------- CLEAN BOOT ---------- */
+window.__NEXORA30_READY__=false;
+function cleanBoot(){
+  resize();
+  n30Migrate();
+  sanitizeSave();
+  const safe=safeSpawn(p.x,p.y,p.r);if(blocked(p.x,p.y,p.r)){p.x=safe.x;p.y=safe.y;p.vx=p.vy=0}
+  camera(1);
+  hud();
+  minimap();
+  enhancedRender();
+  msg('⚔ Willkommen in NEXORA 30.1.0 CLEAN');
+  window.__NEXORA30_READY__=true;
 }
-/* First visible frame immediately. */
-n30EmergencyFrame();
-/* Keep the emergency layer available only until the real renderer has produced a visible frame. */
-const n30OriginalLoop=loop;
-loop=function(now){
-  n30OriginalLoop(now);
-  /* If any renderer chain clears the canvas or dies silently, restore a visible frame. */
-  try{
-    const px=X.getImageData(Math.max(0,Math.floor(W*.5)),Math.max(0,Math.floor(H*.5)),1,1).data;
-    if((px[0]+px[1]+px[2])<18)n30EmergencyFrame();
-  }catch(_){n30EmergencyFrame()}
-};
-try{n30FinalBoot();window.__NEXORA30_READY__=true;requestAnimationFrame(loop)}catch(err){n30EmergencyFrame();window.__NEXORA30_READY__=true;requestAnimationFrame(loop)}
+try{cleanBoot()}catch(err){showRuntimeFault(err,'BOOT');}
+requestAnimationFrame(loop);
 
 </script>
 </body>
