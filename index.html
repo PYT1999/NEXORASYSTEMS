@@ -162,7 +162,7 @@ let autoSave=0;function update(dt){enhancedUpdate(dt)}
 let runtimeFault='';
 function showRuntimeFault(err,phase){runtimeFault=String(err&&err.message||err||'unknown');try{UI.msg.textContent='⚠ '+phase+': '+runtimeFault;UI.msg.style.opacity='1';UI.save.textContent='⚠ Spielmodus gesichert'}catch(_){}}
 function loop(now){requestAnimationFrame(loop);let dt=Math.min(.045,Math.max(0,(now-last)/1000));last=now;if(!document.hidden){try{update(dt)}catch(err){showRuntimeFault(err,'UPDATE');try{n30HardResetInput()}catch(_){}}try{enhancedRender()}catch(err){showRuntimeFault(err,'RENDER');try{n30RenderBase()}catch(_){try{renderWorld()}catch(__){}}}try{minimap();hud()}catch(err){showRuntimeFault(err,'HUD')}}}
-camera(1);hud();try{enhancedRender()}catch(err){showRuntimeFault(err,'BOOT');try{renderWorld()}catch(_){}}msg('⚔ Willkommen in NEXORA 30.0.0');requestAnimationFrame(loop);
+/* BOOT MOVED TO END: all rendering layers must be initialized first. */
 /* ================================================================
    NEXORA 30.0.0 — VISUAL / WORLD EXPANSION LAYER
    These systems sit on top of the core engine and intentionally keep
@@ -1252,6 +1252,31 @@ saveData.version=30;
 saveData.engine='30.0.0';
 save();
 
+
+/* ---------- FINAL BOOT / BLACKSCREEN GUARD ---------- */
+window.__NEXORA30_READY__=false;
+function n30FinalBoot(){
+  try{
+    if(typeof validatePlayerPosition==='function')validatePlayerPosition();
+    if(typeof camera==='function')camera(1);
+    if(typeof hud==='function')hud();
+    if(typeof enhancedRender==='function')enhancedRender();
+    else if(typeof renderWorld==='function')renderWorld();
+    if(typeof msg==='function')msg('⚔ Willkommen in NEXORA 30.0.0');
+    window.__NEXORA30_READY__=true;
+  }catch(err){
+    window.__NEXORA30_READY__=false;
+    try{document.getElementById('save').textContent='⚠ RENDER-FEHLER: '+(err.message||err)}catch(_){ }
+    try{
+      const c=document.getElementById('game'),ctx=c.getContext('2d');
+      ctx.setTransform(1,0,0,1,0,0);ctx.fillStyle='#16261d';ctx.fillRect(0,0,innerWidth,innerHeight);
+      ctx.fillStyle='#284331';ctx.fillRect(0,innerHeight*.62,innerWidth,innerHeight*.38);
+      ctx.fillStyle='#e9f2ef';ctx.font='700 24px Arial';ctx.textAlign='center';ctx.fillText('NEXORA 30.0.0',innerWidth/2,innerHeight/2-12);
+      ctx.font='13px Arial';ctx.fillStyle='#aebfc7';ctx.fillText('Renderer wird wiederhergestellt …',innerWidth/2,innerHeight/2+18);
+    }catch(_){ }
+  }
+}
+try{n30FinalBoot();requestAnimationFrame(loop)}catch(err){try{window.__NEXORA30_READY__=false}catch(_){} }
 </script>
 </body>
 </html>
