@@ -3,12 +3,148 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>NEXORA 30.1.0 PERFORMANCE v6 v5 — Realm of Ash</title>
+<title>NEXORA 31.0.0 v5 — Realm of Ash</title>
 <style>
 :root{--glass:rgba(7,13,18,.78);--line:rgba(255,255,255,.12);--cyan:#6ee7ff;--gold:#ffd66e;--danger:#ff6470}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#05090d;color:#fff;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;touch-action:none;user-select:none;-webkit-user-select:none}body{background:radial-gradient(circle at 50% 30%,#14242d,#05090d 70%)}canvas#game{position:fixed;inset:0;z-index:0;display:block;width:100vw;height:100vh}canvas#mini{z-index:25}button{font:inherit;color:inherit;cursor:pointer}#hud{position:fixed;z-index:20;left:16px;top:16px;width:330px;padding:15px 16px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,rgba(6,13,19,.9),rgba(15,25,31,.72));backdrop-filter:blur(18px);box-shadow:0 18px 55px rgba(0,0,0,.5);pointer-events:none}.brand{font-size:27px;font-weight:950;letter-spacing:8px;text-shadow:0 0 24px rgba(110,231,255,.35)}.subtitle{font-size:9px;letter-spacing:3px;color:#91a8b7;margin:-2px 0 12px}.row{display:flex;justify-content:space-between;font-size:11px;color:#aebfca}.bar{height:12px;background:#0d161d;border:1px solid rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin:4px 0 8px}.bar i{display:block;height:100%;width:100%;border-radius:99px;transition:width .12s}.hp{background:linear-gradient(90deg,#7d2035,#ed5360,#ff9975)}.xp{background:linear-gradient(90deg,#175fa6,#42cfff,#d6f9ff)}.stats{display:grid;grid-template-columns:1fr 1fr;gap:5px 12px;margin-top:10px;font-size:12px;color:#bdcbd4}.stats b{color:#fff}.quest{margin-top:12px;padding:10px 11px;border:1px solid rgba(255,207,90,.18);background:rgba(255,207,90,.05);border-radius:13px;font-size:11px;line-height:1.5}.quest strong{color:var(--gold);letter-spacing:1.4px}#save{position:fixed;right:16px;top:16px;z-index:25;padding:8px 11px;border:1px solid var(--line);border-radius:12px;background:rgba(3,8,12,.72);font-size:11px;color:#b9cbd5;backdrop-filter:blur(10px)}#zone{position:fixed;z-index:21;left:50%;top:18px;transform:translateX(-50%);padding:8px 15px;border-radius:99px;background:rgba(4,9,13,.58);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(12px);font-size:11px;letter-spacing:2px;color:#c6d6df;opacity:.9}#msg{position:fixed;z-index:30;left:50%;bottom:132px;transform:translateX(-50%);padding:11px 19px;border-radius:99px;background:rgba(2,6,9,.88);border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 35px rgba(0,0,0,.45);opacity:0;transition:opacity .18s;pointer-events:none;white-space:nowrap;font-size:13px}#interact{position:fixed;z-index:25;left:50%;top:15%;transform:translateX(-50%);padding:9px 15px;border-radius:99px;background:rgba(3,8,12,.8);border:1px solid rgba(255,255,255,.13);opacity:0;font-size:12px;pointer-events:none;backdrop-filter:blur(10px)}#controls{position:fixed;z-index:25;left:20px;bottom:20px;display:grid;grid-template-columns:62px 62px 62px;gap:6px}.move{width:62px;height:62px;border-radius:18px;border:1px solid rgba(255,255,255,.15);background:rgba(8,17,24,.78);box-shadow:0 9px 25px rgba(0,0,0,.4);font-size:22px;backdrop-filter:blur(8px)}.move:active{transform:scale(.93);background:rgba(54,107,137,.8)}.action{position:fixed;z-index:25;border-radius:50%;color:#fff;font-weight:950;box-shadow:0 12px 35px rgba(0,0,0,.48);backdrop-filter:blur(8px)}#attack{right:26px;bottom:26px;width:104px;height:104px;border:2px solid rgba(255,255,255,.25);background:radial-gradient(circle at 32% 25%,#e86a76,#751d31 72%);font-size:13px}#potion{right:145px;bottom:40px;width:68px;height:68px;border:2px solid rgba(255,255,255,.18);background:radial-gradient(circle at 30% 25%,#5aaee6,#16496f 75%);font-size:10px}.action:active{transform:scale(.94)}#mini{position:fixed;right:16px;bottom:16px;width:220px;height:150px;border:1px solid rgba(255,255,255,.13);border-radius:16px;background:rgba(3,7,10,.8);box-shadow:0 12px 38px rgba(0,0,0,.45)}#death{position:fixed;inset:0;z-index:40;display:none;align-items:center;justify-content:center;background:radial-gradient(circle,rgba(65,8,15,.15),rgba(0,0,0,.78));pointer-events:none}.deathCard{padding:28px 36px;border:1px solid rgba(255,255,255,.13);border-radius:24px;background:rgba(4,7,10,.86);box-shadow:0 25px 90px #000b;text-align:center}.deathCard h1{margin:0 0 8px;letter-spacing:5px}.deathCard p{margin:0;color:#9eb1bd;font-size:12px}#help{position:fixed;z-index:20;right:16px;top:60px;padding:7px 10px;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:rgba(3,8,12,.55);font-size:10px;color:#8297a5;pointer-events:none}@media(max-width:850px){#mini,#help{display:none}#hud{width:292px;left:8px;top:8px;transform:scale(.82);transform-origin:top left}.brand{font-size:23px}#controls{left:10px;bottom:10px}.move{width:56px;height:56px}#attack{right:15px;bottom:16px;width:92px;height:92px}#potion{right:118px;bottom:28px;width:62px;height:62px}#zone{top:9px;font-size:9px}#msg{bottom:108px;font-size:11px}}
 </style>
+
+<style id="nexora31-frontend-style">
+:root{
+ --nx-line:rgba(255,255,255,.12);--nx-text:#eef8fb;--nx-muted:#879ca7;
+ --nx-cyan:#72e8ff;--nx-gold:#ffd66e;--nx-green:#72e2a0
+}
+#nxFrontend{position:fixed;inset:0;z-index:999999;background:
+radial-gradient(circle at 50% 18%,rgba(68,133,155,.18),transparent 32%),
+linear-gradient(135deg,#020507,#071118 52%,#020507);
+color:var(--nx-text);font-family:Inter,system-ui,Segoe UI,Arial,sans-serif}
+#nxFrontend.hidden{display:none}
+.nx-screen{position:absolute;inset:0;display:none;align-items:center;justify-content:center;padding:24px}
+.nx-screen.active{display:flex}
+.nx-card{width:min(960px,94vw);max-height:92vh;overflow:auto;padding:34px;border:1px solid var(--nx-line);
+border-radius:28px;background:linear-gradient(145deg,rgba(7,14,20,.98),rgba(13,24,31,.94));
+box-shadow:0 35px 120px rgba(0,0,0,.7);backdrop-filter:blur(22px)}
+.nx-card.center{text-align:center;width:min(760px,94vw)}
+.nx-logo{font-size:clamp(52px,9vw,94px);font-weight:1000;letter-spacing:.18em;line-height:.9;text-shadow:0 0 42px rgba(114,232,255,.28)}
+.nx-kicker{font-size:11px;letter-spacing:.42em;color:var(--nx-muted);margin:16px 0 34px}
+.nx-title{font-size:30px;letter-spacing:.16em;margin:0 0 8px}
+.nx-sub{color:var(--nx-muted);font-size:13px;margin-bottom:24px}
+.nx-actions{display:grid;gap:10px;margin:28px auto 0;width:min(430px,100%)}
+.nx-btn{min-height:52px;padding:0 18px;border:1px solid var(--nx-line);border-radius:15px;background:rgba(255,255,255,.045);
+color:#fff;font-weight:850;letter-spacing:.1em;cursor:pointer}
+.nx-btn:hover{background:rgba(114,232,255,.08);border-color:rgba(114,232,255,.38)}
+.nx-btn.primary{background:linear-gradient(135deg,#164b5b,#1d7589);border-color:rgba(114,232,255,.45)}
+.nx-btn.gold{background:linear-gradient(135deg,#5e481b,#8d6a25);border-color:rgba(255,214,110,.42)}
+.nx-small{font-size:10px;color:#657b88;letter-spacing:.08em;margin-top:20px}
+.nx-top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:24px}
+.nx-back{border:0;background:none;color:var(--nx-muted);font-weight:800;cursor:pointer}
+.nx-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.nx-server{padding:20px;border:1px solid var(--nx-line);border-radius:20px;background:rgba(255,255,255,.025);
+color:#fff;text-align:left;cursor:pointer}
+.nx-server.selected{border-color:rgba(114,232,255,.55);background:rgba(114,232,255,.06)}
+.nx-server-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.nx-online{color:var(--nx-green);font-size:11px;font-weight:900}
+.nx-status,.nx-meta{color:var(--nx-muted);font-size:11px}
+.nx-meta{display:flex;justify-content:space-between}
+.nx-load{height:7px;border-radius:99px;background:#0b151b;overflow:hidden;margin:14px 0}
+.nx-load i{display:block;height:100%;background:linear-gradient(90deg,#2c93a9,#72e8ff)}
+.nx-form{display:grid;gap:12px;max-width:470px;margin:auto}
+.nx-field label{display:block;font-size:10px;color:var(--nx-muted);letter-spacing:.15em;margin-bottom:7px}
+.nx-field input,.nx-field select{width:100%;height:50px;border-radius:13px;border:1px solid var(--nx-line);
+background:#081118;color:#fff;padding:0 14px;box-sizing:border-box;outline:none}
+.nx-field input:focus,.nx-field select:focus{border-color:rgba(114,232,255,.5)}
+.nx-switch{display:flex;gap:8px;margin:16px 0}.nx-switch button{flex:1}
+.nx-note{padding:12px 14px;border-radius:12px;background:rgba(255,214,110,.06);border:1px solid rgba(255,214,110,.18);font-size:11px;color:#cbbd93}
+.nx-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+.nx-preview{height:300px;border-radius:22px;border:1px solid var(--nx-line);background:
+radial-gradient(circle at 50% 35%,rgba(114,232,255,.13),transparent 30%),#071017;
+display:flex;align-items:center;justify-content:center;overflow:hidden}
+.nx-avatar{width:120px;height:190px;border-radius:46% 46% 35% 35%;background:linear-gradient(145deg,#87624b,#3c2c26);
+position:relative;box-shadow:0 20px 48px #000}
+.nx-avatar:before{content:"";position:absolute;width:90px;height:94px;left:15px;top:-16px;border-radius:50%;background:#b7805b;box-shadow:0 -22px 0 4px #241a17}
+.nx-avatar:after{content:"";position:absolute;width:138px;height:25px;left:-9px;bottom:20px;border-radius:15px;background:#252e35}
+.nx-profile{padding:13px 15px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--nx-line);font-size:12px}
+.nx-profile b{display:block;font-size:15px;margin-bottom:3px}
+.nx-footer{display:flex;justify-content:flex-end;gap:10px;margin-top:22px}
+@media(max-width:760px){.nx-grid,.nx-layout{grid-template-columns:1fr}.nx-card{padding:22px}.nx-preview{height:220px}}
+</style>
+
 </head>
 <body>
+
+<div id="nxFrontend">
+<section id="nx-main" class="nx-screen active">
+ <div class="nx-card center">
+  <div class="nx-logo">NEXORA</div>
+  <div class="nx-kicker">REALM OF ASH · ONLINE RPG</div>
+  <div class="nx-actions">
+   <button class="nx-btn primary" data-nxgo="account">SPIELEN</button>
+   <button class="nx-btn" id="nxMainChar">CHARAKTER</button>
+   <button class="nx-btn" data-nxgo="settings">EINSTELLUNGEN</button>
+   <button class="nx-btn" data-nxgo="credits">CREDITS</button>
+  </div>
+  <div class="nx-small">31.0.0 · FRONTEND + GAME ENGINE 30.1.0</div>
+ </div>
+</section>
+
+<section id="nx-account" class="nx-screen">
+ <div class="nx-card">
+  <div class="nx-top"><div><h1 class="nx-title" id="nxAccountTitle">ANMELDEN</h1><div class="nx-sub">Dein NEXORA-Profil</div></div><button class="nx-back" data-nxgo="main">← ZURÜCK</button></div>
+  <div class="nx-form">
+   <div class="nx-switch"><button class="nx-btn primary" id="nxLoginTab">ANMELDEN</button><button class="nx-btn" id="nxRegisterTab">REGISTRIEREN</button></div>
+   <div class="nx-field"><label>BENUTZERNAME / E-MAIL</label><input id="nxUser" placeholder="z. B. Ashborn"></div>
+   <div class="nx-field"><label>PASSWORT</label><input id="nxPass" type="password" placeholder="••••••••"></div>
+   <div class="nx-field" id="nxPass2Wrap" style="display:none"><label>PASSWORT WIEDERHOLEN</label><input id="nxPass2" type="password" placeholder="••••••••"></div>
+   <div class="nx-note" id="nxAccountNote">Demo-Modus: Accountdaten werden aktuell lokal gespeichert. Echtes Backend folgt.</div>
+   <button class="nx-btn primary" id="nxAccountSubmit">ANMELDEN</button>
+  </div>
+ </div>
+</section>
+
+<section id="nx-server" class="nx-screen">
+ <div class="nx-card">
+  <div class="nx-top"><div><h1 class="nx-title">SERVERAUSWAHL</h1><div class="nx-sub">Wähle dein Reich</div></div><button class="nx-back" data-nxgo="account">← ZURÜCK</button></div>
+  <div class="nx-grid" id="nxServerList"></div>
+  <div class="nx-footer"><button class="nx-btn primary" id="nxServerNext">SERVER BETRETEN →</button></div>
+ </div>
+</section>
+
+<section id="nx-character" class="nx-screen">
+ <div class="nx-card">
+  <div class="nx-top"><div><h1 class="nx-title">CHARAKTER</h1><div class="nx-sub">Dein Held in NEXORA</div></div><button class="nx-back" data-nxgo="server">← ZURÜCK</button></div>
+  <div class="nx-layout">
+   <div class="nx-preview"><div class="nx-avatar"></div></div>
+   <div>
+    <div class="nx-profile"><b id="nxCharName">Ashborn</b><span id="nxCharInfo">Level 1 · WARRIOR · Ashen Realm</span></div>
+    <div class="nx-form" style="margin-top:14px">
+     <div class="nx-field"><label>CHARAKTERNAME</label><input id="nxCharInput" maxlength="18" placeholder="Charaktername"></div>
+     <div class="nx-field"><label>KLASSE</label><select id="nxClass"><option>WARRIOR</option><option>RANGER</option><option>MAGE</option></select></div>
+     <button class="nx-btn gold" id="nxCharSave">CHARAKTER SPEICHERN</button>
+     <button class="nx-btn primary" id="nxPlay">SPIEL STARTEN →</button>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="nx-settings" class="nx-screen">
+ <div class="nx-card center">
+  <div class="nx-top"><div><h1 class="nx-title">EINSTELLUNGEN</h1><div class="nx-sub">Grundlegende Optionen</div></div><button class="nx-back" data-nxgo="main">← ZURÜCK</button></div>
+  <div class="nx-form">
+   <div class="nx-field"><label>QUALITÄT</label><select id="nxQuality"><option>PERFORMANCE</option><option>HOCH</option></select></div>
+   <div class="nx-field"><label>SPRACHE</label><select><option>DEUTSCH</option><option>ENGLISH</option></select></div>
+   <button class="nx-btn primary" id="nxSettingsSave">SPEICHERN</button>
+  </div>
+ </div>
+</section>
+
+<section id="nx-credits" class="nx-screen">
+ <div class="nx-card center">
+  <div class="nx-top"><div><h1 class="nx-title">CREDITS</h1><div class="nx-sub">NEXORA · Realm of Ash</div></div><button class="nx-back" data-nxgo="main">← ZURÜCK</button></div>
+  <p style="color:#9fb2be;line-height:1.7">NEXORA ist ein eigenes Browser-RPG-Projekt. Version 31 erweitert den bestehenden Spielkern um die neue MMO-Frontend-Struktur.</p>
+ </div>
+</section>
+</div>
+
 <canvas id="game"></canvas>
 <div id="hud"><div class="brand">NEXORA</div><div class="subtitle">REALM OF ASH · 30.1.0 CLEAN</div><div class="row"><span>HP</span><span id="hpText"></span></div><div class="bar"><i id="hpBar" class="hp"></i></div><div class="row"><span>XP</span><span id="xpText"></span></div><div class="bar"><i id="xpBar" class="xp"></i></div><div class="stats"><span>Level <b id="level"></b></span><span>⚔ <b id="attackText"></b></span><span>🪙 <b id="gold"></b></span><span>🧪 <b id="potions"></b></span><span>👹 <b id="kills"></b></span><span>☠ <b id="deaths"></b></span></div><div class="quest"><strong>QUEST</strong><br><span id="questText"></span></div></div>
 <div id="save">💾 Lokal</div><div id="zone">ASHEN WILDS</div><div id="help">WASD / Pfeile · SPACE Angriff · E Interaktion · Q Trank · R Reset</div><div id="msg"></div><div id="interact"></div>
@@ -18,7 +154,7 @@
 <script>
 'use strict';
 /* ================================================================
-   NEXORA 30.1.0 PERFORMANCE v6 v5
+   NEXORA 31.0.0 v5
    Single-file top-down action RPG engine.
    No dependencies. Designed for desktop + touch.
    ================================================================ */
@@ -458,7 +594,7 @@ function drawPlayerStatus(){if(p.hurt>0){X.save();X.globalAlpha=.55;X.strokeStyl
 function drawPerformanceHint(){if(W<900)return;X.save();X.globalAlpha=.35;X.font='9px Arial';X.textAlign='left';X.fillStyle='#b9c8ce';X.fillText(Math.round(polish.fps)+' FPS',18,H-8);X.restore()}
 
 /* ================================================================
-   NEXORA 30.1.0 PERFORMANCE v6 v5 — REALISM CORE
+   NEXORA 31.0.0 v5 — REALISM CORE
    A deeper procedural presentation/simulation layer.
    No external assets. Everything is rendered from vectors, gradients,
    layered materials and deterministic world data.
@@ -1148,12 +1284,86 @@ function cleanBoot(){
   hud();
   minimap();
   enhancedRender();
-  msg('⚔ Willkommen in NEXORA 30.1.0 PERFORMANCE v6 v5');
+  msg('⚔ Willkommen in NEXORA 31.0.0 v5');
   window.__NEXORA30_READY__=true;
 }
 try{cleanBoot()}catch(err){showRuntimeFault(err,'BOOT');}
 requestAnimationFrame(loop);
 
 </script>
+
+<script id="nexora31-frontend-script">
+(() => {
+ const $=id=>document.getElementById(id);
+ const KEY="nexora_frontend_v31_single";
+ let state;
+ try{state=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){}
+ state=state||{mode:"login",user:null,server:"Ashen Realm",character:{name:"Ashborn",cls:"WARRIOR",level:1}};
+ const servers=[
+  {name:"Ashen Realm",region:"EU Central",players:127,max:500,ping:24},
+  {name:"Blackwater",region:"EU West",players:83,max:500,ping:31},
+  {name:"Old Ruins",region:"EU Central",players:41,max:500,ping:28},
+  {name:"Emberfall",region:"EU North",players:219,max:500,ping:47}
+ ];
+ const save=()=>localStorage.setItem(KEY,JSON.stringify(state));
+ function show(name){
+  document.querySelectorAll("#nxFrontend .nx-screen").forEach(x=>x.classList.remove("active"));
+  $("nx-"+name)?.classList.add("active");
+ }
+ function accountUI(){
+  const reg=state.mode==="register";
+  $("nxAccountTitle").textContent=reg?"REGISTRIEREN":"ANMELDEN";
+  $("nxPass2Wrap").style.display=reg?"block":"none";
+  $("nxAccountSubmit").textContent=reg?"ACCOUNT ERSTELLEN":"ANMELDEN";
+  $("nxLoginTab").classList.toggle("primary",!reg);
+  $("nxRegisterTab").classList.toggle("primary",reg);
+ }
+ function serverUI(){
+  $("nxServerList").innerHTML=servers.map(s=>`<button class="nx-server ${state.server===s.name?"selected":""}" data-nxserver="${s.name}">
+   <div class="nx-server-head"><strong>${s.name}</strong><span class="nx-online">● ONLINE</span></div>
+   <div class="nx-status">${s.region} · ${s.ping} ms</div>
+   <div class="nx-load"><i style="width:${Math.round(s.players/s.max*100)}%"></i></div>
+   <div class="nx-meta"><span>${s.players} / ${s.max} Spieler</span><span>LOW LOAD</span></div>
+  </button>`).join("");
+  document.querySelectorAll("[data-nxserver]").forEach(b=>b.onclick=()=>{state.server=b.dataset.nxserver;save();serverUI()});
+ }
+ function charUI(){
+  $("nxCharInput").value=state.character.name;
+  $("nxClass").value=state.character.cls;
+  $("nxCharName").textContent=state.character.name;
+  $("nxCharInfo").textContent=`Level ${state.character.level} · ${state.character.cls} · ${state.server}`;
+ }
+ function saveChar(){
+  const n=$("nxCharInput").value.trim().replace(/\s+/g," ");
+  if(n.length>=3) state.character.name=n.slice(0,18);
+  state.character.cls=$("nxClass").value;
+  save();charUI();
+ }
+ document.querySelectorAll("[data-nxgo]").forEach(b=>b.onclick=()=>show(b.dataset.nxgo));
+ $("nxLoginTab").onclick=()=>{state.mode="login";accountUI()};
+ $("nxRegisterTab").onclick=()=>{state.mode="register";accountUI()};
+ $("nxAccountSubmit").onclick=()=>{
+  const u=$("nxUser").value.trim(),p=$("nxPass").value;
+  if(u.length<3||p.length<4){$("nxAccountNote").textContent="Mindestens 3 Zeichen Benutzername und 4 Zeichen Passwort.";return}
+  if(state.mode==="register"&&p!==$("nxPass2").value){$("nxAccountNote").textContent="Die Passwörter stimmen nicht überein.";return}
+  state.user=u;save();serverUI();show("server");
+ };
+ $("nxServerNext").onclick=()=>{charUI();show("character")};
+ $("nxCharSave").onclick=saveChar;
+ $("nxPlay").onclick=()=>{
+  saveChar();
+  $("nxFrontend").classList.add("hidden");
+  try{if(typeof msg==="function")msg(`⚔ Willkommen, ${state.character.name} · ${state.server}`)}catch(e){}
+ };
+ $("nxMainChar").onclick=()=>state.user?(charUI(),show("character")):show("account");
+ $("nxSettingsSave").onclick=()=>{
+  localStorage.setItem("nexora_quality",$("nxQuality").value);
+  $("nxSettingsSave").textContent="GESPEICHERT ✓";
+  setTimeout(()=>$("nxSettingsSave").textContent="SPEICHERN",1000);
+ };
+ accountUI();serverUI();charUI();
+})();
+</script>
+
 </body>
 </html>
