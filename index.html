@@ -72,6 +72,26 @@ for(let i=0;i<260;i++){const x=rnd()*7100,y=rnd()*4700;if(x>700&&x<2250&&y>700&&
 for(let i=0;i<95;i++){const x=water.x-35+rnd()*35,y=water.y+30+rnd()*(water.h-60);deco(x,y,'reed',.8+rnd()*.7)}
 const npc={x:1120,y:1110,anim:0,name:'Eira'};
 const signposts=[{x:850,y:1230,text:'ASHEN WILDS'},{x:2060,y:1220,text:'NORTH ROAD'},{x:4600,y:1450,text:'BLACKWATER'}];
+/* Missing world collections restored: these are used by the original 30.x living-world/render layer. */
+const chests=[];
+const worldMarks=[];
+const ambient=[];
+const fireflies=[];
+const weather={time:7.5,rain:0,wind:.25,clouds:[],fog:[]};
+chests.push(
+ {x:1320,y:1160,open:false,glow:0},
+ {x:2320,y:1540,open:false,glow:1.7},
+ {x:3020,y:980,open:false,glow:3.1},
+ {x:4050,y:1680,open:false,glow:4.6},
+ {x:5350,y:1180,open:false,glow:5.9},
+ {x:6040,y:2740,open:false,glow:7.2}
+);
+worldMarks.push(
+ {x:1060,y:1080,type:'well'},
+ {x:1260,y:1260,type:'camp'},
+ {x:3340,y:1110,type:'shrine'},
+ {x:5580,y:2180,type:'gate'}
+);
 regions.push({name:'ASHEN WILDS',x:0,y:0,w:2800,h:4800});regions.push({name:'OLD RUINS',x:2800,y:0,w:1700,h:4800});regions.push({name:'BLACKWATER',x:4500,y:0,w:2700,h:4800});
 /* ---------- collision ---------- */
 function circleRect(x,y,r,o){const nx=Math.max(o.x,Math.min(x,o.x+o.w)),ny=Math.max(o.y,Math.min(y,o.y+o.h));return (x-nx)**2+(y-ny)**2<r*r}
