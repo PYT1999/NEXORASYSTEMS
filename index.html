@@ -18,7 +18,7 @@
 <script>
 'use strict';
 /* ================================================================
-   NEXORA 15.0.0
+   NEXORA 30.0.0
    Single-file top-down action RPG engine.
    No dependencies. Designed for desktop + touch.
    ================================================================ */
@@ -27,8 +27,8 @@ const UI={hpBar:document.getElementById('hpBar'),xpBar:document.getElementById('
 let W=innerWidth,H=innerHeight,D=Math.min(2,devicePixelRatio||1),last=performance.now(),elapsed=0;
 function resize(){W=innerWidth;H=innerHeight;D=Math.min(2,devicePixelRatio||1);C.width=Math.max(1,Math.floor(W*D));C.height=Math.max(1,Math.floor(H*D));X.setTransform(D,0,0,D,0,0);M.width=440;M.height=300}addEventListener('resize',resize);resize();
 const world={w:7200,h:4800};
-const SAVE='nexora_save_v1500';
-const legacy=['nexora_save_v501','nexora_save_v10'];
+const SAVE='nexora_save_v3000';
+const legacy=['nexora_save_v3000','nexora_save_v1500','nexora_save_v501','nexora_save_v10'];
 const spawnPoint={x:1050,y:1450};
 const water={x:4680,y:180,w:1260,h:1120};
 const def={level:1,xp:0,gold:40,potions:4,kills:0,deaths:0,maxHp:120,hp:120,attack:28,x:spawnPoint.x,y:spawnPoint.y,questKills:0,questComplete:false};
@@ -110,7 +110,7 @@ function enemyAI(dt){for(const e of enemies){if(e.dead){e.deathT+=dt;continue}e.
 }
 function enemyHit(e){e.cd=1.05;p.hp=Math.max(0,p.hp-e.damage);p.inv=.5;p.hurt=.25;cam.shake=Math.max(cam.shake,9);textFX(p.x,p.y-40,'-'+e.damage,'#ff6670',16);particle(p.x,p.y,'#ff5565',13,140,2.5);if(p.hp<=0)die()}
 function separateEnemies(){for(let i=0;i<enemies.length;i++){const a=enemies[i];if(a.dead)continue;for(let j=i+1;j<enemies.length;j++){const b=enemies[j];if(b.dead)continue;const dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy),min=a.r+b.r+5;if(d>0&&d<min){const z=(min-d)*.5,nx=dx/d,ny=dy/d;const ax=a.x-nx*z,ay=a.y-ny*z,bx=b.x+nx*z,by=b.y+ny*z;if(!blocked(ax,ay,a.r))a.x=ax;if(!blocked(bx,by,b.r)){b.x=bx;b.y=by}}}}}
-function die(){if(p.dead)return;p.dead=true;p.vx=p.vy=0;clearInput();saveData.deaths++;saveData.gold=Math.max(0,saveData.gold-20);UI.death.style.display='flex';particle(p.x,p.y,'#ff5967',50,260,3);ringFX(p.x,p.y,85,'#ff5967');save();setTimeout(respawn,1150)}
+function die(){if(p.dead)return;p.dead=true;p.vx=p.vy=0;clearInput();saveData.deaths++;saveData.gold=Math.max(0,saveData.gold-20);UI.death.style.display='flex';particle(p.x,p.y,'#ff5967',50,260,3);ringFX(p.x,p.y,85,'#ff5967');save();respawn()}
 function respawn(){p.dead=false;UI.death.style.display='none';const safe=safeSpawn(spawnPoint.x,spawnPoint.y,p.r);p.x=safe.x;p.y=safe.y;p.hp=p.maxHp;p.vx=p.vy=0;p.inv=2.5;p.hurt=0;p.atk=0;p.cd=.4;p.dir='down';p.step=0;p.idle=0;clearInput();camera(1);msg('✨ Wiederbelebt · Bewegung freigegeben');save()}
 /* ---------- save ---------- */
 let saveFlash=0;function save(){try{Object.assign(saveData,{x:p.x,y:p.y,hp:p.hp,maxHp:p.maxHp,attack:p.attack});localStorage.setItem(SAVE,JSON.stringify(saveData));UI.save.textContent='💾 Gespeichert';saveFlash=.9}catch(e){UI.save.textContent='⚠ Speicherfehler'}}
@@ -160,9 +160,9 @@ function updateFX(dt){for(let i=particles.length-1;i>=0;i--){const q=particles[i
 /* ---------- main loop ---------- */
 let autoSave=0;function update(dt){enhancedUpdate(dt)}
 function loop(now){requestAnimationFrame(loop);let dt=Math.min(.045,Math.max(0,(now-last)/1000));last=now;if(!document.hidden){update(dt);enhancedRender();minimap();hud()}}
-camera(1);hud();msg('⚔ Willkommen in NEXORA 15.0.0');requestAnimationFrame(loop);
+camera(1);hud();msg('⚔ Willkommen in NEXORA 30.0.0');requestAnimationFrame(loop);
 /* ================================================================
-   NEXORA 15.0.0 — VISUAL / WORLD EXPANSION LAYER
+   NEXORA 30.0.0 — VISUAL / WORLD EXPANSION LAYER
    These systems sit on top of the core engine and intentionally keep
    the project dependency-free. The renderer uses smooth vector
    primitives, gradients, alpha blending and procedural detail rather
@@ -888,7 +888,7 @@ function n30DrawEvent(){if(!N30_EVENT)return;X.save();X.globalAlpha=.9;X.textAli
 
 function n30HardResetInput(){
  input.up=input.down=input.left=input.right=false;
- for(const b of document.querySelectorAll('.move')){b.releasePointerCapture?.(0);b.classList.remove('active')}
+ for(const b of document.querySelectorAll('.move')){try{if(b.hasPointerCapture?.(0))b.releasePointerCapture(0)}catch(_){ }b.classList.remove('active')}
  p.vx=0;p.vy=0;
 }
 function n30MovementWatchdog(){
@@ -916,6 +916,10 @@ function n30Migrate(){
  saveData.statistics=saveData.statistics||{};saveData.statistics.session=saveData.statistics.session||0;
 }
 n30Migrate();
+if(!Number.isFinite(saveData.maxHp)||saveData.maxHp<1)saveData.maxHp=120;
+if(!Number.isFinite(saveData.hp))saveData.hp=saveData.maxHp;
+if(!Number.isFinite(saveData.level)||saveData.level<1)saveData.level=1;
+if(!Number.isFinite(saveData.xp)||saveData.xp<0)saveData.xp=0;
 function n30CreateUI(){
  if(document.getElementById('n30panel'))return;
  const st=document.createElement('style');st.textContent=`#n30panel{position:fixed;z-index:80;left:50%;top:50%;transform:translate(-50%,-50%);width:min(760px,92vw);max-height:78vh;overflow:auto;padding:24px;border:1px solid rgba(255,255,255,.15);border-radius:24px;background:rgba(5,10,14,.94);backdrop-filter:blur(22px);box-shadow:0 30px 100px #000c;display:none}#n30panel h2{margin:0 0 4px;font-size:24px;letter-spacing:3px}#n30panel .sub{color:#8297a5;font-size:11px;margin-bottom:18px}#n30grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:9px}.n30card{padding:12px;border:1px solid rgba(255,255,255,.09);border-radius:15px;background:rgba(255,255,255,.035)}.n30card b{display:block;margin-bottom:4px}.n30card span{font-size:10px;color:#8ea1aa;line-height:1.45}.n30card button{margin-top:9px;border:1px solid rgba(255,255,255,.13);border-radius:9px;padding:6px 9px;background:#15232b}.n30close{float:right;border:0;background:none;font-size:20px;color:#9fb1ba}`;document.head.appendChild(st);
@@ -934,9 +938,10 @@ function n30RenderWorld(){
  for(const d of decor){if(!n30Visible(d.x,d.y,160))continue;list.push({y:d.y+8,fn:()=>drawGroundDeco(d)})}
  for(const c of chests)if(n30Visible(c.x,c.y,120))list.push({y:c.y+15,fn:()=>drawChest(c)});
  for(const s of signposts)if(n30Visible(s.x,s.y,100))list.push({y:s.y+22,fn:()=>signDraw(s)});
+ for(const m of worldMarks)if(n30Visible(m.x,m.y,140)){const fn=()=>{if(m.type==='well')drawWell(m);else if(m.type==='camp')drawCamp(m);else if(m.type==='shrine')drawShrine(m);else drawGate(m)};list.push({y:m.y+28,fn})}
  list.push({y:npc.y+35,fn:npcDraw});for(const n of N30_NPCS)list.push({y:n.y+20,fn:()=>n30DrawNPCsOne(n)});for(const w of N30.wildlife)list.push({y:w.y+w.r,fn:()=>{}});for(const e of enemies)if(n30Visible(e.x,e.y,180))list.push({y:e.y+e.r,fn:()=>enemyDraw(e)});list.push({y:p.y+p.r+5,fn:n30DrawPlayerRealistic});
  list.sort((a,b)=>a.y-b.y);for(const q of list)q.fn();
- drawLandmarks();n30DrawFootprints();n30DrawWildlife();n30DrawFire();effectsDraw();drawAtmosphericSparks();drawFireflies();drawFog();n30DrawRain();n30DrawAsh();drawPlayerLight();n30Lighting();n30Atmosphere();drawStaminaBar();drawChestMarker();drawZoneBanner();drawLowHealthEffect();drawDamageVignette();n30DrawEvent();
+ n30DrawFootprints();n30DrawWildlife();n30DrawFire();effectsDraw();drawAtmosphericSparks();drawFireflies();drawFog();n30DrawRain();n30DrawAsh();drawPlayerLight();n30Lighting();n30Atmosphere();drawStaminaBar();drawChestMarker();drawZoneBanner();drawLowHealthEffect();drawDamageVignette();n30DrawEvent();
  if(N30.uiOpen)n30RefreshUI();
 }
 const n30UpdateBase=enhancedUpdate;
@@ -1189,19 +1194,36 @@ const n30RenderWorldBase=n30RenderWorld;
 n30RenderWorld=function(){n30RenderWorldBase();n30DrawFineVegetation();n30DrawFirefliesReal();n30DrawRainSplashes();n30DrawLens();n30DrawCombo();}
 
 
-/* Respawn hardening v30: every possible stale input source is cleared before and after respawn. */
-const n30RespawnBase=respawn;
+/* Respawn hardening v30.1: one authoritative respawn path.
+   Previous layered wrappers could schedule respawn twice. This version clears
+   every input source, invalidates old timers, validates the spawn, and only
+   releases the player after the reset is complete. */
+let respawnTimer=0;
 respawn=function(){
- n30HardResetInput();p.dead=true;p.vx=p.vy=0;
- const token=++respawnToken;
- setTimeout(()=>{
-  if(token!==respawnToken)return;
-  n30RespawnBase();
+  clearTimeout(respawnTimer);
+  const token=++respawnToken;
   n30HardResetInput();
-  const safe=safeSpawn(spawnPoint.x,spawnPoint.y,p.r);p.x=safe.x;p.y=safe.y;p.dead=false;p.hp=p.maxHp;p.vx=0;p.vy=0;p.inv=2.5;p.cd=.35;p.atk=0;p.hurt=0;p.step=0;
-  requestAnimationFrame(()=>{n30HardResetInput();camera(.5);msg('✓ Respawn stabilisiert · Bewegung aktiv')});save();
- },0);
-}
+  p.dead=true;
+  p.vx=0;p.vy=0;p.atk=0;p.hurt=0;
+  UI.death.style.display='flex';
+  respawnTimer=setTimeout(()=>{
+    if(token!==respawnToken)return;
+    n30HardResetInput();
+    const safe=safeSpawn(spawnPoint.x,spawnPoint.y,p.r);
+    p.x=safe.x;p.y=safe.y;
+    p.hp=p.maxHp;
+    p.vx=0;p.vy=0;
+    p.dead=false;
+    p.inv=2.5;
+    p.cd=.35;
+    p.atk=0;p.hurt=0;p.step=0;p.idle=0;p.trail=0;
+    UI.death.style.display='none';
+    camera(.5);
+    n30HardResetInput();
+    save();
+    msg('✓ Respawn stabilisiert · Bewegung aktiv');
+  },1150);
+};
 /* Ensure old saves cannot place the player inside geometry. */
 (function(){const safe=safeSpawn(p.x,p.y,p.r);if(blocked(p.x,p.y,p.r)){p.x=safe.x;p.y=safe.y;p.vx=p.vy=0;save()}})();
 n30CreateUI();
