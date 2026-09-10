@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>NEXORA 31.0.0 v5 — Realm of Ash</title>
+<title>NEXORA 32.0.0 v5 — Realm of Ash</title>
 <style>
 :root{--glass:rgba(7,13,18,.78);--line:rgba(255,255,255,.12);--cyan:#6ee7ff;--gold:#ffd66e;--danger:#ff6470}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#05090d;color:#fff;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;touch-action:none;user-select:none;-webkit-user-select:none}body{background:radial-gradient(circle at 50% 30%,#14242d,#05090d 70%)}canvas#game{position:fixed;inset:0;z-index:0;display:block;width:100vw;height:100vh}canvas#mini{z-index:25}button{font:inherit;color:inherit;cursor:pointer}#hud{position:fixed;z-index:20;left:16px;top:16px;width:330px;padding:15px 16px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,rgba(6,13,19,.9),rgba(15,25,31,.72));backdrop-filter:blur(18px);box-shadow:0 18px 55px rgba(0,0,0,.5);pointer-events:none}.brand{font-size:27px;font-weight:950;letter-spacing:8px;text-shadow:0 0 24px rgba(110,231,255,.35)}.subtitle{font-size:9px;letter-spacing:3px;color:#91a8b7;margin:-2px 0 12px}.row{display:flex;justify-content:space-between;font-size:11px;color:#aebfca}.bar{height:12px;background:#0d161d;border:1px solid rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin:4px 0 8px}.bar i{display:block;height:100%;width:100%;border-radius:99px;transition:width .12s}.hp{background:linear-gradient(90deg,#7d2035,#ed5360,#ff9975)}.xp{background:linear-gradient(90deg,#175fa6,#42cfff,#d6f9ff)}.stats{display:grid;grid-template-columns:1fr 1fr;gap:5px 12px;margin-top:10px;font-size:12px;color:#bdcbd4}.stats b{color:#fff}.quest{margin-top:12px;padding:10px 11px;border:1px solid rgba(255,207,90,.18);background:rgba(255,207,90,.05);border-radius:13px;font-size:11px;line-height:1.5}.quest strong{color:var(--gold);letter-spacing:1.4px}#save{position:fixed;right:16px;top:16px;z-index:25;padding:8px 11px;border:1px solid var(--line);border-radius:12px;background:rgba(3,8,12,.72);font-size:11px;color:#b9cbd5;backdrop-filter:blur(10px)}#zone{position:fixed;z-index:21;left:50%;top:18px;transform:translateX(-50%);padding:8px 15px;border-radius:99px;background:rgba(4,9,13,.58);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(12px);font-size:11px;letter-spacing:2px;color:#c6d6df;opacity:.9}#msg{position:fixed;z-index:30;left:50%;bottom:132px;transform:translateX(-50%);padding:11px 19px;border-radius:99px;background:rgba(2,6,9,.88);border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 35px rgba(0,0,0,.45);opacity:0;transition:opacity .18s;pointer-events:none;white-space:nowrap;font-size:13px}#interact{position:fixed;z-index:25;left:50%;top:15%;transform:translateX(-50%);padding:9px 15px;border-radius:99px;background:rgba(3,8,12,.8);border:1px solid rgba(255,255,255,.13);opacity:0;font-size:12px;pointer-events:none;backdrop-filter:blur(10px)}#controls{position:fixed;z-index:25;left:20px;bottom:20px;display:grid;grid-template-columns:62px 62px 62px;gap:6px}.move{width:62px;height:62px;border-radius:18px;border:1px solid rgba(255,255,255,.15);background:rgba(8,17,24,.78);box-shadow:0 9px 25px rgba(0,0,0,.4);font-size:22px;backdrop-filter:blur(8px)}.move:active{transform:scale(.93);background:rgba(54,107,137,.8)}.action{position:fixed;z-index:25;border-radius:50%;color:#fff;font-weight:950;box-shadow:0 12px 35px rgba(0,0,0,.48);backdrop-filter:blur(8px)}#attack{right:26px;bottom:26px;width:104px;height:104px;border:2px solid rgba(255,255,255,.25);background:radial-gradient(circle at 32% 25%,#e86a76,#751d31 72%);font-size:13px}#potion{right:145px;bottom:40px;width:68px;height:68px;border:2px solid rgba(255,255,255,.18);background:radial-gradient(circle at 30% 25%,#5aaee6,#16496f 75%);font-size:10px}.action:active{transform:scale(.94)}#mini{position:fixed;right:16px;bottom:16px;width:220px;height:150px;border:1px solid rgba(255,255,255,.13);border-radius:16px;background:rgba(3,7,10,.8);box-shadow:0 12px 38px rgba(0,0,0,.45)}#death{position:fixed;inset:0;z-index:40;display:none;align-items:center;justify-content:center;background:radial-gradient(circle,rgba(65,8,15,.15),rgba(0,0,0,.78));pointer-events:none}.deathCard{padding:28px 36px;border:1px solid rgba(255,255,255,.13);border-radius:24px;background:rgba(4,7,10,.86);box-shadow:0 25px 90px #000b;text-align:center}.deathCard h1{margin:0 0 8px;letter-spacing:5px}.deathCard p{margin:0;color:#9eb1bd;font-size:12px}#help{position:fixed;z-index:20;right:16px;top:60px;padding:7px 10px;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:rgba(3,8,12,.55);font-size:10px;color:#8297a5;pointer-events:none}@media(max-width:850px){#mini,#help{display:none}#hud{width:292px;left:8px;top:8px;transform:scale(.82);transform-origin:top left}.brand{font-size:23px}#controls{left:10px;bottom:10px}.move{width:56px;height:56px}#attack{right:15px;bottom:16px;width:92px;height:92px}#potion{right:118px;bottom:28px;width:62px;height:62px}#zone{top:9px;font-size:9px}#msg{bottom:108px;font-size:11px}}
 </style>
 
-<style id="nexora31-frontend-style">
+<style id="nexora32-frontend-style">
 :root{
  --nx-line:rgba(255,255,255,.12);--nx-text:#eef8fb;--nx-muted:#879ca7;
- --nx-cyan:#72e8ff;--nx-gold:#ffd66e;--nx-green:#72e2a0
+ --nx-cyan:#72e8ff;--nx-gold:#ffd66e;--nx-green:#72e2a0;--nx-red:#ff6470;
 }
 #nxFrontend{position:fixed;inset:0;z-index:999999;background:
 radial-gradient(circle at 50% 18%,rgba(68,133,155,.18),transparent 32%),
@@ -34,6 +34,7 @@ color:#fff;font-weight:850;letter-spacing:.1em;cursor:pointer}
 .nx-btn:hover{background:rgba(114,232,255,.08);border-color:rgba(114,232,255,.38)}
 .nx-btn.primary{background:linear-gradient(135deg,#164b5b,#1d7589);border-color:rgba(114,232,255,.45)}
 .nx-btn.gold{background:linear-gradient(135deg,#5e481b,#8d6a25);border-color:rgba(255,214,110,.42)}
+.nx-btn.danger{background:rgba(255,100,112,.08);border-color:rgba(255,100,112,.32)}
 .nx-small{font-size:10px;color:#657b88;letter-spacing:.08em;margin-top:20px}
 .nx-top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:24px}
 .nx-back{border:0;background:none;color:var(--nx-muted);font-weight:800;cursor:pointer}
@@ -43,8 +44,7 @@ color:#fff;text-align:left;cursor:pointer}
 .nx-server.selected{border-color:rgba(114,232,255,.55);background:rgba(114,232,255,.06)}
 .nx-server-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .nx-online{color:var(--nx-green);font-size:11px;font-weight:900}
-.nx-status,.nx-meta{color:var(--nx-muted);font-size:11px}
-.nx-meta{display:flex;justify-content:space-between}
+.nx-status,.nx-meta{color:var(--nx-muted);font-size:11px}.nx-meta{display:flex;justify-content:space-between}
 .nx-load{height:7px;border-radius:99px;background:#0b151b;overflow:hidden;margin:14px 0}
 .nx-load i{display:block;height:100%;background:linear-gradient(90deg,#2c93a9,#72e8ff)}
 .nx-form{display:grid;gap:12px;max-width:470px;margin:auto}
@@ -53,7 +53,10 @@ color:#fff;text-align:left;cursor:pointer}
 background:#081118;color:#fff;padding:0 14px;box-sizing:border-box;outline:none}
 .nx-field input:focus,.nx-field select:focus{border-color:rgba(114,232,255,.5)}
 .nx-switch{display:flex;gap:8px;margin:16px 0}.nx-switch button{flex:1}
-.nx-note{padding:12px 14px;border-radius:12px;background:rgba(255,214,110,.06);border:1px solid rgba(255,214,110,.18);font-size:11px;color:#cbbd93}
+.nx-note{padding:12px 14px;border-radius:12px;background:rgba(255,214,110,.06);
+border:1px solid rgba(255,214,110,.18);font-size:11px;color:#cbbd93;line-height:1.5}
+.nx-note.error{background:rgba(255,100,112,.07);border-color:rgba(255,100,112,.28);color:#ffadb4}
+.nx-note.ok{background:rgba(114,226,160,.07);border-color:rgba(114,226,160,.28);color:#a8efc1}
 .nx-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
 .nx-preview{height:300px;border-radius:22px;border:1px solid var(--nx-line);background:
 radial-gradient(circle at 50% 35%,rgba(114,232,255,.13),transparent 30%),#071017;
@@ -65,7 +68,18 @@ position:relative;box-shadow:0 20px 48px #000}
 .nx-profile{padding:13px 15px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--nx-line);font-size:12px}
 .nx-profile b{display:block;font-size:15px;margin-bottom:3px}
 .nx-footer{display:flex;justify-content:flex-end;gap:10px;margin-top:22px}
-@media(max-width:760px){.nx-grid,.nx-layout{grid-template-columns:1fr}.nx-card{padding:22px}.nx-preview{height:220px}}
+.nx-accountbar{display:none;margin:18px auto 0;width:min(430px,100%);padding:11px 13px;border:1px solid var(--nx-line);
+border-radius:13px;color:var(--nx-muted);font-size:11px;align-items:center;justify-content:space-between;gap:10px}
+.nx-accountbar.visible{display:flex}.nx-accountbar b{color:#dcecf2;overflow:hidden;text-overflow:ellipsis}
+.nx-linkbtn{border:0;background:none;color:#ff9aa3;font-size:10px;font-weight:900;cursor:pointer}
+#nxGameMenuButton{display:none;position:fixed;z-index:99990;right:18px;top:58px;width:44px;height:44px;border-radius:13px;
+border:1px solid rgba(255,255,255,.16);background:rgba(3,8,12,.82);color:white;font-size:20px;cursor:pointer;backdrop-filter:blur(10px)}
+#nxGameMenuButton.visible{display:block}
+#nxInGameMenu{display:none;position:fixed;inset:0;z-index:999995;background:rgba(0,0,0,.66);align-items:center;justify-content:center;padding:22px;backdrop-filter:blur(8px)}
+#nxInGameMenu.visible{display:flex}
+#nxInGameMenu .nx-card{width:min(460px,94vw)}
+.nx-sync{font-size:10px;color:var(--nx-muted);min-height:18px;margin-top:12px}
+@media(max-width:760px){.nx-grid,.nx-layout{grid-template-columns:1fr}.nx-card{padding:22px}.nx-preview{height:220px}#nxGameMenuButton{top:48px;right:10px}}
 </style>
 
 </head>
@@ -77,24 +91,26 @@ position:relative;box-shadow:0 20px 48px #000}
   <div class="nx-logo">NEXORA</div>
   <div class="nx-kicker">REALM OF ASH · ONLINE RPG</div>
   <div class="nx-actions">
-   <button class="nx-btn primary" data-nxgo="account">SPIELEN</button>
+   <button class="nx-btn primary" id="nxMainPlay">SPIELEN</button>
    <button class="nx-btn" id="nxMainChar">CHARAKTER</button>
    <button class="nx-btn" data-nxgo="settings">EINSTELLUNGEN</button>
    <button class="nx-btn" data-nxgo="credits">CREDITS</button>
   </div>
-  <div class="nx-small">31.0.0 · FRONTEND + GAME ENGINE 30.1.0</div>
+  <div class="nx-accountbar" id="nxAccountBar"><span>ACCOUNT<br><b id="nxAccountEmail">—</b></span><button class="nx-linkbtn" id="nxMainLogout">AUSLOGGEN</button></div>
+  <div class="nx-small">32.0.0 · CLOUD ACCOUNT SYSTEM</div>
  </div>
 </section>
 
 <section id="nx-account" class="nx-screen">
  <div class="nx-card">
-  <div class="nx-top"><div><h1 class="nx-title" id="nxAccountTitle">ANMELDEN</h1><div class="nx-sub">Dein NEXORA-Profil</div></div><button class="nx-back" data-nxgo="main">← ZURÜCK</button></div>
+  <div class="nx-top"><div><h1 class="nx-title" id="nxAccountTitle">ANMELDEN</h1><div class="nx-sub">E-Mail-Adresse ist dein NEXORA-Benutzername</div></div><button class="nx-back" data-nxgo="main">← ZURÜCK</button></div>
   <div class="nx-form">
    <div class="nx-switch"><button class="nx-btn primary" id="nxLoginTab">ANMELDEN</button><button class="nx-btn" id="nxRegisterTab">REGISTRIEREN</button></div>
-   <div class="nx-field"><label>BENUTZERNAME / E-MAIL</label><input id="nxUser" placeholder="z. B. Ashborn"></div>
-   <div class="nx-field"><label>PASSWORT</label><input id="nxPass" type="password" placeholder="••••••••"></div>
-   <div class="nx-field" id="nxPass2Wrap" style="display:none"><label>PASSWORT WIEDERHOLEN</label><input id="nxPass2" type="password" placeholder="••••••••"></div>
-   <div class="nx-note" id="nxAccountNote">Demo-Modus: Accountdaten werden aktuell lokal gespeichert. Echtes Backend folgt.</div>
+   <div class="nx-field"><label>E-MAIL / BENUTZERNAME</label><input id="nxUser" type="email" inputmode="email" autocomplete="email" maxlength="254" placeholder="name@example.com"></div>
+   <div class="nx-field"><label>PASSWORT</label><input id="nxPass" type="password" autocomplete="current-password" maxlength="128" placeholder="Mindestens 8 Zeichen"></div>
+   <div class="nx-field" id="nxPass2Wrap" style="display:none"><label>PASSWORT WIEDERHOLEN</label><input id="nxPass2" type="password" autocomplete="new-password" maxlength="128" placeholder="Passwort wiederholen"></div>
+   <div class="nx-note" id="nxPasswordRules">Bei Registrierung: mindestens 8 Zeichen, 1 Großbuchstabe, 1 Kleinbuchstabe und 1 Zahl.</div>
+   <div class="nx-note" id="nxAccountNote">Noch nicht angemeldet.</div>
    <button class="nx-btn primary" id="nxAccountSubmit">ANMELDEN</button>
   </div>
  </div>
@@ -102,15 +118,15 @@ position:relative;box-shadow:0 20px 48px #000}
 
 <section id="nx-server" class="nx-screen">
  <div class="nx-card">
-  <div class="nx-top"><div><h1 class="nx-title">SERVERAUSWAHL</h1><div class="nx-sub">Wähle dein Reich</div></div><button class="nx-back" data-nxgo="account">← ZURÜCK</button></div>
+  <div class="nx-top"><div><h1 class="nx-title">SERVERAUSWAHL</h1><div class="nx-sub">Wähle dein Reich</div></div><button class="nx-back" data-nxgo="main">← ZURÜCK</button></div>
   <div class="nx-grid" id="nxServerList"></div>
-  <div class="nx-footer"><button class="nx-btn primary" id="nxServerNext">SERVER BETRETEN →</button></div>
+  <div class="nx-footer"><button class="nx-btn primary" id="nxServerNext">WEITER →</button></div>
  </div>
 </section>
 
 <section id="nx-character" class="nx-screen">
  <div class="nx-card">
-  <div class="nx-top"><div><h1 class="nx-title">CHARAKTER</h1><div class="nx-sub">Dein Held in NEXORA</div></div><button class="nx-back" data-nxgo="server">← ZURÜCK</button></div>
+  <div class="nx-top"><div><h1 class="nx-title">CHARAKTER</h1><div class="nx-sub">Dieser Charakter wird mit deinem Account synchronisiert</div></div><button class="nx-back" data-nxgo="server">← ZURÜCK</button></div>
   <div class="nx-layout">
    <div class="nx-preview"><div class="nx-avatar"></div></div>
    <div>
@@ -120,6 +136,7 @@ position:relative;box-shadow:0 20px 48px #000}
      <div class="nx-field"><label>KLASSE</label><select id="nxClass"><option>WARRIOR</option><option>RANGER</option><option>MAGE</option></select></div>
      <button class="nx-btn gold" id="nxCharSave">CHARAKTER SPEICHERN</button>
      <button class="nx-btn primary" id="nxPlay">SPIEL STARTEN →</button>
+     <div class="nx-sync" id="nxCharSync"></div>
     </div>
    </div>
   </div>
@@ -140,9 +157,23 @@ position:relative;box-shadow:0 20px 48px #000}
 <section id="nx-credits" class="nx-screen">
  <div class="nx-card center">
   <div class="nx-top"><div><h1 class="nx-title">CREDITS</h1><div class="nx-sub">NEXORA · Realm of Ash</div></div><button class="nx-back" data-nxgo="main">← ZURÜCK</button></div>
-  <p style="color:#9fb2be;line-height:1.7">NEXORA ist ein eigenes Browser-RPG-Projekt. Version 31 erweitert den bestehenden Spielkern um die neue MMO-Frontend-Struktur.</p>
+  <p style="color:#9fb2be;line-height:1.7">NEXORA · Realm of Ash — Version 32.0.0 mit Cloud-Accounts und accountgebundenem Spielstand.</p>
  </div>
 </section>
+</div>
+
+<button id="nxGameMenuButton" title="Spielmenü">☰</button>
+<div id="nxInGameMenu">
+ <div class="nx-card center">
+  <h1 class="nx-title">SPIELMENÜ</h1>
+  <div class="nx-sub" id="nxInGameAccount">—</div>
+  <div class="nx-actions">
+   <button class="nx-btn primary" id="nxResumeGame">WEITERSPIELEN</button>
+   <button class="nx-btn" id="nxToMainMenu">HAUPTMENÜ</button>
+   <button class="nx-btn danger" id="nxGameLogout">AUSLOGGEN</button>
+  </div>
+  <div class="nx-sync" id="nxGameSync"></div>
+ </div>
 </div>
 
 <canvas id="game"></canvas>
@@ -154,7 +185,7 @@ position:relative;box-shadow:0 20px 48px #000}
 <script>
 'use strict';
 /* ================================================================
-   NEXORA 31.0.0 v5
+   NEXORA 32.0.0 v5
    Single-file top-down action RPG engine.
    No dependencies. Designed for desktop + touch.
    ================================================================ */
@@ -163,7 +194,8 @@ const UI={hpBar:document.getElementById('hpBar'),xpBar:document.getElementById('
 let W=innerWidth,H=innerHeight,D=Math.min(1.5,devicePixelRatio||1),last=performance.now(),elapsed=0;
 function resize(){W=innerWidth;H=innerHeight;D=Math.min(1.5,devicePixelRatio||1);C.width=Math.max(1,Math.floor(W*D));C.height=Math.max(1,Math.floor(H*D));X.setTransform(D,0,0,D,0,0);X.globalAlpha=1;X.globalCompositeOperation='source-over';X.filter='none';X.shadowBlur=0;X.shadowColor='transparent';M.width=440;M.height=300}addEventListener('resize',resize);resize();
 const world={w:7200,h:4800};
-const SAVE='nexora_save_v3010p_v5';
+const NX_ACCOUNT_EMAIL=(localStorage.getItem('nexora_auth_email')||'guest').trim().toLowerCase();
+const SAVE='nexora_save_v32_'+encodeURIComponent(NX_ACCOUNT_EMAIL);
 const legacy=['nexora_save_v3010p','nexora_save_v3000','nexora_save_v1500','nexora_save_v501','nexora_save_v10'];
 const spawnPoint={x:1050,y:1450};
 const water={x:4680,y:180,w:1260,h:1120};
@@ -325,7 +357,7 @@ function loop(now){
   ;
   const dt=Math.min(.045,Math.max(0,(now-last)/1000));
   last=now;
-  if(document.hidden)return;
+  if(document.hidden||window.NEXORA_MENU_PAUSED){requestAnimationFrame(loop);return;}
   try{enhancedUpdate(dt)}catch(err){showRuntimeFault(err,'UPDATE');n30HardResetInput()}
   try{enhancedRender()}catch(err){showRuntimeFault(err,'RENDER');
     try{X.setTransform(D,0,0,D,0,0);X.globalAlpha=1;X.globalCompositeOperation='source-over';X.filter='none';X.fillStyle='#1b3024';X.fillRect(0,0,W,H);terrain()}catch(_){}
@@ -594,7 +626,7 @@ function drawPlayerStatus(){if(p.hurt>0){X.save();X.globalAlpha=.55;X.strokeStyl
 function drawPerformanceHint(){if(W<900)return;X.save();X.globalAlpha=.35;X.font='9px Arial';X.textAlign='left';X.fillStyle='#b9c8ce';X.fillText(Math.round(polish.fps)+' FPS',18,H-8);X.restore()}
 
 /* ================================================================
-   NEXORA 31.0.0 v5 — REALISM CORE
+   NEXORA 32.0.0 v5 — REALISM CORE
    A deeper procedural presentation/simulation layer.
    No external assets. Everything is rendered from vectors, gradients,
    layered materials and deterministic world data.
@@ -1284,7 +1316,7 @@ function cleanBoot(){
   hud();
   minimap();
   enhancedRender();
-  msg('⚔ Willkommen in NEXORA 31.0.0 v5');
+  msg('⚔ Willkommen in NEXORA 32.0.0 v5');
   window.__NEXORA30_READY__=true;
 }
 try{cleanBoot()}catch(err){showRuntimeFault(err,'BOOT');}
@@ -1292,23 +1324,55 @@ requestAnimationFrame(loop);
 
 </script>
 
-<script id="nexora31-frontend-script">
+<script id="nexora32-frontend-script">
 (() => {
  const $=id=>document.getElementById(id);
- const KEY="nexora_frontend_v31_single";
+ const API_BASE=(localStorage.getItem("nexora_api_base")||"https://api.nexorasystems.ch").replace(/\/$/,"");
+ const FRONT_KEY="nexora_frontend_v32";
+ const EMAIL_KEY="nexora_auth_email";
+ const LEGACY_SAVE="nexora_save_v3010p_v5";
+ const email=()=>localStorage.getItem(EMAIL_KEY)||"";
+ const gameSaveKey=e=>"nexora_save_v32_"+encodeURIComponent((e||"guest").trim().toLowerCase());
  let state;
- try{state=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){}
+ try{state=JSON.parse(localStorage.getItem(FRONT_KEY)||"null")}catch(_){}
  state=state||{mode:"login",user:null,server:"Ashen Realm",character:{name:"Ashborn",cls:"WARRIOR",level:1}};
+ let loggedIn=false,gameActive=false,syncTimer=null,syncBusy=false;
+
  const servers=[
   {name:"Ashen Realm",region:"EU Central",players:127,max:500,ping:24},
   {name:"Blackwater",region:"EU West",players:83,max:500,ping:31},
   {name:"Old Ruins",region:"EU Central",players:41,max:500,ping:28},
   {name:"Emberfall",region:"EU North",players:219,max:500,ping:47}
  ];
- const save=()=>localStorage.setItem(KEY,JSON.stringify(state));
+
+ const persist=()=>localStorage.setItem(FRONT_KEY,JSON.stringify(state));
+ const validEmail=e=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)&&e.length<=254;
+ const validPassword=p=>p.length>=8&&p.length<=128&&/[A-Z]/.test(p)&&/[a-z]/.test(p)&&/\d/.test(p);
+
+ async function api(path,options={}){
+  const headers={"Content-Type":"application/json",...(options.headers||{})};
+  const res=await fetch(API_BASE+path,{...options,headers,credentials:"include",cache:"no-store"});
+  let data={};try{data=await res.json()}catch(_){}
+  if(!res.ok)throw new Error(data.error||("Serverfehler "+res.status));
+  return data;
+ }
+ function note(text,type=""){
+  const n=$("nxAccountNote");n.textContent=text;n.className="nx-note"+(type?" "+type:"");
+ }
  function show(name){
+  window.NEXORA_MENU_PAUSED=true;
   document.querySelectorAll("#nxFrontend .nx-screen").forEach(x=>x.classList.remove("active"));
   $("nx-"+name)?.classList.add("active");
+  $("nxFrontend").classList.remove("hidden");
+  $("nxGameMenuButton").classList.remove("visible");
+  $("nxInGameMenu").classList.remove("visible");
+ }
+ function updateAccountUI(){
+  state.user=loggedIn?email():null;
+  $("nxAccountEmail").textContent=loggedIn?email():"—";
+  $("nxAccountBar").classList.toggle("visible",loggedIn);
+  $("nxInGameAccount").textContent=loggedIn?"Angemeldet als "+email():"Nicht angemeldet";
+  persist();
  }
  function accountUI(){
   const reg=state.mode==="register";
@@ -1317,6 +1381,7 @@ requestAnimationFrame(loop);
   $("nxAccountSubmit").textContent=reg?"ACCOUNT ERSTELLEN":"ANMELDEN";
   $("nxLoginTab").classList.toggle("primary",!reg);
   $("nxRegisterTab").classList.toggle("primary",reg);
+  $("nxPass").autocomplete=reg?"new-password":"current-password";
  }
  function serverUI(){
   $("nxServerList").innerHTML=servers.map(s=>`<button class="nx-server ${state.server===s.name?"selected":""}" data-nxserver="${s.name}">
@@ -1325,43 +1390,152 @@ requestAnimationFrame(loop);
    <div class="nx-load"><i style="width:${Math.round(s.players/s.max*100)}%"></i></div>
    <div class="nx-meta"><span>${s.players} / ${s.max} Spieler</span><span>LOW LOAD</span></div>
   </button>`).join("");
-  document.querySelectorAll("[data-nxserver]").forEach(b=>b.onclick=()=>{state.server=b.dataset.nxserver;save();serverUI()});
+  document.querySelectorAll("[data-nxserver]").forEach(b=>b.onclick=()=>{state.server=b.dataset.nxserver;persist();serverUI()});
  }
  function charUI(){
   $("nxCharInput").value=state.character.name;
   $("nxClass").value=state.character.cls;
   $("nxCharName").textContent=state.character.name;
-  $("nxCharInfo").textContent=`Level ${state.character.level} · ${state.character.cls} · ${state.server}`;
+  let level=state.character.level||1;
+  try{const gs=JSON.parse(localStorage.getItem(gameSaveKey(email()))||"{}");level=Number(gs.level)||level}catch(_){}
+  state.character.level=level;
+  $("nxCharInfo").textContent=`Level ${level} · ${state.character.cls} · ${state.server}`;
  }
- function saveChar(){
+ function saveCharLocal(){
   const n=$("nxCharInput").value.trim().replace(/\s+/g," ");
-  if(n.length>=3) state.character.name=n.slice(0,18);
+  if(n.length<3)throw new Error("Charaktername muss mindestens 3 Zeichen haben.");
+  state.character.name=n.slice(0,18);
   state.character.cls=$("nxClass").value;
-  save();charUI();
+  persist();charUI();
  }
+ async function uploadCloudSave(statusEl){
+  if(!loggedIn||!email()||syncBusy)return;
+  syncBusy=true;
+  if(statusEl)statusEl.textContent="Cloud-Speicher wird aktualisiert …";
+  try{
+   try{if(typeof save==="function")save()}catch(_){}
+   let gameSave={};
+   try{gameSave=JSON.parse(localStorage.getItem(gameSaveKey(email()))||"{}")}catch(_){}
+   await api("/api/save",{method:"PUT",body:JSON.stringify({
+    server:state.server,
+    character:{name:state.character.name,cls:state.character.cls,level:Number(gameSave.level)||state.character.level||1},
+    gameSave
+   })});
+   if(statusEl)statusEl.textContent="✓ In der Cloud gespeichert";
+  }catch(err){
+   if(statusEl)statusEl.textContent="⚠ "+err.message;
+  }finally{syncBusy=false}
+ }
+ async function loadCloudSave(){
+  const data=await api("/api/save");
+  if(data.player){
+   state.server=data.player.server||state.server;
+   state.character={
+    name:data.player.character?.name||state.character.name,
+    cls:data.player.character?.cls||state.character.cls,
+    level:Number(data.player.character?.level)||1
+   };
+   if(data.player.gameSave&&Object.keys(data.player.gameSave).length){
+    localStorage.setItem(gameSaveKey(email()),JSON.stringify(data.player.gameSave));
+   }
+   persist();
+  }
+ }
+ async function logout(){
+  if(loggedIn)await uploadCloudSave($("nxGameSync"));
+  try{if(loggedIn)await api("/api/logout",{method:"POST",body:"{}"})}catch(_){}
+  const oldEmail=email();
+  loggedIn=false;
+  localStorage.removeItem(EMAIL_KEY);
+  if(oldEmail)localStorage.removeItem(gameSaveKey(oldEmail));
+  state.user=null;state.mode="login";persist();
+  location.reload();
+ }
+
  document.querySelectorAll("[data-nxgo]").forEach(b=>b.onclick=()=>show(b.dataset.nxgo));
- $("nxLoginTab").onclick=()=>{state.mode="login";accountUI()};
- $("nxRegisterTab").onclick=()=>{state.mode="register";accountUI()};
- $("nxAccountSubmit").onclick=()=>{
-  const u=$("nxUser").value.trim(),p=$("nxPass").value;
-  if(u.length<3||p.length<4){$("nxAccountNote").textContent="Mindestens 3 Zeichen Benutzername und 4 Zeichen Passwort.";return}
-  if(state.mode==="register"&&p!==$("nxPass2").value){$("nxAccountNote").textContent="Die Passwörter stimmen nicht überein.";return}
-  state.user=u;save();serverUI();show("server");
+ $("nxLoginTab").onclick=()=>{state.mode="login";accountUI();note("Gib deine E-Mail-Adresse und dein Passwort ein.")};
+ $("nxRegisterTab").onclick=()=>{state.mode="register";accountUI();note("Erstelle deinen NEXORA-Account. E-Mail = Benutzername.")};
+
+ $("nxAccountSubmit").onclick=async()=>{
+  const isRegister=state.mode==="register";
+  const e=$("nxUser").value.trim().toLowerCase(),p=$("nxPass").value;
+  if(!validEmail(e)){note("Bitte eine gültige E-Mail-Adresse eingeben.","error");return}
+  if(isRegister&&!validPassword(p)){note("Passwort: mindestens 8 Zeichen, Groß- und Kleinbuchstaben sowie mindestens eine Zahl.","error");return}
+  if(!isRegister&&p.length<1){note("Bitte Passwort eingeben.","error");return}
+  if(isRegister&&p!==$("nxPass2").value){note("Die beiden Passwörter stimmen nicht überein.","error");return}
+  $("nxAccountSubmit").disabled=true;note(isRegister?"Account wird erstellt …":"Anmeldung läuft …");
+  try{
+   const data=await api(isRegister?"/api/register":"/api/login",{method:"POST",body:JSON.stringify({email:e,password:p})});
+   localStorage.setItem(EMAIL_KEY,data.email);loggedIn=true;state.user=data.email;
+
+   // Beim ersten Account kann der bisherige NEXORA-Spielstand übernommen werden.
+   if(isRegister){
+    const legacy=localStorage.getItem(LEGACY_SAVE);
+    if(legacy&&!localStorage.getItem(gameSaveKey(data.email))){
+      localStorage.setItem(gameSaveKey(data.email),legacy);
+      try{const gs=JSON.parse(legacy);await api("/api/save",{method:"PUT",body:JSON.stringify({server:state.server,character:state.character,gameSave:gs})})}catch(_){}
+    }
+   }
+   await loadCloudSave();
+   localStorage.setItem("nexora_post_login","1");
+   location.reload();
+  }catch(err){note(err.message,"error");$("nxAccountSubmit").disabled=false}
  };
+
+ $("nxMainPlay").onclick=()=>loggedIn?show("server"):show("account");
+ $("nxMainChar").onclick=()=>loggedIn?(charUI(),show("character")):show("account");
+ $("nxMainLogout").onclick=logout;
  $("nxServerNext").onclick=()=>{charUI();show("character")};
- $("nxCharSave").onclick=saveChar;
- $("nxPlay").onclick=()=>{
-  saveChar();
-  $("nxFrontend").classList.add("hidden");
-  try{if(typeof msg==="function")msg(`⚔ Willkommen, ${state.character.name} · ${state.server}`)}catch(e){}
+
+ $("nxCharSave").onclick=async()=>{
+  try{saveCharLocal();$("nxCharSync").textContent="Speichere Charakter …";await uploadCloudSave($("nxCharSync"))}
+  catch(err){$("nxCharSync").textContent="⚠ "+err.message}
  };
- $("nxMainChar").onclick=()=>state.user?(charUI(),show("character")):show("account");
+ $("nxPlay").onclick=async()=>{
+  try{saveCharLocal()}catch(err){$("nxCharSync").textContent="⚠ "+err.message;return}
+  await uploadCloudSave($("nxCharSync"));
+  $("nxFrontend").classList.add("hidden");
+  $("nxGameMenuButton").classList.add("visible");
+  window.NEXORA_MENU_PAUSED=false;gameActive=true;
+  try{if(typeof clearInput==="function")clearInput()}catch(_){}
+  try{if(typeof msg==="function")msg(`⚔ Willkommen, ${state.character.name} · ${state.server}`)}catch(_){}
+  clearInterval(syncTimer);syncTimer=setInterval(()=>uploadCloudSave(),15000);
+ };
+ $("nxGameMenuButton").onclick=()=>{
+  window.NEXORA_MENU_PAUSED=true;try{if(typeof clearInput==="function")clearInput()}catch(_){}
+  $("nxInGameMenu").classList.add("visible");
+ };
+ $("nxResumeGame").onclick=()=>{
+  $("nxInGameMenu").classList.remove("visible");window.NEXORA_MENU_PAUSED=false;
+  try{if(typeof clearInput==="function")clearInput()}catch(_){}
+ };
+ $("nxToMainMenu").onclick=async()=>{
+  await uploadCloudSave($("nxGameSync"));clearInterval(syncTimer);gameActive=false;
+  $("nxInGameMenu").classList.remove("visible");updateAccountUI();show("main");
+ };
+ $("nxGameLogout").onclick=logout;
+
  $("nxSettingsSave").onclick=()=>{
   localStorage.setItem("nexora_quality",$("nxQuality").value);
-  $("nxSettingsSave").textContent="GESPEICHERT ✓";
-  setTimeout(()=>$("nxSettingsSave").textContent="SPEICHERN",1000);
+  $("nxSettingsSave").textContent="GESPEICHERT ✓";setTimeout(()=>$("nxSettingsSave").textContent="SPEICHERN",1000);
  };
- accountUI();serverUI();charUI();
+ document.addEventListener("visibilitychange",()=>{if(document.hidden&&gameActive&&loggedIn)uploadCloudSave()});
+
+ async function boot(){
+  window.NEXORA_MENU_PAUSED=true;
+  accountUI();serverUI();charUI();updateAccountUI();
+  try{
+   const me=await api("/api/me");
+   loggedIn=true;localStorage.setItem(EMAIL_KEY,me.email);state.user=me.email;
+   await loadCloudSave();updateAccountUI();serverUI();charUI();
+   if(localStorage.getItem("nexora_post_login")==="1"){
+    localStorage.removeItem("nexora_post_login");show("server");
+   }
+  }catch(_){
+   loggedIn=false;localStorage.removeItem(EMAIL_KEY);state.user=null;persist();updateAccountUI();
+  }
+ }
+ boot();
 })();
 </script>
 
