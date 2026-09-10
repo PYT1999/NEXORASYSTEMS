@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>NEXORA 30.1.0 CLEAN v3 — Realm of Ash</title>
+<title>NEXORA 30.1.0 CLEAN v5 — Realm of Ash</title>
 <style>
 :root{--glass:rgba(7,13,18,.78);--line:rgba(255,255,255,.12);--cyan:#6ee7ff;--gold:#ffd66e;--danger:#ff6470}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#05090d;color:#fff;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;touch-action:none;user-select:none;-webkit-user-select:none}body{background:radial-gradient(circle at 50% 30%,#14242d,#05090d 70%)}canvas#game{position:fixed;inset:0;z-index:0;display:block;width:100vw;height:100vh}canvas#mini{z-index:25}button{font:inherit;color:inherit;cursor:pointer}#hud{position:fixed;z-index:20;left:16px;top:16px;width:330px;padding:15px 16px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,rgba(6,13,19,.9),rgba(15,25,31,.72));backdrop-filter:blur(18px);box-shadow:0 18px 55px rgba(0,0,0,.5);pointer-events:none}.brand{font-size:27px;font-weight:950;letter-spacing:8px;text-shadow:0 0 24px rgba(110,231,255,.35)}.subtitle{font-size:9px;letter-spacing:3px;color:#91a8b7;margin:-2px 0 12px}.row{display:flex;justify-content:space-between;font-size:11px;color:#aebfca}.bar{height:12px;background:#0d161d;border:1px solid rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin:4px 0 8px}.bar i{display:block;height:100%;width:100%;border-radius:99px;transition:width .12s}.hp{background:linear-gradient(90deg,#7d2035,#ed5360,#ff9975)}.xp{background:linear-gradient(90deg,#175fa6,#42cfff,#d6f9ff)}.stats{display:grid;grid-template-columns:1fr 1fr;gap:5px 12px;margin-top:10px;font-size:12px;color:#bdcbd4}.stats b{color:#fff}.quest{margin-top:12px;padding:10px 11px;border:1px solid rgba(255,207,90,.18);background:rgba(255,207,90,.05);border-radius:13px;font-size:11px;line-height:1.5}.quest strong{color:var(--gold);letter-spacing:1.4px}#save{position:fixed;right:16px;top:16px;z-index:25;padding:8px 11px;border:1px solid var(--line);border-radius:12px;background:rgba(3,8,12,.72);font-size:11px;color:#b9cbd5;backdrop-filter:blur(10px)}#zone{position:fixed;z-index:21;left:50%;top:18px;transform:translateX(-50%);padding:8px 15px;border-radius:99px;background:rgba(4,9,13,.58);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(12px);font-size:11px;letter-spacing:2px;color:#c6d6df;opacity:.9}#msg{position:fixed;z-index:30;left:50%;bottom:132px;transform:translateX(-50%);padding:11px 19px;border-radius:99px;background:rgba(2,6,9,.88);border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 35px rgba(0,0,0,.45);opacity:0;transition:opacity .18s;pointer-events:none;white-space:nowrap;font-size:13px}#interact{position:fixed;z-index:25;left:50%;top:15%;transform:translateX(-50%);padding:9px 15px;border-radius:99px;background:rgba(3,8,12,.8);border:1px solid rgba(255,255,255,.13);opacity:0;font-size:12px;pointer-events:none;backdrop-filter:blur(10px)}#controls{position:fixed;z-index:25;left:20px;bottom:20px;display:grid;grid-template-columns:62px 62px 62px;gap:6px}.move{width:62px;height:62px;border-radius:18px;border:1px solid rgba(255,255,255,.15);background:rgba(8,17,24,.78);box-shadow:0 9px 25px rgba(0,0,0,.4);font-size:22px;backdrop-filter:blur(8px)}.move:active{transform:scale(.93);background:rgba(54,107,137,.8)}.action{position:fixed;z-index:25;border-radius:50%;color:#fff;font-weight:950;box-shadow:0 12px 35px rgba(0,0,0,.48);backdrop-filter:blur(8px)}#attack{right:26px;bottom:26px;width:104px;height:104px;border:2px solid rgba(255,255,255,.25);background:radial-gradient(circle at 32% 25%,#e86a76,#751d31 72%);font-size:13px}#potion{right:145px;bottom:40px;width:68px;height:68px;border:2px solid rgba(255,255,255,.18);background:radial-gradient(circle at 30% 25%,#5aaee6,#16496f 75%);font-size:10px}.action:active{transform:scale(.94)}#mini{position:fixed;right:16px;bottom:16px;width:220px;height:150px;border:1px solid rgba(255,255,255,.13);border-radius:16px;background:rgba(3,7,10,.8);box-shadow:0 12px 38px rgba(0,0,0,.45)}#death{position:fixed;inset:0;z-index:40;display:none;align-items:center;justify-content:center;background:radial-gradient(circle,rgba(65,8,15,.15),rgba(0,0,0,.78));pointer-events:none}.deathCard{padding:28px 36px;border:1px solid rgba(255,255,255,.13);border-radius:24px;background:rgba(4,7,10,.86);box-shadow:0 25px 90px #000b;text-align:center}.deathCard h1{margin:0 0 8px;letter-spacing:5px}.deathCard p{margin:0;color:#9eb1bd;font-size:12px}#help{position:fixed;z-index:20;right:16px;top:60px;padding:7px 10px;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:rgba(3,8,12,.55);font-size:10px;color:#8297a5;pointer-events:none}@media(max-width:850px){#mini,#help{display:none}#hud{width:292px;left:8px;top:8px;transform:scale(.82);transform-origin:top left}.brand{font-size:23px}#controls{left:10px;bottom:10px}.move{width:56px;height:56px}#attack{right:15px;bottom:16px;width:92px;height:92px}#potion{right:118px;bottom:28px;width:62px;height:62px}#zone{top:9px;font-size:9px}#msg{bottom:108px;font-size:11px}}
 </style>
@@ -18,7 +18,7 @@
 <script>
 'use strict';
 /* ================================================================
-   NEXORA 30.1.0 CLEAN v3
+   NEXORA 30.1.0 CLEAN v5
    Single-file top-down action RPG engine.
    No dependencies. Designed for desktop + touch.
    ================================================================ */
@@ -27,7 +27,7 @@ const UI={hpBar:document.getElementById('hpBar'),xpBar:document.getElementById('
 let W=innerWidth,H=innerHeight,D=Math.min(2,devicePixelRatio||1),last=performance.now(),elapsed=0;
 function resize(){W=innerWidth;H=innerHeight;D=Math.min(2,devicePixelRatio||1);C.width=Math.max(1,Math.floor(W*D));C.height=Math.max(1,Math.floor(H*D));X.setTransform(D,0,0,D,0,0);X.globalAlpha=1;X.globalCompositeOperation='source-over';X.filter='none';X.shadowBlur=0;X.shadowColor='transparent';M.width=440;M.height=300}addEventListener('resize',resize);resize();
 const world={w:7200,h:4800};
-const SAVE='nexora_save_v3010_v3';
+const SAVE='nexora_save_v3010_v5';
 const legacy=['nexora_save_v3010','nexora_save_v3000','nexora_save_v1500','nexora_save_v501','nexora_save_v10'];
 const spawnPoint={x:1050,y:1450};
 const water={x:4680,y:180,w:1260,h:1120};
@@ -35,6 +35,7 @@ const def={level:1,xp:0,gold:40,potions:4,kills:0,deaths:0,maxHp:120,hp:120,atta
 let saveData={...def};
 try{let raw=localStorage.getItem(SAVE);if(!raw){for(const k of legacy){raw=localStorage.getItem(k);if(raw)break}}if(raw)saveData={...def,...JSON.parse(raw)}}catch(e){saveData={...def}};
 function num(v,d){const n=Number(v);return Number.isFinite(n)?n:d}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
 const p={x:num(saveData.x,spawnPoint.x),y:num(saveData.y,spawnPoint.y),r:20,speed:315,vx:0,vy:0,acc:2050,fric:1750,hp:num(saveData.hp,120),maxHp:num(saveData.maxHp,120),attack:num(saveData.attack,28),dir:'down',step:0,idle:0,atk:0,cd:0,inv:0,hurt:0,dead:false,respawn:0,trail:0};
 p.hp=Math.max(0,Math.min(p.maxHp,p.hp));
 const cam={x:0,y:0,shake:0};
@@ -97,7 +98,7 @@ regions.push({name:'ASHEN WILDS',x:0,y:0,w:2800,h:4800});regions.push({name:'OLD
 function circleRect(x,y,r,o){const nx=Math.max(o.x,Math.min(x,o.x+o.w)),ny=Math.max(o.y,Math.min(y,o.y+o.h));return (x-nx)**2+(y-ny)**2<r*r}
 function blocked(x,y,r,ignoreId=-1){if(x<r+20||y<r+20||x>world.w-r-20||y>world.h-r-20)return true;for(const o of obstacles)if(o.solid&&o.id!==ignoreId&&circleRect(x,y,r+2,o))return true;return false}
 function moveBody(obj,dx,dy,r){let moved=false;if(dx){const nx=obj.x+dx;if(!blocked(nx,obj.y,r,obj.ignoreId)){obj.x=nx;moved=true}}if(dy){const ny=obj.y+dy;if(!blocked(obj.x,ny,r,obj.ignoreId)){obj.y=ny;moved=true}}return moved}
-function safeSpawn(x,y,r=20){if(!blocked(x,y,r))return{x,y};for(let ring=1;ring<20;ring++){const rr=ring*45;for(let a=0;a<Math.PI*2;a+=Math.PI/6){const nx=x+Math.cos(a)*rr,ny=y+Math.sin(a)*rr;if(!blocked(nx,ny,r))return{x:nx,y:ny}}}return{x:spawnPoint.x,y:spawnPoint.y}
+function safeSpawn(x,y,r=20){if(!blocked(x,y,r))return{x,y};for(let ring=1;ring<20;ring++){const rr=ring*45;for(let a=0;a<Math.PI*2;a+=Math.PI/6){const nx=x+Math.cos(a)*rr,ny=y+Math.sin(a)*rr;if(!blocked(nx,ny,r))return{x:nx,y:ny}}}return{x:spawnPoint.x,y:spawnPoint.y}}
 const start=safeSpawn(p.x,p.y,p.r);p.x=start.x;p.y=start.y;
 /* ---------- enemies ---------- */
 const enemyTypes={wolf:{name:'Schattenwolf',hp:80,damage:11,xp:38,gold:8,speed:128,r:21,aggro:600,color:'#5c4a7d'},skeleton:{name:'Knochenwächter',hp:145,damage:16,xp:68,gold:15,speed:78,r:23,aggro:560,color:'#b7bec2'},beast:{name:'Aschenbestie',hp:220,damage:23,xp:105,gold:28,speed:92,r:29,aggro:690,color:'#9a3e31'},wraith:{name:'Nachtgeist',hp:115,damage:18,xp:82,gold:21,speed:108,r:20,aggro:760,color:'#5cc5d8'}};
@@ -155,7 +156,6 @@ function terrain(){X.fillStyle='#18281f';X.fillRect(0,0,W,H);const grid=80,start
   drawWater();drawShore();
   /* distant ember haze */
   for(const e of embers){const xx=sx(e.x),yy=sy(e.y);if(xx<-10||xx>W+10||yy<-10||yy>H+10)continue;const b=.15+.2*Math.sin(elapsed*.7+e.phase);X.fillStyle='rgba(255,133,65,'+b+')';X.fillRect(xx,yy,e.s,e.s)}
-}
 function drawWater(){const x=sx(water.x),y=sy(water.y);X.fillStyle='#0c3345';X.fillRect(x,y,water.w,water.h);const g=X.createLinearGradient(x,y,x+water.w,y+water.h);g.addColorStop(0,'rgba(50,134,157,.25)');g.addColorStop(.5,'rgba(8,47,68,.1)');g.addColorStop(1,'rgba(0,12,24,.35)');X.fillStyle=g;X.fillRect(x,y,water.w,water.h);for(let yy=water.y+28;yy<water.y+water.h;yy+=34){const phase=elapsed*1.7+yy*.014;for(let xx=water.x+20;xx<water.x+water.w-20;xx+=105){const off=Math.sin(phase+xx*.009)*9;X.strokeStyle='rgba(115,211,222,.22)';X.lineWidth=1.4;X.beginPath();X.moveTo(sx(xx)+off,sy(yy));X.quadraticCurveTo(sx(xx+25)+off,sy(yy-3),sx(xx+50)+off,sy(yy));X.stroke()}}}
 function drawShore(){const x=sx(water.x),y=sy(water.y),w=water.w,h=water.h;X.strokeStyle='rgba(184,159,93,.45)';X.lineWidth=18;X.strokeRect(x+2,y+2,w-4,h-4);X.strokeStyle='rgba(225,202,130,.28)';X.lineWidth=3;X.strokeRect(x+4,y+4,w-8,h-8)}
 function drawGroundDeco(o){const x=sx(o.x),y=sy(o.y),s=o.scale;X.save();X.globalAlpha=.5; if(o.type==='grass'){X.strokeStyle='#6b965c';X.lineWidth=1.3*s;for(let i=0;i<4;i++){const dx=(i-1.5)*3*s;X.beginPath();X.moveTo(x+dx,y+5*s);X.lineTo(x+dx-2*s,y-6*s);X.stroke()}}else if(o.type==='flower'){const petal=o.hue>.5?'#d18bb8':'#e4b95d';X.strokeStyle='#618554';X.lineWidth=1;X.beginPath();X.moveTo(x,y+6*s);X.lineTo(x,y-2*s);X.stroke();X.fillStyle=petal;X.beginPath();X.arc(x,y-4*s,2.5*s,0,Math.PI*2);X.fill()}else{X.strokeStyle='#75985b';X.lineWidth=2*s;for(let i=-1;i<=1;i++){X.beginPath();X.moveTo(x+i*4*s,y+7*s);X.lineTo(x+i*6*s,y-10*s);X.stroke()}}X.restore()}
@@ -195,6 +195,7 @@ function loop(now){
     try{X.setTransform(D,0,0,D,0,0);X.globalAlpha=1;X.globalCompositeOperation='source-over';X.filter='none';X.fillStyle='#1b3024';X.fillRect(0,0,W,H);terrain()}catch(_){}
   }
   try{minimap();hud()}catch(err){showRuntimeFault(err,'HUD')}
+  requestAnimationFrame(loop);
 }
 for(let i=0;i<75;i++){
   ambient.push({x:rnd()*world.w,y:rnd()*world.h,type:rnd()<.55?'bird':'deer',a:rnd()*Math.PI*2,speed:18+rnd()*28,phase:rnd()*Math.PI*2});
@@ -457,7 +458,7 @@ function drawPlayerStatus(){if(p.hurt>0){X.save();X.globalAlpha=.55;X.strokeStyl
 function drawPerformanceHint(){if(W<900)return;X.save();X.globalAlpha=.35;X.font='9px Arial';X.textAlign='left';X.fillStyle='#b9c8ce';X.fillText(Math.round(polish.fps)+' FPS',18,H-8);X.restore()}
 
 /* ================================================================
-   NEXORA 30.1.0 CLEAN v3 — REALISM CORE
+   NEXORA 30.1.0 CLEAN v5 — REALISM CORE
    A deeper procedural presentation/simulation layer.
    No external assets. Everything is rendered from vectors, gradients,
    layered materials and deterministic world data.
@@ -1145,7 +1146,7 @@ function cleanBoot(){
   hud();
   minimap();
   enhancedRender();
-  msg('⚔ Willkommen in NEXORA 30.1.0 CLEAN v3');
+  msg('⚔ Willkommen in NEXORA 30.1.0 CLEAN v5');
   window.__NEXORA30_READY__=true;
 }
 try{cleanBoot()}catch(err){showRuntimeFault(err,'BOOT');}
