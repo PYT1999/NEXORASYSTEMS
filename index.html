@@ -2,581 +2,231 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Nexora Systems — Digitale Systeme für Unternehmen</title>
-
-<meta name="description" content="Nexora Systems entwickelt moderne Websites, Automatisierungen und digitale Lösungen für Unternehmen.">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>NEXORA 1.0</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
 
-:root {
-    --bg: #05070a;
-    --bg2: #0a0e13;
-    --text: #f4f7fb;
-    --muted: #8b96a5;
-    --line: rgba(255,255,255,.09);
-    --accent: #7c5cff;
-    --accent2: #00d4ff;
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#080b12;
+    color:#fff;
+    font-family:Arial,sans-serif;
+    user-select:none;
+    touch-action:none;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+canvas{
+    display:block;
+    width:100vw;
+    height:100vh;
 }
 
-html {
-    scroll-behavior: smooth;
+button{
+    font:inherit;
+    color:white;
 }
 
-body {
-    font-family: Inter, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    overflow-x: hidden;
+#hud{
+    position:fixed;
+    left:14px;
+    top:14px;
+    z-index:20;
+    width:270px;
+    padding:13px;
+    border-radius:14px;
+    background:rgba(8,12,20,.82);
+    border:1px solid rgba(255,255,255,.14);
+    box-shadow:0 8px 30px rgba(0,0,0,.35);
+    backdrop-filter:blur(10px);
 }
 
-/* ---------- BACKGROUND ---------- */
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background:
-        radial-gradient(circle at 20% 10%, rgba(124,92,255,.14), transparent 30%),
-        radial-gradient(circle at 80% 20%, rgba(0,212,255,.09), transparent 28%);
-    z-index: -2;
+.logo{
+    font-size:24px;
+    font-weight:900;
+    letter-spacing:5px;
+    margin-bottom:8px;
 }
 
-.grid {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -1;
-    opacity: .18;
-
-    background-image:
-        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-
-    background-size: 60px 60px;
-
-    mask-image: linear-gradient(
-        to bottom,
-        black,
-        transparent 80%
-    );
+.small{
+    font-size:12px;
+    opacity:.75;
 }
 
-/* ---------- NAV ---------- */
-
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 24px 7%;
-
-    background: rgba(5,7,10,.65);
-    backdrop-filter: blur(18px);
-
-    border-bottom: 1px solid rgba(255,255,255,.05);
+.bar{
+    height:13px;
+    background:#20242d;
+    border-radius:20px;
+    overflow:hidden;
+    margin:4px 0 7px;
 }
 
-.logo {
-    font-size: 20px;
-    font-weight: 800;
-    letter-spacing: -.7px;
+.bar i{
+    display:block;
+    height:100%;
+    width:100%;
+    transition:width .12s linear;
 }
 
-.logo span {
-    color: var(--accent2);
+#hpBar{background:#d94343}
+#xpBar{background:#3d8de0}
+
+.stats{
+    font-size:13px;
+    line-height:1.65;
 }
 
-nav ul {
-    display: flex;
-    gap: 35px;
-    list-style: none;
+.quest{
+    margin-top:9px;
+    padding:8px;
+    border-radius:9px;
+    background:rgba(255,193,7,.08);
+    border:1px solid rgba(255,193,7,.18);
+    font-size:12px;
 }
 
-nav a {
-    color: #aeb7c4;
-    text-decoration: none;
-    font-size: 14px;
-    transition: .25s;
+#saveInfo{
+    position:fixed;
+    right:14px;
+    top:14px;
+    z-index:20;
+    padding:6px 9px;
+    border-radius:9px;
+    background:rgba(0,0,0,.4);
+    font-size:12px;
+    opacity:.75;
 }
 
-nav a:hover {
-    color: white;
+#message{
+    position:fixed;
+    left:50%;
+    bottom:125px;
+    transform:translateX(-50%);
+    z-index:50;
+    padding:10px 18px;
+    border-radius:22px;
+    background:rgba(0,0,0,.82);
+    border:1px solid rgba(255,255,255,.15);
+    opacity:0;
+    transition:opacity .2s;
+    pointer-events:none;
+    white-space:nowrap;
 }
 
-.nav-button {
-    padding: 11px 18px;
-    border-radius: 10px;
-
-    background: white;
-    color: black !important;
-
-    font-weight: 600;
+#controls{
+    position:fixed;
+    left:18px;
+    bottom:18px;
+    z-index:30;
+    display:grid;
+    grid-template-columns:58px 58px 58px;
+    gap:5px;
 }
 
-/* ---------- HERO ---------- */
-
-.hero {
-    min-height: 100vh;
-
-    display: flex;
-    align-items: center;
-
-    padding: 150px 7% 100px;
-
-    position: relative;
+.move{
+    width:58px;
+    height:58px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.2);
+    background:rgba(15,21,32,.84);
+    font-size:22px;
 }
 
-.hero-content {
-    max-width: 950px;
+.move:active{background:rgba(80,110,160,.9)}
+
+#attack{
+    position:fixed;
+    right:25px;
+    bottom:28px;
+    z-index:30;
+    width:95px;
+    height:95px;
+    border-radius:50%;
+    border:3px solid rgba(255,255,255,.35);
+    background:rgba(170,42,42,.9);
+    font-weight:bold;
+    font-size:14px;
+    box-shadow:0 8px 30px rgba(0,0,0,.35);
 }
 
-.badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
+#attack:active{transform:scale(.94)}
 
-    padding: 8px 14px;
-
-    border: 1px solid var(--line);
-    border-radius: 100px;
-
-    background: rgba(255,255,255,.03);
-
-    color: #b9c2ce;
-    font-size: 13px;
-
-    margin-bottom: 30px;
+#potion{
+    position:fixed;
+    right:132px;
+    bottom:35px;
+    z-index:30;
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    border:2px solid rgba(255,255,255,.25);
+    background:rgba(40,110,170,.9);
+    font-size:12px;
 }
 
-.badge-dot {
-    width: 7px;
-    height: 7px;
-
-    border-radius: 50%;
-    background: #42ff9a;
-
-    box-shadow: 0 0 15px #42ff9a;
+#minimap{
+    position:fixed;
+    right:14px;
+    bottom:14px;
+    width:190px;
+    height:130px;
+    z-index:20;
+    border-radius:12px;
+    background:rgba(5,8,13,.8);
+    border:1px solid rgba(255,255,255,.18);
 }
 
-h1 {
-    font-size: clamp(55px, 8vw, 110px);
-
-    line-height: .95;
-    letter-spacing: -6px;
-
-    max-width: 1000px;
-
-    margin-bottom: 35px;
+#interaction{
+    position:fixed;
+    left:50%;
+    top:18%;
+    transform:translateX(-50%);
+    z-index:40;
+    padding:8px 14px;
+    border-radius:18px;
+    background:rgba(0,0,0,.7);
+    font-size:13px;
+    opacity:0;
+    pointer-events:none;
 }
 
-.gradient {
-    background: linear-gradient(
-        90deg,
-        #ffffff,
-        #9da8ff,
-        #00d4ff
-    );
-
-    -webkit-background-clip: text;
-    color: transparent;
+#pause{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,.62);
 }
 
-.hero p {
-    max-width: 650px;
-
-    color: var(--muted);
-
-    font-size: 19px;
-    line-height: 1.7;
-
-    margin-bottom: 40px;
+#pauseBox{
+    padding:28px 45px;
+    border-radius:18px;
+    background:#101722;
+    border:1px solid rgba(255,255,255,.2);
+    text-align:center;
 }
 
-.buttons {
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
+#pauseBox h1{
+    margin-bottom:8px;
 }
 
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 16px 25px;
-
-    border-radius: 12px;
-
-    text-decoration: none;
-
-    font-size: 14px;
-    font-weight: 600;
-
-    transition: .3s;
-}
-
-.btn-primary {
-    background: white;
-    color: black;
-
-    box-shadow: 0 0 40px rgba(255,255,255,.08);
-}
-
-.btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(255,255,255,.15);
-}
-
-.btn-secondary {
-    border: 1px solid var(--line);
-    color: white;
-    background: rgba(255,255,255,.03);
-}
-
-.btn-secondary:hover {
-    background: rgba(255,255,255,.07);
-}
-
-/* ---------- FLOATING ORB ---------- */
-
-.orb {
-    position: absolute;
-
-    right: 5%;
-    top: 35%;
-
-    width: 280px;
-    height: 280px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(circle at 35% 30%, white, #8d75ff 8%, #241e63 35%, transparent 70%);
-
-    filter: blur(2px);
-
-    opacity: .65;
-
-    animation: float 7s ease-in-out infinite;
-}
-
-.orb::after {
-    content: "";
-
-    position: absolute;
-    inset: -40px;
-
-    border-radius: 50%;
-
-    border: 1px solid rgba(124,92,255,.2);
-
-    box-shadow:
-        0 0 80px rgba(124,92,255,.2),
-        inset 0 0 60px rgba(0,212,255,.1);
-}
-
-@keyframes float {
-    0%,100% {
-        transform: translateY(0) rotate(0deg);
+@media(max-width:700px){
+    #hud{
+        transform:scale(.82);
+        transform-origin:top left;
     }
 
-    50% {
-        transform: translateY(-25px) rotate(8deg);
-    }
-}
-
-/* ---------- SECTIONS ---------- */
-
-section {
-    padding: 130px 7%;
-}
-
-.section-label {
-    color: var(--accent2);
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 18px;
-}
-
-.section-title {
-    font-size: clamp(35px,5vw,65px);
-    letter-spacing: -3px;
-    max-width: 800px;
-    margin-bottom: 25px;
-}
-
-.section-text {
-    color: var(--muted);
-    max-width: 650px;
-    line-height: 1.7;
-}
-
-/* ---------- SERVICES ---------- */
-
-.services {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 18px;
-
-    margin-top: 60px;
-}
-
-.card {
-    padding: 35px;
-
-    min-height: 300px;
-
-    border: 1px solid var(--line);
-    border-radius: 20px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.05),
-            rgba(255,255,255,.015)
-        );
-
-    transition: .4s;
-
-    position: relative;
-    overflow: hidden;
-}
-
-.card:hover {
-    transform: translateY(-8px);
-
-    border-color: rgba(124,92,255,.4);
-
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.4),
-        0 0 50px rgba(124,92,255,.08);
-}
-
-.card-number {
-    font-size: 12px;
-    color: #687383;
-}
-
-.card h3 {
-    margin-top: 70px;
-
-    font-size: 25px;
-}
-
-.card p {
-    margin-top: 15px;
-
-    color: var(--muted);
-    line-height: 1.7;
-}
-
-.card::after {
-    content: "";
-
-    position: absolute;
-
-    width: 100px;
-    height: 100px;
-
-    right: -40px;
-    bottom: -40px;
-
-    background: var(--accent);
-    filter: blur(70px);
-
-    opacity: .25;
-}
-
-/* ---------- PROCESS ---------- */
-
-.process {
-    margin-top: 70px;
-
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-}
-
-.step {
-    padding: 30px;
-
-    border-left: 1px solid var(--line);
-}
-
-.step:first-child {
-    border-left: none;
-}
-
-.step span {
-    color: var(--accent2);
-    font-size: 13px;
-}
-
-.step h3 {
-    margin: 25px 0 12px;
-}
-
-.step p {
-    color: var(--muted);
-    line-height: 1.6;
-}
-
-/* ---------- SHOWCASE ---------- */
-
-.showcase {
-    margin-top: 60px;
-
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-    gap: 20px;
-}
-
-.project {
-    height: 400px;
-
-    border-radius: 20px;
-
-    border: 1px solid var(--line);
-
-    background:
-        linear-gradient(
-            135deg,
-            #10131b,
-            #17162b
-        );
-
-    padding: 35px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-
-    position: relative;
-    overflow: hidden;
-}
-
-.project::before {
-    content: "";
-
-    position: absolute;
-    width: 350px;
-    height: 350px;
-
-    top: -150px;
-    right: -100px;
-
-    background: radial-gradient(
-        circle,
-        rgba(124,92,255,.5),
-        transparent 65%
-    );
-}
-
-.project h3 {
-    font-size: 30px;
-    position: relative;
-}
-
-.project p {
-    color: var(--muted);
-    margin-top: 10px;
-    position: relative;
-}
-
-/* ---------- CTA ---------- */
-
-.cta {
-    text-align: center;
-
-    padding: 160px 20px;
-}
-
-.cta h2 {
-    font-size: clamp(45px,7vw,90px);
-    letter-spacing: -5px;
-
-    max-width: 900px;
-
-    margin: auto auto 30px;
-}
-
-.cta p {
-    color: var(--muted);
-    max-width: 600px;
-    margin: auto auto 40px;
-
-    line-height: 1.7;
-}
-
-/* ---------- FOOTER ---------- */
-
-footer {
-    padding: 40px 7%;
-
-    border-top: 1px solid var(--line);
-
-    display: flex;
-    justify-content: space-between;
-
-    color: #687383;
-
-    font-size: 13px;
-}
-
-/* ---------- MOBILE ---------- */
-
-@media(max-width:900px) {
-
-    nav ul {
-        display: none;
+    #minimap{
+        display:none;
     }
 
-    .orb {
-        opacity: .25;
-        right: -120px;
-    }
-
-    h1 {
-        letter-spacing: -3px;
-    }
-
-    .services {
-        grid-template-columns: 1fr;
-    }
-
-    .process {
-        grid-template-columns: 1fr;
-    }
-
-    .step {
-        border-left: none;
-        border-top: 1px solid var(--line);
-    }
-
-    .showcase {
-        grid-template-columns: 1fr;
-    }
-
-    footer {
-        flex-direction: column;
-        gap: 15px;
+    #message{
+        bottom:115px;
     }
 }
 </style>
@@ -584,325 +234,2220 @@ footer {
 
 <body>
 
-<div class="grid"></div>
+<canvas id="game"></canvas>
 
-<!-- NAV -->
+<div id="hud">
+    <div class="logo">NEXORA</div>
 
-<nav>
+    <div>HP <span id="hpText">100 / 100</span></div>
+    <div class="bar"><i id="hpBar"></i></div>
 
-    <div class="logo">
-        NEXORA<span>.</span>
+    <div>XP <span id="xpText">0 / 100</span></div>
+    <div class="bar"><i id="xpBar"></i></div>
+
+    <div class="stats">
+        Level: <b id="level">1</b><br>
+        ⚔ Angriff: <b id="attackText">25</b><br>
+        🪙 Gold: <b id="gold">25</b><br>
+        🧪 Tränke: <b id="potions">3</b><br>
+        👹 Besiegt: <b id="kills">0</b>
     </div>
 
-    <ul>
-        <li><a href="#services">Leistungen</a></li>
-        <li><a href="#process">Ablauf</a></li>
-        <li><a href="#projects">Projekte</a></li>
-        <li><a href="#contact">Kontakt</a></li>
-    </ul>
-
-    <a href="#contact" class="nav-button">
-        Projekt starten
-    </a>
-
-</nav>
-
-
-<!-- HERO -->
-
-<header class="hero">
-
-    <div class="hero-content">
-
-        <div class="badge">
-            <span class="badge-dot"></span>
-            Digitale Systeme für moderne Unternehmen
-        </div>
-
-        <h1>
-            Weniger Arbeit.
-            <br>
-            <span class="gradient">
-                Mehr System.
-            </span>
-        </h1>
-
-        <p>
-            Nexora Systems entwickelt moderne Websites,
-            intelligente Automatisierungen und digitale Prozesse,
-            die Unternehmen Zeit sparen und effizienter machen.
-        </p>
-
-        <div class="buttons">
-
-            <a href="#contact" class="btn btn-primary">
-                Projekt besprechen →
-            </a>
-
-            <a href="#services" class="btn btn-secondary">
-                Lösungen entdecken
-            </a>
-
-        </div>
-
+    <div class="quest">
+        <b>QUEST</b><br>
+        <span id="questText">Eira: Besiege 3 Schattenwesen.</span>
     </div>
+</div>
 
-    <div class="orb"></div>
+<div id="saveInfo">💾 Lokal</div>
+<div id="message"></div>
+<div id="interaction"></div>
 
-</header>
+<div id="controls">
+    <div></div>
+    <button class="move" data-key="ArrowUp">▲</button>
+    <div></div>
 
+    <button class="move" data-key="ArrowLeft">◀</button>
+    <button class="move" data-key="ArrowDown">▼</button>
+    <button class="move" data-key="ArrowRight">▶</button>
+</div>
 
-<!-- SERVICES -->
+<button id="potion">🧪<br>TRANK</button>
 
-<section id="services">
+<button id="attack">
+    ⚔<br>
+    ANGRIFF
+</button>
 
-    <div class="section-label">
-        Was wir machen
+<canvas id="minimap"></canvas>
+
+<div id="pause">
+    <div id="pauseBox">
+        <h1>PAUSIERT</h1>
+        <div>NEXORA wartet auf dich.</div>
     </div>
+</div>
+
+<script>
+"use strict";
+
+/* =========================================================
+   NEXORA 1.0
+   COMPLETE SINGLE FILE RPG
+========================================================= */
+
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
 
-    <h2 class="section-title">
-        Digitale Lösungen,
-        die tatsächlich etwas verändern.
-    </h2>
+const mini = document.getElementById("minimap");
+const mctx = mini.getContext("2d");
+
+let W = innerWidth;
+let H = innerHeight;
+let DPR = Math.min(devicePixelRatio || 1,2);
+
+function resize(){
+    W=innerWidth;
+    H=innerHeight;
+    DPR=Math.min(devicePixelRatio || 1,2);
+
+    canvas.width=Math.floor(W*DPR);
+    canvas.height=Math.floor(H*DPR);
+
+    canvas.style.width=W+"px";
+    canvas.style.height=H+"px";
+
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+
+    mini.width=380;
+    mini.height=260;
+}
+
+addEventListener("resize",resize);
+resize();
+
+/* =========================================================
+   SAVE
+========================================================= */
 
-    <p class="section-text">
-        Keine unnötig komplizierten Systeme.
-        Wir bauen digitale Lösungen, die zu Ihrem Unternehmen
-        passen und im Alltag funktionieren.
-    </p>
+const SAVE_KEY="nexora_save_v10";
 
+const DEFAULT_SAVE={
+    version:10,
+    level:1,
+    xp:0,
+    gold:25,
+    potions:3,
+    kills:0,
+    maxHp:100,
+    hp:100,
+    attack:25,
+    x:1450,
+    y:1050,
+    questKills:0,
+    questComplete:false
+};
 
-    <div class="services">
+function loadSave(){
 
-        <div class="card">
+    try{
+        const raw=localStorage.getItem(SAVE_KEY);
 
-            <div class="card-number">
-                01 / WEB
-            </div>
+        if(!raw) return {...DEFAULT_SAVE};
 
-            <h3>
-                Websites
-            </h3>
+        const s=JSON.parse(raw);
+
+        if(!s || typeof s!=="object")
+            return {...DEFAULT_SAVE};
 
-            <p>
-                Moderne, schnelle und professionelle Websites,
-                die aus Besuchern Kunden machen.
-            </p>
+        return {
+            ...DEFAULT_SAVE,
+            ...s,
+            level:Math.max(1,Math.floor(Number(s.level)||1)),
+            xp:Math.max(0,Number(s.xp)||0),
+            gold:Math.max(0,Math.floor(Number(s.gold)||0)),
+            potions:Math.max(0,Math.floor(Number(s.potions)||0)),
+            kills:Math.max(0,Math.floor(Number(s.kills)||0)),
+            maxHp:Math.max(100,Number(s.maxHp)||100),
+            hp:Math.max(0,Number(s.hp)||100),
+            attack:Math.max(25,Number(s.attack)||25),
+            x:Number(s.x)||1450,
+            y:Number(s.y)||1050
+        };
 
-        </div>
+    }catch{
+        return {...DEFAULT_SAVE};
+    }
+}
 
+let save=loadSave();
 
-        <div class="card">
+function saveGame(){
 
-            <div class="card-number">
-                02 / AUTOMATION
-            </div>
+    try{
 
-            <h3>
-                Automatisierung
-            </h3>
+        localStorage.setItem(
+            SAVE_KEY,
+            JSON.stringify(save)
+        );
 
-            <p>
-                Wiederkehrende Excel-, Büro- und
-                Produktionsprozesse automatisieren.
-            </p>
+        document.getElementById("saveInfo").textContent="💾 Gespeichert";
 
-        </div>
+        setTimeout(()=>{
+            document.getElementById("saveInfo").textContent="💾 Lokal";
+        },700);
 
+    }catch{
+        document.getElementById("saveInfo").textContent="⚠ Speicherfehler";
+    }
+}
 
-        <div class="card">
+/* =========================================================
+   WORLD
+========================================================= */
 
-            <div class="card-number">
-                03 / SYSTEMS
-            </div>
+const world={
+    width:5000,
+    height:3500
+};
 
-            <h3>
-                Digitale Systeme
-            </h3>
+const camera={
+    x:0,
+    y:0
+};
 
-            <p>
-                Individuelle Lösungen, die Daten,
-                Prozesse und Menschen miteinander verbinden.
-            </p>
+/* =========================================================
+   PLAYER
+========================================================= */
 
-        </div>
+const player={
+    x:save.x,
+    y:save.y,
 
-    </div>
+    radius:20,
 
-</section>
+    speed:250,
 
+    hp:save.hp,
+    maxHp:save.maxHp,
 
-<!-- PROCESS -->
+    attack:save.attack,
 
-<section id="process">
+    direction:"down",
 
-    <div class="section-label">
-        Unser Prozess
-    </div>
+    anim:0,
+    attackTimer:0,
+    attackCooldown:0,
+    hurtTimer:0,
+    invulnerability:0
+};
 
-    <h2 class="section-title">
-        Von der Idee zum funktionierenden System.
-    </h2>
+/* =========================================================
+   INPUT
+========================================================= */
 
+const keys={};
 
-    <div class="process">
+const movement=[
+    "ArrowUp",
+    "ArrowDown",
+    "ArrowLeft",
+    "ArrowRight",
+    "w","a","s","d",
+    "W","A","S","D"
+];
 
-        <div class="step">
+function clearKeys(){
 
-            <span>01</span>
+    for(const k in keys)
+        keys[k]=false;
+}
 
-            <h3>
-                Verstehen
-            </h3>
+addEventListener("keydown",e=>{
 
-            <p>
-                Wir analysieren, wo aktuell Zeit,
-                Geld oder Effizienz verloren geht.
-            </p>
+    if(movement.includes(e.key))
+        keys[e.key]=true;
 
-        </div>
+    if(e.code==="Space"){
+        e.preventDefault();
 
+        if(!e.repeat)
+            attack();
+    }
 
-        <div class="step">
+    if(e.key.toLowerCase()==="q" && !e.repeat)
+        usePotion();
 
-            <span>02</span>
+    if(e.key.toLowerCase()==="e" && !e.repeat)
+        interact();
 
-            <h3>
-                Planen
-            </h3>
+    if(e.key.toLowerCase()==="r" && !e.repeat)
+        resetGame();
+});
 
-            <p>
-                Wir entwickeln eine einfache,
-                verständliche Lösung.
-            </p>
+addEventListener("keyup",e=>{
+    keys[e.key]=false;
+});
 
-        </div>
+addEventListener("blur",clearKeys);
 
+/* =========================================================
+   PAUSE
+========================================================= */
 
-        <div class="step">
+let paused=false;
 
-            <span>03</span>
+document.addEventListener("visibilitychange",()=>{
 
-            <h3>
-                Bauen
-            </h3>
+    if(document.hidden){
 
-            <p>
-                Die Lösung wird umgesetzt,
-                getestet und optimiert.
-            </p>
+        paused=true;
+        clearKeys();
 
-        </div>
+        document.getElementById("pause").style.display="flex";
 
+    }else{
 
-        <div class="step">
+        paused=false;
+        lastTime=performance.now();
 
-            <span>04</span>
+        document.getElementById("pause").style.display="none";
+    }
+});
 
-            <h3>
-                Verbessern
-            </h3>
+/* =========================================================
+   TOUCH CONTROLS
+========================================================= */
 
-            <p>
-                Nach dem Start entwickeln wir
-                das System gemeinsam weiter.
-            </p>
+document.querySelectorAll(".move").forEach(btn=>{
+
+    const key=btn.dataset.key;
+
+    btn.addEventListener("pointerdown",e=>{
+        e.preventDefault();
+        btn.setPointerCapture?.(e.pointerId);
+        keys[key]=true;
+    });
+
+    const release=e=>{
+        e.preventDefault();
+        keys[key]=false;
+    };
+
+    btn.addEventListener("pointerup",release);
+    btn.addEventListener("pointercancel",release);
+});
+
+document.getElementById("attack")
+.addEventListener("pointerdown",e=>{
+    e.preventDefault();
+    attack();
+});
+
+document.getElementById("potion")
+.addEventListener("pointerdown",e=>{
+    e.preventDefault();
+    usePotion();
+});
+
+/* =========================================================
+   TERRAIN
+========================================================= */
+
+const obstacles=[];
+
+function addObstacle(x,y,w,h,type){
+    obstacles.push({x,y,w,h,type});
+}
 
-        </div>
+/* village */
+addObstacle(1250,850,420,320,"house");
+addObstacle(1740,870,360,290,"house");
+addObstacle(1450,700,300,190,"house");
+
+/* rocks */
+addObstacle(650,550,90,70,"rock");
+addObstacle(900,1600,120,80,"rock");
+addObstacle(3800,850,110,90,"rock");
+addObstacle(4200,2100,140,90,"rock");
 
-    </div>
+/* forest objects */
+for(let i=0;i<70;i++){
+
+    const x=150+Math.random()*(world.width-300);
+    const y=150+Math.random()*(world.height-300);
+
+    if(x>1100 && x<2200 && y>600 && y<1300)
+        continue;
+
+    addObstacle(x,y,45,45,"tree");
+}
+
+/* =========================================================
+   NPC
+========================================================= */
+
+const npc={
+    x:1600,
+    y:650,
+    name:"Eira",
+    anim:0
+};
 
-</section>
+/* =========================================================
+   ENEMIES
+========================================================= */
+
+const enemyTypes=[
+    {
+        name:"Schattenwolf",
+        hp:70,
+        damage:9,
+        xp:35,
+        gold:7,
+        speed:78,
+        radius:22,
+        kind:"wolf"
+    },
+    {
+        name:"Knochenwächter",
+        hp:120,
+        damage:14,
+        xp:60,
+        gold:14,
+        speed:48,
+        radius:25,
+        kind:"skeleton"
+    },
+    {
+        name:"Aschenbestie",
+        hp:180,
+        damage:20,
+        xp:90,
+        gold:25,
+        speed:55,
+        radius:30,
+        kind:"beast"
+    }
+];
 
+let enemies=[];
+
+function dist(a,b){
+    return Math.hypot(a.x-b.x,a.y-b.y);
+}
 
-<!-- PROJECTS -->
+function spawnEnemy(){
 
-<section id="projects">
+    for(let attempt=0;attempt<100;attempt++){
 
-    <div class="section-label">
-        Beispiele
-    </div>
+        const type=
+            enemyTypes[
+                Math.floor(Math.random()*enemyTypes.length)
+            ];
 
-    <h2 class="section-title">
-        Was möglich ist.
-    </h2>
+        const x=150+Math.random()*(world.width-300);
+        const y=150+Math.random()*(world.height-300);
 
+        if(Math.hypot(x-player.x,y-player.y)<550)
+            continue;
 
-    <div class="showcase">
+        if(x>1100 && x<2200 && y>600 && y<1300)
+            continue;
 
-        <div class="project">
+        let valid=true;
 
-            <h3>
-                Business Website
-            </h3>
+        for(const e of enemies){
 
-            <p>
-                Moderner digitaler Auftritt
-                für lokale Unternehmen.
-            </p>
+            if(Math.hypot(x-e.x,y-e.y)<130){
+                valid=false;
+                break;
+            }
+        }
 
-        </div>
+        if(!valid) continue;
 
+        enemies.push({
+            ...type,
+            x,
+            y,
+            maxHp:type.hp,
+            attackCooldown:0,
+            hit:0,
+            anim:Math.random()*10,
+            dead:0
+        });
 
-        <div class="project">
+        return;
+    }
+}
 
-            <h3>
-                Excel Automation
-            </h3>
+for(let i=0;i<22;i++)
+    spawnEnemy();
 
-            <p>
-                Manuelle Prozesse mit einem
-                Klick automatisieren.
-            </p>
+/* =========================================================
+   PARTICLES
+========================================================= */
 
-        </div>
+let particles=[];
 
-    </div>
+function particle(x,y,color,size=4,life=.6,vx=0,vy=0){
 
-</section>
+    particles.push({
+        x,y,
+        vx,vy,
+        color,
+        size,
+        life,
+        maxLife:life
+    });
+}
 
+function burst(x,y,color,count=10){
 
-<!-- CTA -->
+    for(let i=0;i<count;i++){
 
-<section class="cta" id="contact">
+        const angle=Math.random()*Math.PI*2;
+        const speed=40+Math.random()*150;
 
-    <h2>
-        Bereit,
-        <span class="gradient">
-            etwas besser zu machen?
-        </span>
-    </h2>
+        particle(
+            x,y,
+            color,
+            2+Math.random()*4,
+            .35+Math.random()*.45,
+            Math.cos(angle)*speed,
+            Math.sin(angle)*speed
+        );
+    }
+}
 
-    <p>
-        Erzählen Sie uns von Ihrem Unternehmen und
-        Ihrem aktuellen Problem. Wir finden heraus,
-        ob und wie wir es digital lösen können.
-    </p>
+function updateParticles(dt){
 
-    <a href="mailto:DEINE-EMAIL@BEISPIEL.CH"
-       class="btn btn-primary">
+    for(let i=particles.length-1;i>=0;i--){
 
-        Gespräch starten →
+        const p=particles[i];
 
-    </a>
+        p.x+=p.vx*dt;
+        p.y+=p.vy*dt;
 
-</section>
+        p.vx*=.97;
+        p.vy*=.97;
 
+        p.life-=dt;
 
-<!-- FOOTER -->
+        if(p.life<=0)
+            particles.splice(i,1);
+    }
+}
 
-<footer>
+function drawParticles(){
 
-    <div>
-        © 2026 Nexora Systems
-    </div>
+    for(const p of particles){
 
-    <div>
-        Digitale Systeme · Automatisierung · Web
-    </div>
+        const alpha=Math.max(0,p.life/p.maxLife);
 
-</footer>
+        ctx.globalAlpha=alpha;
+        ctx.fillStyle=p.color;
 
+        ctx.beginPath();
+        ctx.arc(
+            p.x-camera.x,
+            p.y-camera.y,
+            p.size,
+            0,
+            Math.PI*2
+        );
+        ctx.fill();
+    }
+
+    ctx.globalAlpha=1;
+}
+
+/* =========================================================
+   DAMAGE TEXT
+========================================================= */
+
+let floatingText=[];
+
+function damageText(x,y,text,color="#fff"){
+
+    floatingText.push({
+        x,y,
+        text,
+        color,
+        life:1
+    });
+}
+
+function updateFloatingText(dt){
+
+    for(let i=floatingText.length-1;i>=0;i--){
+
+        const f=floatingText[i];
+
+        f.y-=35*dt;
+        f.life-=dt;
+
+        if(f.life<=0)
+            floatingText.splice(i,1);
+    }
+}
+
+function drawFloatingText(){
+
+    ctx.textAlign="center";
+    ctx.font="bold 16px Arial";
+
+    for(const f of floatingText){
+
+        ctx.globalAlpha=Math.max(0,f.life);
+
+        ctx.fillStyle=f.color;
+
+        ctx.fillText(
+            f.text,
+            f.x-camera.x,
+            f.y-camera.y
+        );
+    }
+
+    ctx.globalAlpha=1;
+}
+
+/* =========================================================
+   COLLISION
+========================================================= */
+
+function collides(x,y,r){
+
+    if(x-r<0 || y-r<0 ||
+       x+r>world.width ||
+       y+r>world.height)
+        return true;
+
+    for(const o of obstacles){
+
+        const nearestX=Math.max(o.x,Math.min(x,o.x+o.w));
+        const nearestY=Math.max(o.y,Math.min(y,o.y+o.h));
+
+        const dx=x-nearestX;
+        const dy=y-nearestY;
+
+        if(dx*dx+dy*dy<r*r)
+            return true;
+    }
+
+    return false;
+}
+
+/* =========================================================
+   PLAYER MOVEMENT
+========================================================= */
+
+function movePlayer(dx,dy,dt){
+
+    if(dx===0 && dy===0)
+        return;
+
+    const len=Math.hypot(dx,dy);
+
+    dx/=len;
+    dy/=len;
+
+    const nx=player.x+dx*player.speed*dt;
+    const ny=player.y+dy*player.speed*dt;
+
+    if(!collides(nx,player.y,player.radius))
+        player.x=nx;
+
+    if(!collides(player.x,ny,player.radius))
+        player.y=ny;
+
+    player.anim+=dt*9;
+}
+
+function updatePlayer(dt){
+
+    let dx=0;
+    let dy=0;
+
+    if(keys.ArrowUp||keys.w||keys.W) dy--;
+    if(keys.ArrowDown||keys.s||keys.S) dy++;
+    if(keys.ArrowLeft||keys.a||keys.A) dx--;
+    if(keys.ArrowRight||keys.d||keys.D) dx++;
+
+    if(dx||dy){
+
+        if(Math.abs(dx)>Math.abs(dy))
+            player.direction=dx>0?"right":"left";
+        else
+            player.direction=dy>0?"down":"up";
+
+        movePlayer(dx,dy,dt);
+    }
+
+    player.attackCooldown=Math.max(
+        0,
+        player.attackCooldown-dt
+    );
+
+    player.attackTimer=Math.max(
+        0,
+        player.attackTimer-dt
+    );
+
+    player.hurtTimer=Math.max(
+        0,
+        player.hurtTimer-dt
+    );
+
+    player.invulnerability=Math.max(
+        0,
+        player.invulnerability-dt
+    );
+}
+
+/* =========================================================
+   COMBAT
+========================================================= */
+
+function attack(){
+
+    if(paused) return;
+
+    if(player.attackCooldown>0)
+        return;
+
+    player.attackCooldown=.38;
+    player.attackTimer=.22;
+
+    burst(
+        player.x,
+        player.y,
+        "#dfefff",
+        5
+    );
+
+    let target=null;
+    let closest=Infinity;
+
+    for(const enemy of enemies){
+
+        if(enemy.dead)
+            continue;
+
+        const d=dist(player,enemy);
+
+        if(d<105 && d<closest){
+
+            closest=d;
+            target=enemy;
+        }
+    }
+
+    if(!target){
+
+        showMessage("Kein Gegner in Reichweite");
+        return;
+    }
+
+    const damage=player.attack+
+        Math.floor(Math.random()*8);
+
+    target.hp-=damage;
+    target.hit=.16;
+
+    damageText(
+        target.x,
+        target.y-35,
+        "-"+damage,
+        "#ffd166"
+    );
+
+    burst(
+        target.x,
+        target.y,
+        "#ffcf66",
+        9
+    );
+
+    if(target.hp<=0)
+        killEnemy(target);
+}
+
+function killEnemy(enemy){
+
+    if(enemy.dead)
+        return;
+
+    enemy.dead=1;
+
+    save.xp+=enemy.xp;
+    save.gold+=enemy.gold;
+    save.kills++;
+
+    if(save.questKills<3)
+        save.questKills++;
+
+    damageText(
+        enemy.x,
+        enemy.y-45,
+        "+"+enemy.xp+" XP",
+        "#6ee7ff"
+    );
+
+    burst(
+        enemy.x,
+        enemy.y,
+        "#9b6cff",
+        18
+    );
+
+    if(Math.random()<.18){
+
+        save.potions++;
+
+        showMessage("🧪 Ein Trank wurde gefunden!");
+    }else{
+
+        showMessage(
+            "+"+enemy.gold+" Gold   +"+enemy.xp+" XP"
+        );
+    }
+
+    checkLevel();
+    checkQuest();
+
+    saveGame();
+}
+
+/* =========================================================
+   LEVEL
+========================================================= */
+
+function xpRequired(level){
+    return 100+((level-1)*40);
+}
+
+function checkLevel(){
+
+    let leveled=false;
+
+    while(save.xp>=xpRequired(save.level)){
+
+        save.xp-=xpRequired(save.level);
+        save.level++;
+
+        player.maxHp+=20;
+        player.hp=player.maxHp;
+        player.attack+=5;
+
+        leveled=true;
+
+        burst(
+            player.x,
+            player.y,
+            "#ffe066",
+            35
+        );
+    }
+
+    if(leveled){
+
+        showMessage(
+            "🔥 LEVEL "+save.level+"!"
+        );
+
+        saveGame();
+    }
+}
+
+/* =========================================================
+   QUEST
+========================================================= */
+
+function checkQuest(){
+
+    if(
+        !save.questComplete &&
+        save.questKills>=3
+    ){
+
+        save.questComplete=true;
+
+        save.gold+=100;
+        save.potions+=2;
+        save.xp+=150;
+
+        showMessage(
+            "⭐ QUEST ABGESCHLOSSEN! +100 Gold"
+        );
+
+        checkLevel();
+        saveGame();
+    }
+}
+
+function interact(){
+
+    const d=Math.hypot(
+        player.x-npc.x,
+        player.y-npc.y
+    );
+
+    if(d>120){
+
+        showMessage("Niemand zum Interagieren in der Nähe");
+        return;
+    }
+
+    if(!save.questComplete){
+
+        if(save.questKills<3){
+
+            showMessage(
+                "Eira: Besiege noch "+
+                (3-save.questKills)+
+                " Schattenwesen!"
+            );
+
+        }else{
+
+            checkQuest();
+        }
+
+    }else{
+
+        showMessage(
+            "Eira: Die Schatten ziehen sich zurück..."
+        );
+    }
+}
+
+/* =========================================================
+   POTION
+========================================================= */
+
+function usePotion(){
+
+    if(paused) return;
+
+    if(save.potions<=0){
+
+        showMessage("Keine Tränke!");
+        return;
+    }
+
+    if(player.hp>=player.maxHp){
+
+        showMessage("Deine HP sind bereits voll");
+        return;
+    }
+
+    save.potions--;
+
+    player.hp=Math.min(
+        player.maxHp,
+        player.hp+60
+    );
+
+    burst(
+        player.x,
+        player.y,
+        "#55dd88",
+        12
+    );
+
+    showMessage("+60 HP 🧪");
+
+    saveGame();
+}
+
+/* =========================================================
+   ENEMY AI
+========================================================= */
+
+function updateEnemies(dt){
+
+    for(const enemy of enemies){
+
+        if(enemy.dead){
+
+            enemy.dead+=dt;
+
+            continue;
+        }
+
+        enemy.anim+=dt*6;
+
+        enemy.attackCooldown=
+            Math.max(
+                0,
+                enemy.attackCooldown-dt
+            );
+
+        enemy.hit=
+            Math.max(
+                0,
+                enemy.hit-dt
+            );
+
+        const dx=player.x-enemy.x;
+        const dy=player.y-enemy.y;
+
+        const d=Math.hypot(dx,dy);
+
+        if(
+            d<420 &&
+            d>55
+        ){
+
+            const nx=dx/d;
+            const ny=dy/d;
+
+            const speed=enemy.speed;
+
+            const tx=enemy.x+nx*speed*dt;
+            const ty=enemy.y+ny*speed*dt;
+
+            if(!collides(tx,enemy.y,enemy.radius))
+                enemy.x=tx;
+
+            if(!collides(enemy.x,ty,enemy.radius))
+                enemy.y=ty;
+        }
+
+        if(
+            d<=58 &&
+            enemy.attackCooldown<=0 &&
+            player.invulnerability<=0
+        ){
+
+            player.hp-=enemy.damage;
+
+            player.hurtTimer=.2;
+            player.invulnerability=.35;
+
+            enemy.attackCooldown=1.05;
+
+            damageText(
+                player.x,
+                player.y-35,
+                "-"+enemy.damage,
+                "#ff6464"
+            );
+
+            burst(
+                player.x,
+                player.y,
+                "#ff5555",
+                7
+            );
+
+            if(player.hp<=0)
+                playerDeath();
+        }
+    }
+
+    /* remove dead enemies after animation */
+    for(let i=enemies.length-1;i>=0;i--){
+
+        if(enemies[i].dead>0.45){
+
+            enemies.splice(i,1);
+            spawnEnemy();
+        }
+    }
+
+    /* enemy separation */
+    for(let i=0;i<enemies.length;i++){
+
+        for(let j=i+1;j<enemies.length;j++){
+
+            const a=enemies[i];
+            const b=enemies[j];
+
+            const dx=b.x-a.x;
+            const dy=b.y-a.y;
+
+            const d=Math.hypot(dx,dy);
+            const min=a.radius+b.radius;
+
+            if(d>0 && d<min){
+
+                const push=(min-d)*.5;
+                const nx=dx/d;
+                const ny=dy/d;
+
+                a.x-=nx*push;
+                a.y-=ny*push;
+
+                b.x+=nx*push;
+                b.y+=ny*push;
+            }
+        }
+    }
+}
+
+/* =========================================================
+   DEATH
+========================================================= */
+
+function playerDeath(){
+
+    if(player.invulnerability>0)
+        return;
+
+    player.hp=player.maxHp;
+
+    player.x=1450;
+    player.y=1050;
+
+    save.gold=Math.max(
+        0,
+        save.gold-15
+    );
+
+    player.invulnerability=3;
+
+    burst(
+        player.x,
+        player.y,
+        "#6edbff",
+        30
+    );
+
+    showMessage(
+        "💀 Du wurdest besiegt! -15 Gold"
+    );
+
+    saveGame();
+}
+
+/* =========================================================
+   CAMERA
+========================================================= */
+
+function updateCamera(){
+
+    camera.x=player.x-W/2;
+    camera.y=player.y-H/2;
+
+    camera.x=Math.max(
+        0,
+        Math.min(
+            world.width-W,
+            camera.x
+        )
+    );
+
+    camera.y=Math.max(
+        0,
+        Math.min(
+            world.height-H,
+            camera.y
+        )
+    );
+}
+
+/* =========================================================
+   DRAW TERRAIN
+========================================================= */
+
+function drawTerrain(){
+
+    ctx.fillStyle="#18291c";
+    ctx.fillRect(0,0,W,H);
+
+    const tile=64;
+
+    const startX=Math.floor(camera.x/tile)*tile;
+    const startY=Math.floor(camera.y/tile)*tile;
+
+    for(let y=startY;y<camera.y+H+tile;y+=tile){
+
+        for(let x=startX;x<camera.x+W+tile;x+=tile){
+
+            const variation=
+                ((x/tile)+(y/tile))%3;
+
+            ctx.fillStyle=
+                variation===0
+                    ? "#1a2d1d"
+                    : variation===1
+                        ? "#1c301f"
+                        : "#1b2b1d";
+
+            ctx.fillRect(
+                x-camera.x,
+                y-camera.y,
+                tile+1,
+                tile+1
+            );
+        }
+    }
+
+    /* paths */
+
+    ctx.fillStyle="#5a4a36";
+
+    ctx.fillRect(
+        0,
+        980-camera.y,
+        world.width,
+        150
+    );
+
+    ctx.fillRect(
+        1450-camera.x,
+        0,
+        150,
+        world.height
+    );
+
+    /* water */
+
+    ctx.fillStyle="#183f59";
+
+    ctx.fillRect(
+        3300-camera.x,
+        0-camera.y,
+        900,
+        700
+    );
+
+    /* water lines */
+
+    ctx.strokeStyle="rgba(100,190,230,.16)";
+    ctx.lineWidth=2;
+
+    for(let y=30;y<650;y+=50){
+
+        ctx.beginPath();
+
+        ctx.moveTo(
+            3330-camera.x,
+            y-camera.y
+        );
+
+        ctx.lineTo(
+            4150-camera.x,
+            y-camera.y
+        );
+
+        ctx.stroke();
+    }
+
+    /* world border */
+
+    ctx.strokeStyle="rgba(255,255,255,.12)";
+    ctx.lineWidth=5;
+
+    ctx.strokeRect(
+        -camera.x,
+        -camera.y,
+        world.width,
+        world.height
+    );
+}
+
+/* =========================================================
+   DRAW OBJECTS
+========================================================= */
+
+function drawObstacles(){
+
+    for(const o of obstacles){
+
+        const x=o.x-camera.x;
+        const y=o.y-camera.y;
+
+        if(
+            x>W+100 ||
+            y>H+100 ||
+            x+o.w<-100 ||
+            y+o.h<-100
+        ) continue;
+
+        if(o.type==="tree")
+            drawTree(x+o.w/2,y+o.h/2);
+
+        else if(o.type==="rock")
+            drawRock(x+o.w/2,y+o.h/2,o.w);
+
+        else
+            drawHouse(x,y,o.w,o.h);
+    }
+}
+
+function drawTree(x,y){
+
+    /* shadow */
+    ctx.fillStyle="rgba(0,0,0,.28)";
+    ctx.beginPath();
+    ctx.ellipse(x,y+22,28,10,0,0,Math.PI*2);
+    ctx.fill();
+
+    /* trunk */
+    ctx.fillStyle="#70462d";
+    ctx.fillRect(x-7,y+3,14,35);
+
+    /* leaves */
+    ctx.fillStyle="#234f2c";
+
+    for(let i=0;i<3;i++){
+
+        ctx.beginPath();
+
+        ctx.arc(
+            x+(i-1)*14,
+            y-i*9,
+            24,
+            0,
+            Math.PI*2
+        );
+
+        ctx.fill();
+    }
+
+    ctx.fillStyle="#32713c";
+
+    ctx.beginPath();
+    ctx.arc(x-8,y-12,13,0,Math.PI*2);
+    ctx.fill();
+}
+
+function drawRock(x,y,size){
+
+    ctx.fillStyle="rgba(0,0,0,.3)";
+    ctx.beginPath();
+    ctx.ellipse(x,y+size*.3,size*.45,size*.18,0,0,Math.PI*2);
+    ctx.fill();
+
+    ctx.fillStyle="#646b70";
+
+    ctx.beginPath();
+
+    ctx.moveTo(x-size*.45,y+size*.25);
+    ctx.lineTo(x-size*.3,y-size*.2);
+    ctx.lineTo(x,y-size*.4);
+    ctx.lineTo(x+size*.42,y-size*.1);
+    ctx.lineTo(x+size*.35,y+size*.3);
+    ctx.closePath();
+
+    ctx.fill();
+
+    ctx.fillStyle="#81888d";
+
+    ctx.beginPath();
+    ctx.moveTo(x-size*.2,y-size*.18);
+    ctx.lineTo(x,y-size*.32);
+    ctx.lineTo(x+size*.18,y-size*.08);
+    ctx.closePath();
+    ctx.fill();
+}
+
+function drawHouse(x,y,w,h){
+
+    ctx.fillStyle="rgba(0,0,0,.3)";
+    ctx.fillRect(x+10-camera.x,y+12-camera.y,w,h);
+
+    ctx.fillStyle="#654332";
+
+    ctx.fillRect(
+        x-camera.x,
+        y-camera.y,
+        w,
+        h
+    );
+
+    ctx.fillStyle="#7e302f";
+
+    ctx.beginPath();
+
+    ctx.moveTo(x-camera.x-20,y-camera.y);
+    ctx.lineTo(x-camera.x+w/2,y-camera.y-80);
+    ctx.lineTo(x-camera.x+w+20,y-camera.y);
+    ctx.closePath();
+
+    ctx.fill();
+
+    ctx.fillStyle="#33251e";
+
+    ctx.fillRect(
+        x-camera.x+w*.42,
+        y-camera.y+h-85,
+        w*.16,
+        85
+    );
+
+    ctx.fillStyle="#d6c879";
+
+    ctx.fillRect(
+        x-camera.x+w*.12,
+        y-camera.y+70,
+        50,
+        45
+    );
+
+    ctx.fillRect(
+        x-camera.x+w*.72,
+        y-camera.y+70,
+        50,
+        45
+    );
+}
+
+/* =========================================================
+   DRAW NPC
+========================================================= */
+
+function drawNPC(){
+
+    const x=npc.x-camera.x;
+    const y=npc.y-camera.y;
+
+    const bob=Math.sin(npc.anim*3)*2;
+
+    /* shadow */
+    ctx.fillStyle="rgba(0,0,0,.35)";
+    ctx.beginPath();
+    ctx.ellipse(x,y+28,20,7,0,0,Math.PI*2);
+    ctx.fill();
+
+    /* cloak */
+    ctx.fillStyle="#7049b8";
+
+    ctx.beginPath();
+    ctx.moveTo(x-18,y+28+bob);
+    ctx.lineTo(x+18,y+28+bob);
+    ctx.lineTo(x+13,y-4+bob);
+    ctx.lineTo(x-13,y-4+bob);
+    ctx.closePath();
+    ctx.fill();
+
+    /* head */
+    ctx.fillStyle="#f0bd91";
+
+    ctx.beginPath();
+    ctx.arc(x,y-15+bob,12,0,Math.PI*2);
+    ctx.fill();
+
+    /* hair */
+    ctx.fillStyle="#2d1c39";
+
+    ctx.beginPath();
+    ctx.arc(x,y-20+bob,13,Math.PI,Math.PI*2);
+    ctx.fill();
+
+    ctx.fillStyle="#ffe76a";
+    ctx.font="bold 12px Arial";
+    ctx.textAlign="center";
+
+    ctx.fillText(
+        "Eira",
+        x,
+        y-45+bob
+    );
+
+    if(Math.hypot(player.x-npc.x,player.y-npc.y)<130){
+
+        ctx.fillStyle="#fff";
+        ctx.font="bold 16px Arial";
+
+        ctx.fillText(
+            "E",
+            x,
+            y-60+bob
+        );
+    }
+}
+
+/* =========================================================
+   DRAW ENEMIES
+========================================================= */
+
+function drawEnemy(enemy){
+
+    const x=enemy.x-camera.x;
+    const y=enemy.y-camera.y;
+
+    if(
+        x<-100 ||
+        x>W+100 ||
+        y<-100 ||
+        y>H+100
+    ) return;
+
+    if(enemy.dead){
+
+        ctx.globalAlpha=
+            Math.max(
+                0,
+                1-enemy.dead/.45
+            );
+    }
+
+    const bob=Math.sin(enemy.anim)*3;
+
+    /* shadow */
+
+    ctx.fillStyle="rgba(0,0,0,.35)";
+    ctx.beginPath();
+    ctx.ellipse(
+        x,
+        y+enemy.radius+5,
+        enemy.radius,
+        7,
+        0,
+        0,
+        Math.PI*2
+    );
+    ctx.fill();
+
+    if(enemy.kind==="wolf")
+        drawWolf(x,y+bob,enemy);
+
+    else if(enemy.kind==="skeleton")
+        drawSkeleton(x,y+bob,enemy);
+
+    else
+        drawBeast(x,y+bob,enemy);
+
+    /* hp */
+
+    if(!enemy.dead){
+
+        const width=55;
+
+        ctx.fillStyle="#161616";
+        ctx.fillRect(
+            x-width/2,
+            y-enemy.radius-18,
+            width,
+            6
+        );
+
+        ctx.fillStyle="#d94444";
+
+        ctx.fillRect(
+            x-width/2,
+            y-enemy.radius-18,
+            width*Math.max(
+                0,
+                enemy.hp/enemy.maxHp
+            ),
+            6
+        );
+
+        ctx.fillStyle="#fff";
+        ctx.font="10px Arial";
+        ctx.textAlign="center";
+
+        ctx.fillText(
+            enemy.name,
+            x,
+            y+enemy.radius+23
+        );
+    }
+
+    ctx.globalAlpha=1;
+}
+
+function drawWolf(x,y,e){
+
+    ctx.fillStyle=e.hit?"#fff":"#593a7e";
+
+    ctx.beginPath();
+    ctx.ellipse(x,y,25,17,0,0,Math.PI*2);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(x-18,y-10);
+    ctx.lineTo(x-25,y-31);
+    ctx.lineTo(x-7,y-20);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(x+8,y-20);
+    ctx.lineTo(x+25,y-31);
+    ctx.lineTo(x+22,y-8);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.fillStyle="#ff4b4b";
+
+    ctx.beginPath();
+    ctx.arc(x-8,y-4,4,0,Math.PI*2);
+    ctx.arc(x+8,y-4,4,0,Math.PI*2);
+    ctx.fill();
+
+    ctx.fillStyle="#222";
+
+    ctx.beginPath();
+    ctx.arc(x,y+8,5,0,Math.PI*2);
+    ctx.fill();
+}
+
+function drawSkeleton(x,y,e){
+
+    ctx.fillStyle=e.hit?"#fff":"#bfc4c7";
+
+    /* body */
+    ctx.fillRect(x-13,y-2,26,30);
+
+    /* skull */
+    ctx.beginPath();
+    ctx.arc(x,y-16,17,0,Math.PI*2);
+    ctx.fill();
+
+    /* eyes */
+    ctx.fillStyle="#20242a";
+
+    ctx.beginPath();
+    ctx.arc(x-6,y-18,4,0,Math.PI*2);
+    ctx.arc(x+6,y-18,4,0,Math.PI*2);
+    ctx.fill();
+
+    /* bones */
+    ctx.strokeStyle="#eceff1";
+    ctx.lineWidth=5;
+
+    ctx.beginPath();
+    ctx.moveTo(x-10,y+5);
+    ctx.lineTo(x-25,y+22);
+    ctx.moveTo(x+10,y+5);
+    ctx.lineTo(x+25,y+22);
+    ctx.moveTo(x-7,y+27);
+    ctx.lineTo(x-12,y+42);
+    ctx.moveTo(x+7,y+27);
+    ctx.lineTo(x+12,y+42);
+    ctx.stroke();
+}
+
+function drawBeast(x,y,e){
+
+    ctx.fillStyle=e.hit?"#fff":"#8d382c";
+
+    ctx.beginPath();
+    ctx.arc(x,y,31,0,Math.PI*2);
+    ctx.fill();
+
+    ctx.fillStyle="#6b2824";
+
+    ctx.beginPath();
+    ctx.moveTo(x-20,y-18);
+    ctx.lineTo(x-32,y-43);
+    ctx.lineTo(x-5,y-27);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(x+20,y-18);
+    ctx.lineTo(x+32,y-43);
+    ctx.lineTo(x+5,y-27);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.fillStyle="#ffcf4a";
+
+    ctx.beginPath();
+    ctx.arc(x-10,y-5,5,0,Math.PI*2);
+    ctx.arc(x+10,y-5,5,0,Math.PI*2);
+    ctx.fill();
+
+    ctx.fillStyle="#ff5555";
+    ctx.fillRect(x-5,y+9,10,5);
+}
+
+/* =========================================================
+   DRAW PLAYER
+========================================================= */
+
+function drawPlayer(){
+
+    const x=player.x-camera.x;
+    const y=player.y-camera.y;
+
+    const moving=
+        keys.ArrowUp||
+        keys.ArrowDown||
+        keys.ArrowLeft||
+        keys.ArrowRight||
+        keys.w||keys.a||keys.s||keys.d||
+        keys.W||keys.A||keys.S||keys.D;
+
+    const bob=
+        moving
+            ? Math.sin(player.anim)*3
+            : Math.sin(performance.now()/500)*1;
+
+    /* shadow */
+
+    ctx.fillStyle="rgba(0,0,0,.38)";
+    ctx.beginPath();
+    ctx.ellipse(
+        x,
+        y+25,
+        22,
+        8,
+        0,
+        0,
+        Math.PI*2
+    );
+    ctx.fill();
+
+    if(player.invulnerability>0){
+
+        ctx.strokeStyle="rgba(90,210,255,.8)";
+        ctx.lineWidth=4;
+
+        ctx.beginPath();
+
+        ctx.arc(
+            x,
+            y,
+            31,
+            0,
+            Math.PI*2
+        );
+
+        ctx.stroke();
+    }
+
+    /* cloak/body */
+
+    ctx.fillStyle=
+        player.hurtTimer>0
+            ? "#fff"
+            : "#286ec1";
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        x-19,
+        y+25+bob
+    );
+
+    ctx.lineTo(
+        x+19,
+        y+25+bob
+    );
+
+    ctx.lineTo(
+        x+14,
+        y-7+bob
+    );
+
+    ctx.lineTo(
+        x-14,
+        y-7+bob
+    );
+
+    ctx.closePath();
+
+    ctx.fill();
+
+    /* head */
+
+    ctx.fillStyle="#e4aa7c";
+
+    ctx.beginPath();
+
+    ctx.arc(
+        x,
+        y-17+bob,
+        13,
+        0,
+        Math.PI*2
+    );
+
+    ctx.fill();
+
+    /* hair */
+
+    ctx.fillStyle="#2a2434";
+
+    ctx.beginPath();
+
+    ctx.arc(
+        x,
+        y-22+bob,
+        14,
+        Math.PI,
+        Math.PI*2
+    );
+
+    ctx.fill();
+
+    /* eyes */
+
+    ctx.fillStyle="#f4f8ff";
+
+    ctx.beginPath();
+
+    ctx.arc(
+        x-5,
+        y-17+bob,
+        2.5,
+        0,
+        Math.PI*2
+    );
+
+    ctx.arc(
+        x+5,
+        y-17+bob,
+        2.5,
+        0,
+        Math.PI*2
+    );
+
+    ctx.fill();
+
+    /* sword */
+
+    ctx.save();
+
+    let angle=0;
+
+    if(player.direction==="up")
+        angle=-Math.PI/2;
+
+    if(player.direction==="down")
+        angle=Math.PI/2;
+
+    if(player.direction==="left")
+        angle=Math.PI;
+
+    if(player.direction==="right")
+        angle=0;
+
+    if(player.attackTimer>0){
+
+        const progress=
+            1-player.attackTimer/.22;
+
+        angle+=
+            (progress-.5)*2.4;
+    }
+
+    ctx.translate(x,y);
+    ctx.rotate(angle);
+
+    ctx.strokeStyle="#dce5ee";
+    ctx.lineWidth=5;
+
+    ctx.beginPath();
+    ctx.moveTo(10,4);
+    ctx.lineTo(48,4);
+    ctx.stroke();
+
+    ctx.strokeStyle="#8d5b37";
+    ctx.lineWidth=4;
+
+    ctx.beginPath();
+    ctx.moveTo(7,-5);
+    ctx.lineTo(7,13);
+    ctx.stroke();
+
+    ctx.restore();
+
+    /* attack arc */
+
+    if(player.attackTimer>0){
+
+        ctx.strokeStyle="rgba(220,245,255,.85)";
+        ctx.lineWidth=5;
+
+        ctx.beginPath();
+
+        ctx.arc(
+            x,
+            y,
+            52,
+            angle-0.8,
+            angle+0.8
+        );
+
+        ctx.stroke();
+    }
+}
+
+/* =========================================================
+   DRAW PARTICLES + TEXT
+========================================================= */
+
+/* =========================================================
+   MINIMAP
+========================================================= */
+
+function drawMinimap(){
+
+    mctx.clearRect(0,0,380,260);
+
+    mctx.fillStyle="#17251a";
+    mctx.fillRect(0,0,380,260);
+
+    const sx=380/world.width;
+    const sy=260/world.height;
+
+    /* village */
+
+    mctx.fillStyle="#80523a";
+
+    mctx.fillRect(
+        1200*sx,
+        600*sy,
+        1000*sx,
+        800*sy
+    );
+
+    /* water */
+
+    mctx.fillStyle="#1e526d";
+
+    mctx.fillRect(
+        3300*sx,
+        0,
+        900*sx,
+        700*sy
+    );
+
+    /* enemies */
+
+    for(const e of enemies){
+
+        if(e.dead) continue;
+
+        mctx.fillStyle="#e04b4b";
+
+        mctx.beginPath();
+
+        mctx.arc(
+            e.x*sx,
+            e.y*sy,
+            3,
+            0,
+            Math.PI*2
+        );
+
+        mctx.fill();
+    }
+
+    /* NPC */
+
+    mctx.fillStyle="#ffe66d";
+
+    mctx.beginPath();
+
+    mctx.arc(
+        npc.x*sx,
+        npc.y*sy,
+        4,
+        0,
+        Math.PI*2
+    );
+
+    mctx.fill();
+
+    /* player */
+
+    mctx.fillStyle="#4db8ff";
+
+    mctx.beginPath();
+
+    mctx.arc(
+        player.x*sx,
+        player.y*sy,
+        5,
+        0,
+        Math.PI*2
+    );
+
+    mctx.fill();
+
+    mctx.strokeStyle="rgba(255,255,255,.3)";
+    mctx.strokeRect(
+        camera.x*sx,
+        camera.y*sy,
+        W*sx,
+        H*sy
+    );
+}
+
+/* =========================================================
+   HUD
+========================================================= */
+
+function updateHUD(){
+
+    const hp=Math.max(
+        0,
+        Math.min(
+            1,
+            player.hp/player.maxHp
+        )
+    );
+
+    document.getElementById("hpText").textContent=
+        Math.floor(player.hp)+" / "+player.maxHp;
+
+    document.getElementById("hpBar").style.width=
+        (hp*100)+"%";
+
+    const needed=xpRequired(save.level);
+
+    document.getElementById("xpText").textContent=
+        Math.floor(save.xp)+" / "+needed;
+
+    document.getElementById("xpBar").style.width=
+        Math.min(
+            100,
+            save.xp/needed*100
+        )+"%";
+
+    document.getElementById("level").textContent=
+        save.level;
+
+    document.getElementById("attackText").textContent=
+        player.attack;
+
+    document.getElementById("gold").textContent=
+        save.gold;
+
+    document.getElementById("potions").textContent=
+        save.potions;
+
+    document.getElementById("kills").textContent=
+        save.kills;
+
+    const quest=document.getElementById("questText");
+
+    if(save.questComplete){
+
+        quest.textContent=
+            "Quest abgeschlossen! Kehre zu Eira zurück.";
+    }else{
+
+        quest.textContent=
+            "Eira: Besiege "+save.questKills+"/3 Schattenwesen.";
+    }
+}
+
+/* =========================================================
+   INTERACTION INDICATOR
+========================================================= */
+
+function updateInteraction(){
+
+    const box=document.getElementById("interaction");
+
+    const d=Math.hypot(
+        player.x-npc.x,
+        player.y-npc.y
+    );
+
+    if(d<130){
+
+        box.textContent=
+            "E – Mit Eira sprechen";
+
+        box.style.opacity="1";
+
+    }else{
+
+        box.style.opacity="0";
+    }
+}
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+let messageTimer;
+
+function showMessage(text){
+
+    const box=document.getElementById("message");
+
+    box.textContent=text;
+    box.style.opacity="1";
+
+    clearTimeout(messageTimer);
+
+    messageTimer=setTimeout(()=>{
+        box.style.opacity="0";
+    },1800);
+}
+
+/* =========================================================
+   RESET
+========================================================= */
+
+function resetGame(){
+
+    if(!confirm(
+        "NEXORA wirklich komplett zurücksetzen?"
+    )) return;
+
+    localStorage.removeItem(SAVE_KEY);
+    location.reload();
+}
+
+/* =========================================================
+   SAVE SYNC
+========================================================= */
+
+function syncSave(){
+
+    save.x=player.x;
+    save.y=player.y;
+    save.hp=player.hp;
+    save.maxHp=player.maxHp;
+    save.attack=player.attack;
+}
+
+/* =========================================================
+   GAME LOOP
+========================================================= */
+
+let lastTime=performance.now();
+let autosave=0;
+
+function update(dt){
+
+    updatePlayer(dt);
+    updateEnemies(dt);
+
+    updateParticles(dt);
+    updateFloatingText(dt);
+
+    npc.anim+=dt;
+
+    updateCamera();
+
+    autosave+=dt;
+
+    if(autosave>=5){
+
+        autosave=0;
+
+        syncSave();
+        saveGame();
+    }
+}
+
+function draw(){
+
+    ctx.clearRect(0,0,W,H);
+
+    drawTerrain();
+    drawObstacles();
+
+    /* NPC */
+
+    drawNPC();
+
+    /* enemies */
+
+    for(const enemy of enemies)
+        drawEnemy(enemy);
+
+    /* player */
+
+    drawPlayer();
+
+    /* effects */
+
+    drawParticles();
+    drawFloatingText();
+
+    drawMinimap();
+
+    updateHUD();
+    updateInteraction();
+
+    /* vignette */
+
+    const gradient=ctx.createRadialGradient(
+        W/2,
+        H/2,
+        Math.min(W,H)*.2,
+        W/2,
+        H/2,
+        Math.max(W,H)*.75
+    );
+
+    gradient.addColorStop(
+        0,
+        "rgba(0,0,0,0)"
+    );
+
+    gradient.addColorStop(
+        1,
+        "rgba(0,0,0,.35)"
+    );
+
+    ctx.fillStyle=gradient;
+    ctx.fillRect(0,0,W,H);
+}
+
+function loop(now){
+
+    requestAnimationFrame(loop);
+
+    if(paused){
+
+        lastTime=now;
+        return;
+    }
+
+    let dt=(now-lastTime)/1000;
+
+    lastTime=now;
+
+    dt=Math.max(
+        0,
+        Math.min(
+            dt,
+            .05
+        )
+    );
+
+    update(dt);
+    draw();
+}
+
+updateCamera();
+updateHUD();
+
+showMessage(
+    "⚔ Willkommen in NEXORA 1.0"
+);
+
+requestAnimationFrame(loop);
+
+/* =========================================================
+   FINAL SAVE
+========================================================= */
+
+addEventListener("beforeunload",()=>{
+
+    syncSave();
+
+    try{
+
+        localStorage.setItem(
+            SAVE_KEY,
+            JSON.stringify(save)
+        );
+
+    }catch{}
+});
+
+</script>
 
 </body>
 </html>
