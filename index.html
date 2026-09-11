@@ -6,6 +6,16 @@
 <title>NEXORA 34.0.1 v5 — Realm of Ash</title>
 <style>
 :root{--glass:rgba(7,13,18,.78);--line:rgba(255,255,255,.12);--cyan:#6ee7ff;--gold:#ffd66e;--danger:#ff6470}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#05090d;color:#fff;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;touch-action:none;user-select:none;-webkit-user-select:none}body{background:radial-gradient(circle at 50% 30%,#14242d,#05090d 70%)}canvas#game{position:fixed;inset:0;z-index:0;display:block;width:100vw;height:100vh}canvas#mini{z-index:25}button{font:inherit;color:inherit;cursor:pointer}#hud{position:fixed;z-index:20;left:16px;top:16px;width:330px;padding:15px 16px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,rgba(6,13,19,.9),rgba(15,25,31,.72));backdrop-filter:blur(18px);box-shadow:0 18px 55px rgba(0,0,0,.5);pointer-events:none}.brand{font-size:27px;font-weight:950;letter-spacing:8px;text-shadow:0 0 24px rgba(110,231,255,.35)}.subtitle{font-size:9px;letter-spacing:3px;color:#91a8b7;margin:-2px 0 12px}.row{display:flex;justify-content:space-between;font-size:11px;color:#aebfca}.bar{height:12px;background:#0d161d;border:1px solid rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin:4px 0 8px}.bar i{display:block;height:100%;width:100%;border-radius:99px;transition:width .12s}.hp{background:linear-gradient(90deg,#7d2035,#ed5360,#ff9975)}.xp{background:linear-gradient(90deg,#175fa6,#42cfff,#d6f9ff)}.stats{display:grid;grid-template-columns:1fr 1fr;gap:5px 12px;margin-top:10px;font-size:12px;color:#bdcbd4}.stats b{color:#fff}.quest{margin-top:12px;padding:10px 11px;border:1px solid rgba(255,207,90,.18);background:rgba(255,207,90,.05);border-radius:13px;font-size:11px;line-height:1.5}.quest strong{color:var(--gold);letter-spacing:1.4px}#save{position:fixed;right:16px;top:16px;z-index:25;padding:8px 11px;border:1px solid var(--line);border-radius:12px;background:rgba(3,8,12,.72);font-size:11px;color:#b9cbd5;backdrop-filter:blur(10px)}#zone{position:fixed;z-index:21;left:50%;top:18px;transform:translateX(-50%);padding:8px 15px;border-radius:99px;background:rgba(4,9,13,.58);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(12px);font-size:11px;letter-spacing:2px;color:#c6d6df;opacity:.9}#msg{position:fixed;z-index:30;left:50%;bottom:132px;transform:translateX(-50%);padding:11px 19px;border-radius:99px;background:rgba(2,6,9,.88);border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 35px rgba(0,0,0,.45);opacity:0;transition:opacity .18s;pointer-events:none;white-space:nowrap;font-size:13px}#interact{position:fixed;z-index:25;left:50%;top:15%;transform:translateX(-50%);padding:9px 15px;border-radius:99px;background:rgba(3,8,12,.8);border:1px solid rgba(255,255,255,.13);opacity:0;font-size:12px;pointer-events:none;backdrop-filter:blur(10px)}#controls{position:fixed;z-index:25;left:20px;bottom:20px;display:grid;grid-template-columns:62px 62px 62px;gap:6px}.move{width:62px;height:62px;border-radius:18px;border:1px solid rgba(255,255,255,.15);background:rgba(8,17,24,.78);box-shadow:0 9px 25px rgba(0,0,0,.4);font-size:22px;backdrop-filter:blur(8px)}.move:active{transform:scale(.93);background:rgba(54,107,137,.8)}.action{position:fixed;z-index:25;border-radius:50%;color:#fff;font-weight:950;box-shadow:0 12px 35px rgba(0,0,0,.48);backdrop-filter:blur(8px)}#attack{right:26px;bottom:26px;width:104px;height:104px;border:2px solid rgba(255,255,255,.25);background:radial-gradient(circle at 32% 25%,#e86a76,#751d31 72%);font-size:13px}#potion{right:145px;bottom:40px;width:68px;height:68px;border:2px solid rgba(255,255,255,.18);background:radial-gradient(circle at 30% 25%,#5aaee6,#16496f 75%);font-size:10px}.action:active{transform:scale(.94)}#mini{position:fixed;right:16px;bottom:16px;width:220px;height:150px;border:1px solid rgba(255,255,255,.13);border-radius:16px;background:rgba(3,7,10,.8);box-shadow:0 12px 38px rgba(0,0,0,.45)}#death{position:fixed;inset:0;z-index:40;display:none;align-items:center;justify-content:center;background:radial-gradient(circle,rgba(65,8,15,.15),rgba(0,0,0,.78));pointer-events:none}.deathCard{padding:28px 36px;border:1px solid rgba(255,255,255,.13);border-radius:24px;background:rgba(4,7,10,.86);box-shadow:0 25px 90px #000b;text-align:center}.deathCard h1{margin:0 0 8px;letter-spacing:5px}.deathCard p{margin:0;color:#9eb1bd;font-size:12px}#help{position:fixed;z-index:20;right:16px;top:60px;padding:7px 10px;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:rgba(3,8,12,.55);font-size:10px;color:#8297a5;pointer-events:none}@media(max-width:850px){#mini,#help{display:none}#hud{width:292px;left:8px;top:8px;transform:scale(.82);transform-origin:top left}.brand{font-size:23px}#controls{left:10px;bottom:10px}.move{width:56px;height:56px}#attack{right:15px;bottom:16px;width:92px;height:92px}#potion{right:118px;bottom:28px;width:62px;height:62px}#zone{top:9px;font-size:9px}#msg{bottom:108px;font-size:11px}}
+.nx-forgot-row{
+  display:flex;
+  justify-content:center;
+  margin-top:4px;
+}
+
+.nx-forgot-row .nx-linkbtn{
+  font-size:11px;
+  letter-spacing:.08em;
+}
 </style>
 
 <style id="nexora32-frontend-style">
@@ -115,19 +125,177 @@ border:1px solid rgba(255,255,255,.16);background:rgba(3,8,12,.82);color:white;f
  </div>
 </section>
 
-<section id="nx-account" class="nx-screen">
- <div class="nx-card">
-  <div class="nx-top"><div><h1 class="nx-title" id="nxAccountTitle">ANMELDEN</h1><div class="nx-sub">E-Mail-Adresse ist dein NEXORA-Benutzername</div></div><button class="nx-back" data-nxgo="main">← ZURÜCK</button></div>
-  <div class="nx-form">
-   <div class="nx-switch"><button class="nx-btn primary" id="nxLoginTab">ANMELDEN</button><button class="nx-btn" id="nxRegisterTab">REGISTRIEREN</button></div>
-   <div class="nx-field"><label>E-MAIL / BENUTZERNAME</label><input id="nxUser" type="email" inputmode="email" autocomplete="email" maxlength="254" placeholder="name@example.com"></div>
-   <div class="nx-field"><label>PASSWORT</label><input id="nxPass" type="password" autocomplete="current-password" maxlength="128" placeholder="Mindestens 8 Zeichen"></div>
-   <div class="nx-field" id="nxPass2Wrap" style="display:none"><label>PASSWORT WIEDERHOLEN</label><input id="nxPass2" type="password" autocomplete="new-password" maxlength="128" placeholder="Passwort wiederholen"></div>
-   <div class="nx-note" id="nxPasswordRules">Bei Registrierung: mindestens 8 Zeichen, 1 Großbuchstabe, 1 Kleinbuchstabe und 1 Zahl.</div>
-   <div class="nx-note" id="nxAccountNote">Noch nicht angemeldet.</div>
-   <button class="nx-btn primary" id="nxAccountSubmit">ANMELDEN</button>
+ <section id="nx-account" class="nx-screen">
+
+  <div class="nx-card">
+
+    <div class="nx-top">
+
+      <div>
+        <h1 class="nx-title" id="nxAccountTitle">
+          ANMELDEN
+        </h1>
+
+        <div class="nx-sub">
+          E-Mail-Adresse ist dein NEXORA-Benutzername
+        </div>
+      </div>
+
+      <button class="nx-back" data-nxgo="main">
+        ← ZURÜCK
+      </button>
+
+    </div>
+
+
+    <div class="nx-form">
+
+      <div class="nx-switch">
+
+        <button
+          class="nx-btn primary"
+          id="nxLoginTab"
+        >
+          ANMELDEN
+        </button>
+
+        <button
+          class="nx-btn"
+          id="nxRegisterTab"
+        >
+          REGISTRIEREN
+        </button>
+
+      </div>
+
+
+      <div class="nx-field">
+
+        <label>
+          E-MAIL / BENUTZERNAME
+        </label>
+
+        <input
+          id="nxUser"
+          type="email"
+          inputmode="email"
+          autocomplete="email"
+          maxlength="254"
+          placeholder="name@example.com"
+        >
+
+      </div>
+
+
+      <div
+        class="nx-field"
+        id="nxResetCodeWrap"
+        style="display:none"
+      >
+
+        <label>
+          6-STELLIGER RESET-CODE
+        </label>
+
+        <input
+          id="nxResetCode"
+          type="text"
+          inputmode="numeric"
+          autocomplete="one-time-code"
+          maxlength="6"
+          placeholder="000000"
+        >
+
+      </div>
+
+
+      <div
+        class="nx-field"
+        id="nxPassWrap"
+      >
+
+        <label id="nxPassLabel">
+          PASSWORT
+        </label>
+
+        <input
+          id="nxPass"
+          type="password"
+          autocomplete="current-password"
+          maxlength="128"
+          placeholder="Mindestens 8 Zeichen"
+        >
+
+      </div>
+
+
+      <div
+        class="nx-field"
+        id="nxPass2Wrap"
+        style="display:none"
+      >
+
+        <label id="nxPass2Label">
+          PASSWORT WIEDERHOLEN
+        </label>
+
+        <input
+          id="nxPass2"
+          type="password"
+          autocomplete="new-password"
+          maxlength="128"
+          placeholder="Passwort wiederholen"
+        >
+
+      </div>
+
+
+      <div
+        class="nx-note"
+        id="nxPasswordRules"
+      >
+        Bei Registrierung:
+        mindestens 8 Zeichen,
+        1 Großbuchstabe,
+        1 Kleinbuchstabe
+        und 1 Zahl.
+      </div>
+
+
+      <div
+        class="nx-note"
+        id="nxAccountNote"
+      >
+        Noch nicht angemeldet.
+      </div>
+
+
+      <button
+        class="nx-btn primary"
+        id="nxAccountSubmit"
+      >
+        ANMELDEN
+      </button>
+
+
+      <div class="nx-forgot-row">
+
+        <button
+          class="nx-linkbtn"
+          id="nxForgotPassword"
+          type="button"
+        >
+          PASSWORT VERGESSEN?
+        </button>
+
+      </div>
+
+    </div>
+
   </div>
- </div>
+
+</section>
+
 </section>
 
 <section id="nx-server" class="nx-screen">
@@ -1545,6 +1713,7 @@ requestAnimationFrame(loop);
  let state;
  try{state=JSON.parse(localStorage.getItem(FRONT_KEY)||"null")}catch(_){}
  state=state||{mode:"login",user:null,server:"Ashen Realm",characters:[],selectedCharacterId:null};
+ let resetCodeSent=false;
  state.characters=Array.isArray(state.characters)?state.characters:[];
 
  let loggedIn=false;
@@ -1748,22 +1917,127 @@ requestAnimationFrame(loop);
   if(name==="character")characterUI();
  }
 
+ function accountUI() {
+
+  const reg =
+    state.mode ===
+    "register";
+
+  const reset =
+    state.mode ===
+    "reset";
+
+
+  $("nxAccountTitle").textContent =
+    reset
+      ? "PASSWORT ZURÜCKSETZEN"
+      : (
+          reg
+            ? "REGISTRIEREN"
+            : "ANMELDEN"
+        );
+
+
+  $("nxResetCodeWrap").style.display =
+    reset &&
+    resetCodeSent
+      ? "block"
+      : "none";
+
+
+  $("nxPassWrap").style.display =
+    reset &&
+    !resetCodeSent
+      ? "none"
+      : "block";
+
+
+  $("nxPass2Wrap").style.display =
+    (
+      reg ||
+      (
+        reset &&
+        resetCodeSent
+      )
+    )
+      ? "block"
+      : "none";
+
+
+  $("nxPassLabel").textContent =
+    reset
+      ? "NEUES PASSWORT"
+      : "PASSWORT";
+
+
+  $("nxPass2Label").textContent =
+    reset
+      ? "NEUES PASSWORT WIEDERHOLEN"
+      : "PASSWORT WIEDERHOLEN";
+
+
+  $("nxAccountSubmit").textContent =
+    reset
+      ? (
+          resetCodeSent
+            ? "PASSWORT ZURÜCKSETZEN"
+            : "RESET-CODE SENDEN"
+        )
+      : (
+          reg
+            ? "ACCOUNT ERSTELLEN"
+            : "ANMELDEN"
+        );
+
+
+  $("nxLoginTab")
+    .classList
+    .toggle(
+      "primary",
+      !reg &&
+      !reset
+    );
+
+
+  $("nxRegisterTab")
+    .classList
+    .toggle(
+      "primary",
+      reg
+    );
+
+
+  $("nxPass").autocomplete =
+    (
+      reg ||
+      reset
+    )
+      ? "new-password"
+      : "current-password";
+
+
+  $("nxForgotPassword").textContent =
+    reset
+      ? "← ZURÜCK ZUM LOGIN"
+      : "PASSWORT VERGESSEN?";
+
+
+  $("nxPasswordRules").textContent =
+    reset
+      ? (
+          resetCodeSent
+            ? "Neues Passwort: mindestens 8 Zeichen, 1 Großbuchstabe, 1 Kleinbuchstabe und 1 Zahl."
+            : "Wir senden einen einmaligen 6-stelligen Code an deine Account-E-Mail."
+        )
+      : "Bei Registrierung: mindestens 8 Zeichen, 1 Großbuchstabe, 1 Kleinbuchstabe und 1 Zahl.";
+}
+ 
  function updateAccountUI(){
   state.user=loggedIn?email():null;
   $("nxAccountEmail").textContent=loggedIn?email():"—";
   $("nxAccountBar").classList.toggle("visible",loggedIn);
   $("nxInGameAccount").textContent=loggedIn?"Angemeldet als "+email():"Nicht angemeldet";
   persist();
- }
-
- function accountUI(){
-  const reg=state.mode==="register";
-  $("nxAccountTitle").textContent=reg?"REGISTRIEREN":"ANMELDEN";
-  $("nxPass2Wrap").style.display=reg?"block":"none";
-  $("nxAccountSubmit").textContent=reg?"ACCOUNT ERSTELLEN":"ANMELDEN";
-  $("nxLoginTab").classList.toggle("primary",!reg);
-  $("nxRegisterTab").classList.toggle("primary",reg);
-  $("nxPass").autocomplete=reg?"new-password":"current-password";
  }
 
  function serverUI(){
@@ -1953,36 +2227,493 @@ requestAnimationFrame(loop);
 
  document.querySelectorAll("[data-nxgo]").forEach(b=>b.onclick=()=>show(b.dataset.nxgo));
 
- $("nxLoginTab").onclick=()=>{
-  state.mode="login";
+$("nxLoginTab").onclick = () => {
+
+  state.mode =
+    "login";
+
+  resetCodeSent =
+    false;
+
   accountUI();
-  note("Gib deine E-Mail-Adresse und dein Passwort ein.");
- };
 
- $("nxRegisterTab").onclick=()=>{
-  state.mode="register";
+  note(
+    "Gib deine E-Mail-Adresse und dein Passwort ein."
+  );
+};
+
+
+$("nxRegisterTab").onclick = () => {
+
+  state.mode =
+    "register";
+
+  resetCodeSent =
+    false;
+
   accountUI();
-  note("Erstelle deinen NEXORA-Account. E-Mail = Benutzername.");
- };
 
- $("nxAccountSubmit").onclick=async()=>{
-  const isRegister=state.mode==="register";
-  const e=$("nxUser").value.trim().toLowerCase();
-  const p=$("nxPass").value;
+  note(
+    "Erstelle deinen NEXORA-Account. E-Mail = Benutzername."
+  );
+};
 
-  if(!validEmail(e)){note("Bitte eine gültige E-Mail-Adresse eingeben.","error");return}
-  if(isRegister&&!validPassword(p)){note("Passwort: mindestens 8 Zeichen, Groß- und Kleinbuchstaben sowie mindestens eine Zahl.","error");return}
-  if(!isRegister&&p.length<1){note("Bitte Passwort eingeben.","error");return}
-  if(isRegister&&p!==$("nxPass2").value){note("Die beiden Passwörter stimmen nicht überein.","error");return}
 
-  $("nxAccountSubmit").disabled=true;
-  note(isRegister?"Account wird erstellt …":"Anmeldung läuft …");
+$("nxForgotPassword").onclick =
+  () => {
 
-  try{
-   const data=await api(isRegister?"/api/register":"/api/login",{
-    method:"POST",
-    body:JSON.stringify({email:e,password:p})
-   });
+    if (
+      state.mode ===
+      "reset"
+    ) {
+
+      state.mode =
+        "login";
+
+      resetCodeSent =
+        false;
+
+      $("nxResetCode").value =
+        "";
+
+      $("nxPass").value =
+        "";
+
+      $("nxPass2").value =
+        "";
+
+      accountUI();
+
+      note(
+        "Gib deine E-Mail-Adresse und dein Passwort ein."
+      );
+
+      return;
+    }
+
+
+    state.mode =
+      "reset";
+
+    resetCodeSent =
+      false;
+
+    $("nxResetCode").value =
+      "";
+
+    $("nxPass").value =
+      "";
+
+    $("nxPass2").value =
+      "";
+
+    accountUI();
+
+    note(
+      "Gib deine Account-E-Mail ein. Das alte Passwort wird nicht benötigt."
+    );
+  };
+
+$("nxAccountSubmit").onclick =
+  async () => {
+
+    const isRegister =
+      state.mode ===
+      "register";
+
+    const isReset =
+      state.mode ===
+      "reset";
+
+
+    const email =
+      $("nxUser")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const password =
+      $("nxPass")
+        .value;
+
+
+    if (
+      !validEmail(
+        email
+      )
+    ) {
+
+      note(
+        "Bitte eine gültige E-Mail-Adresse eingeben.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    if (isReset) {
+
+      if (!resetCodeSent) {
+
+        $("nxAccountSubmit")
+          .disabled =
+            true;
+
+        note(
+          "Reset-Code wird angefordert …"
+        );
+
+
+        try {
+
+          const data =
+            await api(
+              "/api/password-reset/request",
+              {
+                method:
+                  "POST",
+
+                body:
+                  JSON.stringify({
+                    email
+                  })
+              }
+            );
+
+
+          resetCodeSent =
+            true;
+
+          accountUI();
+
+
+          note(
+            data.message ||
+            "Wenn der Account existiert, wurde ein Reset-Code gesendet.",
+            "success"
+          );
+
+
+          setTimeout(
+            () =>
+              $("nxResetCode")
+                ?.focus(),
+            0
+          );
+
+        }
+        catch (err) {
+
+          note(
+            err.message,
+            "error"
+          );
+
+        }
+        finally {
+
+          $("nxAccountSubmit")
+            .disabled =
+              false;
+        }
+
+
+        return;
+      }
+
+
+      const code =
+        $("nxResetCode")
+          .value
+          .replace(
+            /\s+/g,
+            ""
+          );
+
+
+      const password2 =
+        $("nxPass2")
+          .value;
+
+
+      if (
+        !/^\d{6}$/.test(
+          code
+        )
+      ) {
+
+        note(
+          "Bitte den 6-stelligen Reset-Code eingeben.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      if (
+        !validPassword(
+          password
+        )
+      ) {
+
+        note(
+          "Neues Passwort: mindestens 8 Zeichen, Groß- und Kleinbuchstaben sowie mindestens eine Zahl.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      if (
+        password !==
+        password2
+      ) {
+
+        note(
+          "Die beiden neuen Passwörter stimmen nicht überein.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      if (
+        !confirm(
+          "Passwort wirklich zurücksetzen? Alle bisherigen Anmeldesitzungen dieses Accounts werden beendet."
+        )
+      ) {
+
+        return;
+      }
+
+
+      $("nxAccountSubmit")
+        .disabled =
+          true;
+
+
+      note(
+        "Passwort wird zurückgesetzt …"
+      );
+
+
+      try {
+
+        const data =
+          await api(
+            "/api/password-reset/confirm",
+            {
+              method:
+                "POST",
+
+              body:
+                JSON.stringify({
+                  email,
+                  code,
+                  newPassword:
+                    password,
+                  confirmPassword:
+                    password2
+                })
+            }
+          );
+
+
+        localStorage
+          .setItem(
+            EMAIL_KEY,
+            data.email ||
+            email
+          );
+
+
+        loggedIn =
+          true;
+
+
+        state.user =
+          data.email ||
+          email;
+
+
+        resetCodeSent =
+          false;
+
+
+        await loadCharacters();
+
+
+        localStorage
+          .setItem(
+            "nexora_post_login",
+            "1"
+          );
+
+
+        location.reload();
+
+      }
+      catch (err) {
+
+        note(
+          err.message,
+          "error"
+        );
+
+
+        $("nxAccountSubmit")
+          .disabled =
+            false;
+      }
+
+
+      return;
+    }
+
+
+    if (
+      isRegister &&
+      !validPassword(
+        password
+      )
+    ) {
+
+      note(
+        "Passwort: mindestens 8 Zeichen, Groß- und Kleinbuchstaben sowie mindestens eine Zahl.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    if (
+      !isRegister &&
+      password.length < 1
+    ) {
+
+      note(
+        "Bitte Passwort eingeben.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    if (
+      isRegister &&
+      password !==
+      $("nxPass2").value
+    ) {
+
+      note(
+        "Die beiden Passwörter stimmen nicht überein.",
+        "error"
+      );
+
+      return;
+    }
+
+
+    $("nxAccountSubmit")
+      .disabled =
+        true;
+
+
+    note(
+      isRegister
+        ? "Account wird erstellt …"
+        : "Anmeldung läuft …"
+    );
+
+
+    try {
+
+      const data =
+        await api(
+          isRegister
+            ? "/api/register"
+            : "/api/login",
+          {
+            method:
+              "POST",
+
+            body:
+              JSON.stringify({
+                email,
+                password
+              })
+          }
+        );
+
+
+      localStorage
+        .setItem(
+          EMAIL_KEY,
+          data.email
+        );
+
+
+      loggedIn =
+        true;
+
+
+      state.user =
+        data.email;
+
+
+      if (isRegister) {
+
+        const legacy =
+          localStorage
+            .getItem(
+              LEGACY_SAVE
+            );
+
+
+        if (legacy) {
+
+          sessionStorage
+            .setItem(
+              "nexora_legacy_candidate",
+              legacy
+            );
+        }
+      }
+
+
+      await loadCharacters();
+
+
+      localStorage
+        .setItem(
+          "nexora_post_login",
+          "1"
+        );
+
+
+      location.reload();
+
+    }
+    catch (err) {
+
+      note(
+        err.message,
+        "error"
+      );
+
+
+      $("nxAccountSubmit")
+        .disabled =
+          false;
+    }
+  };
 
    localStorage.setItem(EMAIL_KEY,data.email);
    loggedIn=true;
