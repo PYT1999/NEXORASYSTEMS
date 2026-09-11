@@ -97,7 +97,7 @@ border:1px solid rgba(255,255,255,.16);background:rgba(3,8,12,.82);color:white;f
    <button class="nx-btn" data-nxgo="credits">CREDITS</button>
   </div>
   <div class="nx-accountbar" id="nxAccountBar"><span>ACCOUNT<br><b id="nxAccountEmail">—</b></span><button class="nx-linkbtn" id="nxMainLogout">AUSLOGGEN</button></div>
-  <div class="nx-small">32.0.0 · CLOUD ACCOUNT SYSTEM</div>
+  <div class="nx-small">32.0.1 · SAME-ORIGIN ACCOUNT SYSTEM</div>
  </div>
 </section>
 
@@ -157,7 +157,7 @@ border:1px solid rgba(255,255,255,.16);background:rgba(3,8,12,.82);color:white;f
 <section id="nx-credits" class="nx-screen">
  <div class="nx-card center">
   <div class="nx-top"><div><h1 class="nx-title">CREDITS</h1><div class="nx-sub">NEXORA · Realm of Ash</div></div><button class="nx-back" data-nxgo="main">← ZURÜCK</button></div>
-  <p style="color:#9fb2be;line-height:1.7">NEXORA · Realm of Ash — Version 32.0.0 mit Cloud-Accounts und accountgebundenem Spielstand.</p>
+  <p style="color:#9fb2be;line-height:1.7">NEXORA · Realm of Ash — Version 32.0.1 mit Cloud-Accounts und accountgebundenem Spielstand.</p>
  </div>
 </section>
 </div>
@@ -1327,7 +1327,7 @@ requestAnimationFrame(loop);
 <script id="nexora32-frontend-script">
 (() => {
  const $=id=>document.getElementById(id);
- const API_BASE=(localStorage.getItem("nexora_api_base")||"https://api.nexorasystems.ch").replace(/\/$/,"");
+ const API_BASE=location.origin;
  const FRONT_KEY="nexora_frontend_v32";
  const EMAIL_KEY="nexora_auth_email";
  const LEGACY_SAVE="nexora_save_v3010p_v5";
