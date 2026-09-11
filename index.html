@@ -111,7 +111,7 @@ border:1px solid rgba(255,255,255,.16);background:rgba(3,8,12,.82);color:white;f
    <button class="nx-btn" data-nxgo="credits">CREDITS</button>
   </div>
   <div class="nx-accountbar" id="nxAccountBar"><span>ACCOUNT<br><b id="nxAccountEmail">—</b></span><button class="nx-linkbtn" id="nxMainLogout">AUSLOGGEN</button></div>
-  <div class="nx-small">34.0.1 · REALM MULTIPLAYER · LOGIN HOTFIX</div>
+  <div class="nx-small">34.0.2 · REALM MULTIPLAYER · SAFE BOOT</div>
  </div>
 </section>
 
@@ -190,7 +190,7 @@ border:1px solid rgba(255,255,255,.16);background:rgba(3,8,12,.82);color:white;f
 <section id="nx-credits" class="nx-screen">
  <div class="nx-card center">
   <div class="nx-top"><div><h1 class="nx-title">CREDITS</h1><div class="nx-sub">NEXORA · Realm of Ash</div></div><button class="nx-back" data-nxgo="main">← ZURÜCK</button></div>
-  <p style="color:#9fb2be;line-height:1.7">NEXORA · Realm of Ash — Version 34.0.1 mit Cloud-Accounts, 3 Charakter-Slots, getrennten Cloud-Spielständen, Realm-Multiplayer und Login-Tastatur-Hotfix.</p>
+  <p style="color:#9fb2be;line-height:1.7">NEXORA · Realm of Ash — Version 34.0.2 mit Cloud-Accounts, 3 Charakter-Slots, getrennten Cloud-Spielständen, Realm-Multiplayer, Login-Tastatur-Hotfix und sicherem Session-Boot.</p>
  </div>
 </section>
 </div>
@@ -2123,30 +2123,39 @@ requestAnimationFrame(loop);
   const id=localStorage.getItem(ACTIVE_CHAR_KEY);
   if(localStorage.getItem(LAUNCH_KEY)!=="1"||!id)return false;
 
-  await loadCharacters();
-  state.selectedCharacterId=id;
+  try{
+   // Charakterliste kann sich zwischen Sessions geändert haben.
+   if(!state.characters.length)await loadCharacters();
+   state.selectedCharacterId=id;
 
-  const c=selected();
-  if(!c){
+   const c=selected();
+   if(!c)throw new Error("Gespeicherter Charakter ist nicht mehr verfügbar.");
+
+   await loadCharacterSave(id);
+
+   $("nxFrontend").classList.add("hidden");
+   $("nxGameMenuButton").classList.add("visible");
+   window.NEXORA_MENU_PAUSED=false;
+   gameActive=true;
+
+   try{if(typeof clearInput==="function")clearInput()}catch(_){}
+   try{if(typeof msg==="function")msg(`⚔ Willkommen, ${c.name} · ${c.server}`)}catch(_){}
+
+   clearInterval(syncTimer);
+   syncTimer=setInterval(()=>uploadCloudSave(),15000);
+   try{n34ConnectRealm()}catch(_){}
+   return true;
+  }catch(err){
+   // Ein kaputter/staler Auto-Start darf den Account niemals aussperren.
+   gameActive=false;
    localStorage.removeItem(LAUNCH_KEY);
    localStorage.removeItem(ACTIVE_CHAR_KEY);
+   state.selectedCharacterId=null;
+   persist();
+   show("main");
+   console.warn("NEXORA Auto-Start zurückgesetzt:",err);
    return false;
   }
-
-  await loadCharacterSave(id);
-
-  $("nxFrontend").classList.add("hidden");
-  $("nxGameMenuButton").classList.add("visible");
-  window.NEXORA_MENU_PAUSED=false;
-  gameActive=true;
-
-  try{if(typeof clearInput==="function")clearInput()}catch(_){}
-  try{if(typeof msg==="function")msg(`⚔ Willkommen, ${c.name} · ${c.server}`)}catch(_){}
-
-  clearInterval(syncTimer);
-  syncTimer=setInterval(()=>uploadCloudSave(),15000);
-  n34ConnectRealm();
-  return true;
  }
 
  addEventListener("pagehide",()=>{try{n34CloseRealm()}catch(_){}});
@@ -2155,25 +2164,13 @@ requestAnimationFrame(loop);
   window.NEXORA_MENU_PAUSED=true;
   accountUI();
   serverUI();
-  updateAccountUI();
+  show("main");
 
+  // 1) Session separat prüfen. Ein Fehler hier bedeutet nur: nicht eingeloggt.
+  let me=null;
   try{
-   const me=await api("/api/me");
-   loggedIn=true;
-   localStorage.setItem(EMAIL_KEY,me.email);
-   state.user=me.email;
-
-   await loadCharacters();
-   updateAccountUI();
-   serverUI();
-
-   if(await launchGameIfRequested())return;
-
-   if(localStorage.getItem("nexora_post_login")==="1"){
-    localStorage.removeItem("nexora_post_login");
-    show("server");
-   }
-  }catch(_){
+   me=await api("/api/me");
+  }catch(err){
    loggedIn=false;
    localStorage.removeItem(EMAIL_KEY);
    localStorage.removeItem(ACTIVE_CHAR_KEY);
@@ -2183,6 +2180,36 @@ requestAnimationFrame(loop);
    state.characters=[];
    persist();
    updateAccountUI();
+   show("main");
+   return;
+  }
+
+  // 2) Gültige Session immer behalten, auch wenn Charakter- oder Save-Laden fehlschlägt.
+  loggedIn=true;
+  localStorage.setItem(EMAIL_KEY,me.email);
+  state.user=me.email;
+  updateAccountUI();
+
+  try{
+   await loadCharacters();
+  }catch(err){
+   console.error("Charakterliste konnte nicht geladen werden:",err);
+   state.characters=[];
+   state.selectedCharacterId=null;
+   persist();
+   show("main");
+   return;
+  }
+
+  serverUI();
+
+  if(await launchGameIfRequested())return;
+
+  if(localStorage.getItem("nexora_post_login")==="1"){
+   localStorage.removeItem("nexora_post_login");
+   show("server");
+  }else{
+   show("main");
   }
  }
 
