@@ -2455,7 +2455,7 @@ requestAnimationFrame(loop);
 <script id="nexora33-frontend-script">
 (() => {
  const $=id=>document.getElementById(id);
- const API_BASE=location.origin;
+ const API_BASE="https://api.nexorasystems.ch";
  const FRONT_KEY="nexora_frontend_v33";
  const EMAIL_KEY="nexora_auth_email";
  const ACTIVE_CHAR_KEY="nexora_active_character_id";
@@ -2646,12 +2646,45 @@ requestAnimationFrame(loop);
  const escapeHtml=v=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]));
 
  async function api(path,options={}){
-  const headers={"Content-Type":"application/json",...(options.headers||{})};
-  const res=await fetch(API_BASE+path,{...options,headers,credentials:"include",cache:"no-store"});
-  let data={};try{data=await res.json()}catch(_){}
-  if(!res.ok)throw new Error(data.error||("Serverfehler "+res.status));
+  const headers={
+    "Content-Type":"application/json",
+    ...(options.headers||{})
+  };
+
+  const res=await fetch(API_BASE+path,{
+    ...options,
+    headers,
+    credentials:"include",
+    cache:"no-store"
+  });
+
+  const contentType=res.headers.get("content-type")||"";
+
+  if(!contentType.includes("application/json")){
+    const raw=await res.text();
+
+    console.error(
+      "NEXORA API returned non-JSON:",
+      res.status,
+      raw.slice(0,500)
+    );
+
+    throw new Error(
+      "API-Verbindung fehlgeschlagen. Server lieferte keine gültige JSON-Antwort."
+    );
+  }
+
+  const data=await res.json();
+
+  if(!res.ok){
+    throw new Error(
+      data.error||
+      ("Serverfehler "+res.status)
+    );
+  }
+
   return data;
- }
+}
 
  function note(text,type=""){
   const n=$("nxAccountNote");
